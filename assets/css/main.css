@@ -1,0 +1,9 @@
+@import "./base.css";
+@import "./text.css";
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: #f5faff;
+  scroll-behavior: smooth;
+}
