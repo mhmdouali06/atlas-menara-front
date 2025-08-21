@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  useHead({
-    title:"ARB-HOME"
-  })
+useHead({
+  title: "AtlasMenara",
+});
 </script>
 <template>
   <NuxtLayout>

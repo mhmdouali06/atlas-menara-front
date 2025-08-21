@@ -25,4 +25,6 @@ useHead({
 
 <template>
   <HomeSection1 />
+  <HomeWhoAreWe />
+  <HomeContact />
 </template>

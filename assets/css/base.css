@@ -14,7 +14,20 @@
 :root {
   --vt-c-blue: #0d72ff;
   --vt-c-soft-black: #0b090a;
-  --vt-c-orange: #ffa500;
+
+  --vt-c-orange-100: #fff7ed;
+  --vt-c-orange-200: #ffedd5;
+  --vt-c-orange-300: #fdba74;
+  --vt-c-orange-400: #fb923c;
+  --vt-c-orange-500: #f97316;
+  --vt-c-orange-600: #ea580c;
+  --vt-c-orange-700: #c2410c;
+  --vt-c-orange-800: #9a3412;
+  --vt-c-orange-900: #7c2d12;
+
+  /* Keep your base orange */
+  --vt-c-orange: #f39201;
+
   --vt-c-black: #000000;
   --vt-c-white: #ffffff;
   --vt-c-gray: #b9b9b9;

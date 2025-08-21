@@ -1,11 +1,11 @@
 <template>
   <header>
     <div
-      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between"
+      class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between"
     >
       <!-- Logo -->
       <div class="text-2xl font-bold text-blue">
-        <NuxtLink to="/"><img :src="logo" alt="logo" class="h-8" /></NuxtLink>
+        <NuxtLink to="/"><img :src="logo" alt="logo" /></NuxtLink>
       </div>
 
       <!-- Desktop Nav -->
@@ -14,10 +14,12 @@
 
         <!-- Dropdown -->
         <div class="relative group">
-          <button class="text-gray-800 hover:text-blue flex items-center gap-1">
+          <button
+            class="text-gray-800 hover:text-orange flex items-center gap-1"
+          >
             Todos los cursos
             <svg
-              class="w-4 h-4 text-gray-500 group-hover:text-blue transition"
+              class="w-4 h-4 text-gray-500 group-hover:text-orange transition"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
@@ -56,10 +58,10 @@
         <a
           href="https://selectalent.es/"
           target="_blank"
-          class="text-gray-800 hover:text-blue"
+          class="text-gray-800 hover:text-orange"
           >Sobre Nosotros</a
         >
-        <a href="#" class="text-gray-800 hover:text-blue"
+        <a href="#" class="text-gray-800 hover:text-orange"
           >¿Por qué elegir nuestros talleres?</a
         >
       </nav>
@@ -68,9 +70,9 @@
       <div class="hidden md:block">
         <NuxtLink
           to="/#contact"
-          class="bg-blue text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-700 transition"
+          class="bg-orange text-white px-5 py-2 rounded-full shadow-md hover:bg-orange-700 transition"
         >
-          Contacto
+          Contactar un agente
         </NuxtLink>
       </div>
 
@@ -103,7 +105,7 @@
         class="md:hidden bg-white shadow-inner px-4 py-4 transition-all duration-300"
       >
         <nav class="flex flex-col gap-3">
-          <a href="#" class="text-blue font-semibold">Inicio</a>
+          <a href="#" class="text-orange font-semibold">Inicio</a>
           <details class="group">
             <summary
               class="cursor-pointer text-gray-800 flex justify-between items-center"
@@ -142,7 +144,7 @@
           >
           <NuxtLink
             to="/#contact"
-            class="bg-blue text-white text-center py-2 rounded-md shadow hover:bg-blue-700"
+            class="bg-orange text-white text-center py-2 rounded-md shadow hover:bg-orange-700"
           >
             Contacto
           </NuxtLink>
@@ -164,7 +166,7 @@ const isOpen = ref(false);
   font-family: "Poppins", sans-serif;
 }
 .active {
-  color: #0d72ff;
+  color: var(--vt-c-orange);
   font-weight: 600;
 }
 
