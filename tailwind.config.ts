@@ -32,6 +32,7 @@ const config: Config = {
         poppins: ["Poppins", "sans-serif"],
         montserrat: ["Montserrat", "sans-serif"],
         opensans: ["Open Sans", "sans-serif"],
+        volkhov: ["Volkhov", "sans-serif"],
       },
     },
   },

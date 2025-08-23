@@ -10,6 +10,10 @@
   font-family: "Open Sans";
   src: url("~/assets/fonts/OpenSans.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Volkhov";
+  src: url("~/assets/fonts/Volkhov-Regular.ttf") format("truetype");
+}
 
 :root {
   --vt-c-blue: #0d72ff;

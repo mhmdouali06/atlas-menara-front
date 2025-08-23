@@ -25,6 +25,9 @@ useHead({
 
 <template>
   <HomeSection1 />
+  <HomePartners />
+  <HomeCarosule />
   <HomeWhoAreWe />
+  <HomeWhyTravelWithUs />
   <HomeContact />
 </template>

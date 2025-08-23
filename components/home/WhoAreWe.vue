@@ -5,7 +5,7 @@ import hero from "@/assets/img/global/illus.png";
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <section class="mx-auto max-w-7xl px-4 my-28">
     <div class="grid items-center gap-10 md:gap-14 md:grid-cols-2">
       <div
         class="relative mx-auto w-[260px] sm:w-[320px] md:w-[420px] aspect-square"
