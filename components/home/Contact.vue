@@ -84,7 +84,7 @@
   </section>
 </template>
 <script lang="ts" setup>
-import bg from "@/assets/img/global/bgContact.png";
+import bg from "@/assets/img/global/BgContact.png";
 import man from "@/assets/img/global/man.png";
 const form = ref({
   first_name: "",
