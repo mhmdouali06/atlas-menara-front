@@ -29,5 +29,7 @@ useHead({
   <HomeCarosule />
   <HomeWhoAreWe />
   <HomeWhyTravelWithUs />
+  <HomeReviews />
   <HomeContact />
+  <HomeBlog />
 </template>
