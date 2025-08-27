@@ -1,6 +1,11 @@
 <template>
   <section class="mx-auto my-12" id="contact">
     <div class="main mx-auto p-6 grid grid-cols-12 relative">
+      <img
+        :src="bg"
+        alt="background"
+        class="absolute left-0 top-0 z-[-1] object-cover"
+      />
       <div class="col-span-12 md:col-span-5 relative">
         <img
           :src="man"
@@ -79,6 +84,7 @@
   </section>
 </template>
 <script lang="ts" setup>
+import bg from "@/assets/img/global/bgContact.png";
 import man from "@/assets/img/global/man.png";
 const form = ref({
   first_name: "",
@@ -91,12 +97,6 @@ const form = ref({
 });
 </script>
 <style scoped>
-.main {
-  background-image: url("../../assets/img/global/bgContact.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 ::v-deep(.custom-label-check-box) {
   color: white;
 }
