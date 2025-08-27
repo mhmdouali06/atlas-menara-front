@@ -92,7 +92,7 @@ const form = ref({
 </script>
 <style scoped>
 .main {
-  background-image: url("~/assets/img/global/bgContact.png");
+  background-image: url("../../assets/img/global/bgContact.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
