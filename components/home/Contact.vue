@@ -4,7 +4,7 @@
       <img
         :src="bg"
         alt="background"
-        class="absolute left-0 top-0 z-[-1] object-cover"
+        class="absolute h-full w-full left-0 top-0 z-[-1] object-cover"
       />
       <div class="col-span-12 md:col-span-5 relative">
         <img
