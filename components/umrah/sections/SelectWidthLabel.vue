@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div class="mai">
     <p class="label font-montserrat text-[#1C1B1F]">{{ props.label }}</p>
     <div class="flex gap-2">
       <img :src="props.iocn" alt="icon" />
@@ -24,7 +24,7 @@ const props = defineProps<{
 }>();
 </script>
 <style scoped>
-.main {
+.mai {
   border-radius: 4px;
   border: 1px solid #79747e;
   background: #fff;
