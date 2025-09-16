@@ -16,7 +16,7 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <div class="main">
+  <div class="main" @click="navigateTo('/umrah/' + props.item.id)">
     <div class="blue-background"></div>
     <img
       :src="props.item.image"
