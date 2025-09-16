@@ -6,7 +6,7 @@
     >
       <!-- Title -->
       <h2
-        class="text-center font-serif text-[40px] leading-none text-[#14223b]"
+        class="text-center font-volkhov text-[40px] leading-none font-bold text-[#0E2041]"
       >
         Reservar
       </h2>
@@ -24,7 +24,7 @@
             v-model="form.name"
             type="text"
             placeholder="NOMBRE Y APELLIDO*"
-            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1c274c]"
+            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none"
             required
           />
         </div>
@@ -40,7 +40,7 @@
             v-model="form.email"
             type="email"
             placeholder="E-MAIL"
-            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1c274c]"
+            class="h-14 w-full rounded-sm outline-none bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400"
             required
           />
         </div>
@@ -56,7 +56,7 @@
             v-model="form.phone"
             type="tel"
             placeholder="NÚMERO TELÉFONO*"
-            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1c274c]"
+            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none"
             required
           />
         </div>
@@ -72,7 +72,7 @@
             v-model="form.city"
             type="text"
             placeholder="Ciudad*"
-            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none ring-1 ring-gray-200 focus:ring-2 focus:ring-[#1c274c]"
+            class="h-14 w-full rounded-sm border-0 bg-white pl-11 pr-4 text-[15px] tracking-wide placeholder-gray-400 outline-none"
             required
           />
         </div>
