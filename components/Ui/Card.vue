@@ -16,7 +16,10 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <div class="main" @click="navigateTo('/umrah/' + props.item.id)">
+  <div
+    class="main cursor-pointer"
+    @click="navigateTo('/umrah/' + props.item.id)"
+  >
     <div class="blue-background"></div>
     <img
       :src="props.item.image"
