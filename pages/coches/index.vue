@@ -11,7 +11,7 @@ const vehicles = ref([
     category: "SUV",
     image: car,
     passengers: 6,
-    href: "/reservar/rush-1",
+    href: "rush-1",
     liked: false,
   },
   {
@@ -20,7 +20,7 @@ const vehicles = ref([
     category: "SUV",
     image: car,
     passengers: 6,
-    href: "/reservar/rush-2",
+    href: "rush-2",
     liked: false,
   },
   {
@@ -29,7 +29,7 @@ const vehicles = ref([
     category: "SUV",
     image: car,
     passengers: 6,
-    href: "/reservar/rush-3",
+    href: "rush-3",
     liked: false,
   },
   {
@@ -38,7 +38,7 @@ const vehicles = ref([
     category: "SUV",
     image: car,
     passengers: 6,
-    href: "/reservar/rush-4",
+    href: "rush-4",
     liked: false,
   },
   {
@@ -47,7 +47,7 @@ const vehicles = ref([
     category: "SUV",
     image: car,
     passengers: 6,
-    href: "/reservar/rush-5",
+    href: "rush-5",
     liked: false,
   },
   {
@@ -56,7 +56,7 @@ const vehicles = ref([
     category: "SUV",
     image: car,
     passengers: 6,
-    href: "/reservar/rush-6",
+    href: "rush-6",
     liked: false,
   },
 ]);

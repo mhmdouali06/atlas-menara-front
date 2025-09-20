@@ -82,7 +82,7 @@
     <!-- cta -->
     <div class="mt-5 flex justify-end">
       <NuxtLink
-        :to="item.href || '#'"
+        :to="'/coches/' + item.href"
         class="inline-flex items-center justify-center rounded-lg bg-[#F4A021] font-poppins px-5 py-2.5 text-sm font-semibold text-white shadow transition"
       >
         Reservar
