@@ -33,6 +33,7 @@ const config: Config = {
         montserrat: ["Montserrat", "sans-serif"],
         opensans: ["Open Sans", "sans-serif"],
         volkhov: ["Volkhov", "sans-serif"],
+        arefRuqaa: ["Aref Ruqaa", "sans-serif"],
       },
     },
   },

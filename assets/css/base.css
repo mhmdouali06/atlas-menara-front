@@ -14,6 +14,10 @@
   font-family: "Volkhov";
   src: url("~/assets/fonts/Volkhov-Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Aref Ruqaa";
+  src: url("~/assets/fonts/ArefRuqaa-Regular.ttf") format("truetype");
+}
 
 :root {
   --vt-c-blue: #0d72ff;
