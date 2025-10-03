@@ -1,27 +1,22 @@
 <template>
-  <div class="p-4 gap-8 grid grid-cols-12">
-    <div class="left col-span-12 lg:col-span-8 p-2 md:p-8">
-      <div class="flex items-center justify-between">
-        <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B]">
-          Umrah Plan
-        </h2>
-      </div>
-
-      <div class="mt-6">
-        <DetailUmrahSectionsPlanTimeline :steps="steps" />
-      </div>
-    </div>
-
-    <div class="right col-span-12 lg:col-span-4">
-      <DetailUmrahSectionsContact :item="item" />
-    </div>
+  <div class="flex items-center justify-between">
+    <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B]">
+      Umrah Plan
+    </h2>
   </div>
+
+  <div class="mt-6">
+    <DetailUmrahSectionsPlanTimeline :steps="steps" />
+  </div>
+
+
 </template>
 
 <script setup lang="ts">
-import type { umrahinterface } from "~/types/Umrah";
+import type { Umrah } from '~/types/Umrah';
 
-const props = defineProps<{ item: umrahinterface }>();
+
+const props = defineProps<{ item: Umrah }>();
 
 const steps = [
   {

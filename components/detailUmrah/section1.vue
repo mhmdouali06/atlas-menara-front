@@ -1,21 +1,21 @@
 <template>
   <section class="relative h-[239px]">
     <div class="bg"></div>
-    <img :src="props.item.image" class="img-bg" alt="umrah bg" />
+    <img :src="fileUrl(props.item.thumbnail?.filePath, 'umrah')" class="img-bg" alt="umrah bg" />
     <div class="h-full w-full flex items-center">
-      <h1
-        class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full"
-      >
+      <h1 class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full">
         {{ props.item.title }}
       </h1>
     </div>
   </section>
 </template>
 <script setup lang="ts">
-import type { umrahinterface } from "~/types/Umrah";
+import { fileUrl } from '~/helpers/functions/imageURl';
+import type { Umrah } from '~/types/Umrah';
+
 
 const props = defineProps<{
-  item: umrahinterface;
+  item: Umrah;
 }>();
 </script>
 <style scoped>
@@ -28,6 +28,7 @@ const props = defineProps<{
   position: absolute;
   z-index: -1;
 }
+
 .img-bg {
   width: 100%;
   height: 100%;

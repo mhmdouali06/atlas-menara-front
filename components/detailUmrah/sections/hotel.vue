@@ -1,19 +1,16 @@
 <template>
-  <div class="p-4 gap-8 grid grid-cols-12">
-    <div class="left col-span-8 p-8">
-      <DetailUmrahSectionsGallery :images="galleryImages" />
-    </div>
-
-    <div class="right col-span-4">
-      <DetailUmrahSectionsContact :item="item" />
-    </div>
+  <div class="left col-span-8 p-8">
+    <UiGallery :images="galleryImages" />
   </div>
+
+
 </template>
 
 <script setup lang="ts">
-import type { umrahinterface } from "~/types/Umrah";
+import type { Umrah } from '~/types/Umrah';
 
-const props = defineProps<{ item: umrahinterface }>();
+
+const props = defineProps<{ item: Umrah }>();
 const I = (id: string) => `https://images.unsplash.com/${id}`;
 
 const galleryImages = [

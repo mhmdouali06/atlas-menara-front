@@ -17,31 +17,41 @@
           </li>
         </ul>
       </nav>
+      <div class="p-8 gap-8 grid grid-cols-12">
 
-      <div v-show="active == 1">
-        <DetailUmrahSectionsInfo :item="item" />
+        <div class="left col-span-12 md:col-span-8 ">
+          <div v-show="active == 1">
+            <DetailUmrahSectionsInfo :item="item" />
+          </div>
+          <div v-show="active == 2">
+            <DetailUmrahSectionsPlan :item="item" />
+          </div>
+          <div v-show="active == 3">
+            <DetailUmrahSectionsPosition :item="item" />
+          </div>
+          <div v-show="active == 4">
+            <DetailUmrahSectionsHotel :item="item" />
+          </div>
+
+        </div>
+        <div class="right col-span-12 md:col-span-4">
+          <DetailUmrahSectionsContact :item="item" />
+        </div>
       </div>
-      <div v-show="active == 2">
-        <DetailUmrahSectionsPlan :item="item" />
-      </div>
-      <div v-show="active == 3">
-        <DetailUmrahSectionsPosition :item="item" />
-      </div>
-      <div v-show="active == 4">
-        <DetailUmrahSectionsHotel :item="item" />
-      </div>
+
+
     </div>
   </section>
 </template>
 <script setup lang="ts">
-import type { umrahinterface } from "~/types/Umrah";
 import info from "@/assets/img/icon/info.svg";
 import plan from "@/assets/img/icon/plan.svg";
 import position from "@/assets/img/icon/position.svg";
 import hotel from "@/assets/img/icon/blackHotel.svg";
+import type { Umrah } from "~/types/Umrah";
 const active = ref(1);
 const props = defineProps<{
-  item: umrahinterface;
+  item: Umrah;
 }>();
 </script>
 <style scoped>
@@ -49,6 +59,7 @@ const props = defineProps<{
   background: #fff;
   box-shadow: 0 4px 48px 12px rgba(0, 0, 0, 0.09);
 }
+
 li {
   background: #f8f8f8;
   width: 100%;
@@ -59,6 +70,7 @@ li {
   justify-content: center;
   align-items: center;
 }
+
 li button {
   display: flex;
   align-items: center;
@@ -73,6 +85,7 @@ li button {
   text-transform: capitalize;
   background-color: transparent;
 }
+
 .active {
   background-color: #fff;
 }

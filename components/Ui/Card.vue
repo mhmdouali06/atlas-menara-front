@@ -3,37 +3,26 @@ import vol from "@/assets/img/icon/vol.svg";
 import ticket from "@/assets/img/icon/ticket.svg";
 import hotel from "@/assets/img/icon/hotel.svg";
 import visa from "@/assets/img/icon/visa.svg";
-interface card {
-  id: number;
-  image: string;
-  price: number;
-  title: string;
-  date_start: string;
-  date_end: string;
-}
+import type { Umrah } from "~/types/Umrah";
+import { fileUrl } from "~/helpers/functions/imageURl";
+import { formatDateEs, formatDuration } from "~/helpers/functions/formatDuration";
+
 const props = defineProps<{
-  item: card;
+  item: Umrah;
 }>();
 </script>
 <template>
-  <div
-    class="main cursor-pointer"
-    @click="navigateTo('/umrah/' + props.item.id)"
-  >
+  <div class="main cursor-pointer" @click="navigateTo('/umrah/' + props.item.slug)">
     <div class="blue-background"></div>
-    <img
-      :src="props.item.image"
-      class="w-full h-full object-cover main-bg"
-      :alt="props.item.title"
-    />
+    <img :src="fileUrl(item?.thumbnail?.filePath, 'umrah')" class="w-full h-full object-cover main-bg"
+      :alt="props.item.title" />
     <div class="p-4 w-full">
-      <p
-        class="text-white font-semibold text-2xl font-volkhov w-fit relative title-card"
-      >
-        {{ props.item.title }} <spa class="text-lg font-normal"> "37 Dias"</spa>
+      <p class="text-white font-semibold text-2xl font-volkhov w-fit relative title-card">
+        {{ props.item.title }} <spa class="text-lg font-normal"> "{{
+          formatDuration(props.item.startsAt, props.item.endsAt) }}"</spa>
       </p>
       <p class="font-poppins text-white">
-        Del {{ props.item.date_start }} al {{ props.item.date_end }}
+        Del {{ formatDateEs(props.item.startsAt) }} al {{ formatDateEs(props.item.endsAt) }}
       </p>
       <div class="flex justify-between">
         <div class="flex gap-2 other">
@@ -51,7 +40,7 @@ const props = defineProps<{
           </div>
         </div>
         <p class="font-volkhov text-2xl text-white">
-          ${{ props.item.price }} €
+          {{ props.item.price }} €
         </p>
       </div>
     </div>
@@ -62,6 +51,7 @@ const props = defineProps<{
   position: relative;
   z-index: 1;
 }
+
 .main {
   position: relative;
   border-radius: 10px;
@@ -72,6 +62,7 @@ const props = defineProps<{
   justify-content: end;
   align-items: start;
 }
+
 .main-bg {
   border-radius: 10px;
   position: absolute;
@@ -81,6 +72,7 @@ const props = defineProps<{
   height: 100%;
   z-index: -2;
 }
+
 .blue-background {
   z-index: -1;
   position: absolute;
@@ -91,6 +83,7 @@ const props = defineProps<{
   border-radius: 10px;
   background: rgba(14, 32, 65, 0.69);
 }
+
 .other div {
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.5);
@@ -101,12 +94,14 @@ const props = defineProps<{
   height: 30px;
   box-sizing: border-box;
 }
+
 .other img {
   width: 21px;
   height: 21px;
   margin: 0;
   padding: 0;
 }
+
 .title-card::after {
   content: "";
   left: 0;
