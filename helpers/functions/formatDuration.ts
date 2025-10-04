@@ -34,3 +34,14 @@ export const formatDateEs = (dateInput: string | Date) => {
     day: 'numeric',
   }).format(date)
 }
+export const formatDateTextEs = (dateInput: string | Date) => {
+  if (!dateInput) return '—'
+  const date = new Date(dateInput)
+  if (isNaN(date.getTime())) return '—'
+
+  return new Intl.DateTimeFormat('es-ES', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date)
+}

@@ -9,7 +9,7 @@ export const useUmrahApi = () => {
   };
 
   const getUmrah = async (slug: string): Promise<Umrah> =>
-    await $api(`/umrah/slug/${slug}`);
+    await $api(`/umrahs/slug/${slug}`);
 
   return {
     getUmrahs,

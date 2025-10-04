@@ -6,7 +6,7 @@
   </div>
 
   <div class="mt-6">
-    <DetailUmrahSectionsPlanTimeline :steps="steps" />
+    <DetailUmrahSectionsPlanTimeline :steps="item.plans" />
   </div>
 
 
@@ -18,28 +18,5 @@ import type { Umrah } from '~/types/Umrah';
 
 const props = defineProps<{ item: Umrah }>();
 
-const steps = [
-  {
-    title: "29 De Mayo:",
-    description: "Salida Desde Madrid Y Llegada A Medina",
-  },
-  {
-    title: "29 De Mayo Al 1 De Junio:",
-    description: "Estancia En Medina Y Visitas Religiosas",
-  },
-  {
-    title: "1 Al 3 De Junio:",
-    description: "Traslado A Meca, Alojamiento Y Realización De Umrah.",
-  },
-  {
-    title: "4 Al 9 De Junio:",
-    description:
-      "Estancia En Mina Y Arafat Para Los Rituales Principales Del Hajj",
-  },
-  {
-    title: "9 Al 14 De Junio:",
-    description: "Regreso A Meca, Finalización De Rituales Y Tiempo Libre.",
-  },
-  { title: "15 De Junio:", description: "Regreso A Madrid." },
-];
+
 </script>

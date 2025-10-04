@@ -3,52 +3,39 @@
     <!-- top info -->
     <div class="flex items-center justify-between">
       <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B]">
-        detalles del paquete
+        detalles del umrah
       </h2>
       <p class="text-lg md:text-3xl font-bold font-poppins text-orange">
         {{ props.item.price }} €
-        <span class="text-[#7D7D7D] text-sm">/ Per Couple</span>
+        <span class="text-[#7D7D7D] text-sm">/ Per person</span>
       </p>
     </div>
 
     <!-- date && descreptions  -->
     <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
-      Fechas: 24 de diciembre 2024 al 04 de enero 2025
+      Fechas: {{ formatDateTextEs(props.item.startsAt) }} al {{ formatDateTextEs(props.item.endsAt) }}
     </p>
-    <p class="mt-2 font-poppins">
-      Descubra nuestras ofertas especiales para una Umrah en diciembre de
-      2024, que incluye alojamiento en hoteles de lujo de 5 estrellas. Alójese
-      en el centro de Medina y La Meca, con una excelente ubicación y una
-      excelente relación calidad-precio.
+    <p class="mt-2 font-poppins" v-html="item.description">
     </p>
 
     <!-- inclue -->
     <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
-      El paquete incluye
+      El umrah incluye
     </p>
-    <p class="mt-2 font-poppins">
-      • Desayuno incluido en Medina y La Meca. <br />
-      • Traslados internos en autobuses cómodos y climatizados <br />
-      • Visitas religiosas a Medina y La Meca (Ziyarates) <br />
-      • Asistencia religiosa y servicio en aeropuertos y hoteles <br />
-      • Trámites de visado
+    <p class="mt-2 font-poppins" v-html="item.includes">
+
     </p>
     <!-- documents -->
     <p class="text-[#181E4B] font-semibold font-volkhov text-lg mt-8">
       DOCUMENTOS QUE DEBEN PRESENTARSE
     </p>
-    <p class="mt-2 font-poppins">
-      FOTOS DE IDENTIDAD2 fotos de identidades en color.<br />
-      LIBRO DE FAMILLEPor las familias para demostrar parentesco con el
-      Mahram<br />
-      (original). <br />TARJETA DE EUROPARIOCarte de residencia para
-      pasaportes extranjeros (original).<br />
-      PASSEPORTPaquete válido 6 meses después de la fecha de devolución
-      (original) + 2 fotos de identificación en color.
+    <p class="mt-2 font-poppins" v-html="item.documents">
+
     </p>
   </section>
 </template>
 <script setup lang="tsx">
+import { formatDateTextEs } from '~/helpers/functions/formatDuration';
 import type { Umrah } from '~/types/Umrah';
 
 
