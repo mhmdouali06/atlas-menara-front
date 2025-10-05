@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="w-[90%] mx-auto my-10 grid grid-cols-12 gap-10">
-      <div v-for="item in items" class="col-span-12 md:col-span-4" :key="item.id">
+      <div v-for="item in items.slice(0, 3)" class="col-span-12 md:col-span-4" :key="item.id">
         <UiCard :item="item" class="w-full" />
       </div>
     </div>

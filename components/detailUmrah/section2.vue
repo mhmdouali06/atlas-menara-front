@@ -27,7 +27,7 @@
             <DetailUmrahSectionsPlan :item="item" />
           </div>
           <div v-show="active == 3">
-            <DetailUmrahSectionsPosition :item="item" />
+            <DetailUmrahSectionsPosition :hotels="item.hotels" />
           </div>
           <div v-show="active == 4">
             <DetailUmrahSectionsHotel :item="item" />
