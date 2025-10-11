@@ -21,21 +21,21 @@
 
         <div class="left col-span-12 md:col-span-8 ">
           <div v-show="active == 1">
-            <DetailUmrahSectionsInfo :item="item" />
+            <DetailPackageSectionsInfo :item="item" />
           </div>
           <div v-show="active == 2">
-            <DetailUmrahSectionsPlan :item="item" />
+            <DetailPackageSectionsPlan :item="item" />
           </div>
           <div v-show="active == 3">
-            <DetailUmrahSectionsPosition :hotels="item.hotels" />
+            <DetailPackageSectionsPosition :hotels="item.hotels" />
           </div>
           <div v-show="active == 4">
-            <DetailUmrahSectionsHotel :item="item" />
+            <DetailPackageSectionsHotel :item="item" />
           </div>
 
         </div>
         <div class="right col-span-12 md:col-span-4">
-          <DetailUmrahSectionsContact :item="item" />
+          <DetailPackageSectionsContact :item="item" />
         </div>
       </div>
 
@@ -48,10 +48,10 @@ import info from "@/assets/img/icon/info.svg";
 import plan from "@/assets/img/icon/plan.svg";
 import position from "@/assets/img/icon/position.svg";
 import hotel from "@/assets/img/icon/blackHotel.svg";
-import type { Umrah } from "~/types/Umrah";
+import type { TravelPackage } from "~/types/travel-package";
 const active = ref(1);
 const props = defineProps<{
-  item: Umrah;
+  item: TravelPackage;
 }>();
 </script>
 <style scoped>

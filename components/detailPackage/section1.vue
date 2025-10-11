@@ -1,7 +1,7 @@
 <template>
   <section class="relative h-[239px]">
     <div class="bg"></div>
-    <img :src="fileUrl(props.item.thumbnail?.filePath, 'umrah')" class="img-bg" alt="umrah bg" />
+    <img :src="fileUrl(props.item.thumbnail?.filePath, firstSegment)" class="img-bg" alt="umrah bg" />
     <div class="h-full w-full flex items-center">
       <h1 class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full">
         {{ props.item.title }}
@@ -11,12 +11,17 @@
 </template>
 <script setup lang="ts">
 import { fileUrl } from '~/helpers/functions/imageURl';
-import type { Umrah } from '~/types/Umrah';
+import type { TravelPackage } from '~/types/travel-package';
 
+import { useRequestURL } from '#app'
 
+const url = useRequestURL()
+const firstSegment = url.pathname.split('/')[1] || ''
 const props = defineProps<{
-  item: Umrah;
+  item: TravelPackage;
 }>();
+console.log(props.item);
+
 </script>
 <style scoped>
 .bg {

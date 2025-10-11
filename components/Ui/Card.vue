@@ -3,12 +3,12 @@ import vol from "@/assets/img/icon/vol.svg";
 import ticket from "@/assets/img/icon/ticket.svg";
 import hotel from "@/assets/img/icon/hotel.svg";
 import visa from "@/assets/img/icon/visa.svg";
-import type { Umrah } from "~/types/Umrah";
 import { fileUrl } from "~/helpers/functions/imageURl";
 import { formatDateEs, formatDuration } from "~/helpers/functions/formatDuration";
+import type { TravelPackage } from "~/types/travel-package";
 
 const props = defineProps<{
-  item: Umrah;
+  item: TravelPackage;
 }>();
 </script>
 <template>

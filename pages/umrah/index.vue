@@ -5,16 +5,16 @@
 </template>
 
 <script lang="ts" setup>
-import { useUmrahApi } from '~/components/useUmrahApi';
-import type { Umrah } from '~/types/Umrah';
-const loading = ref(false)
-const { getUmrahs } = useUmrahApi();
+import type { TravelPackage } from '~/types/travel-package';
 
-const items = ref<Umrah[]>([])
+const loading = ref(false)
+const { getPackages } = useTravelPackagesFront('umrah');
+
+const items = ref<TravelPackage[]>([])
 
 const getData = async () => {
   try {
-    const data = await getUmrahs()
+    const data = await getPackages()
     if (data) {
       if (data.member) {
         items.value = data.member

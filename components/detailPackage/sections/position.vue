@@ -27,10 +27,11 @@
   </section>
 </template>
 <script setup lang="tsx">
-import type { Hotel } from '~/types/Umrah';
+import type { TravelPackageHotelInput } from '~/types/travel-package';
+
 
 
 const props = defineProps<{
-  hotels: Hotel[];
+  hotels: TravelPackageHotelInput[];
 }>();
 </script>

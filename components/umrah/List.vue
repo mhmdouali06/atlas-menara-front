@@ -32,11 +32,11 @@
   </section>
 </template>
 <script lang="ts" setup>
-const props = defineProps<{ items: Umrah[], loading: boolean }>()
+const props = defineProps<{ items: TravelPackage[], loading: boolean }>()
 import img1 from "@/assets/img/umrah/tour-img7 (1).png";
 import img2 from "@/assets/img/umrah/tour-img7 (3).png";
 import img3 from "@/assets/img/umrah/tour-img7.png";
-import type { Umrah } from "~/types/Umrah";
+import type { TravelPackage } from "~/types/travel-package";
 
 </script>
 <style scoped>

@@ -2,8 +2,8 @@
   <section class="">
     <!-- top info -->
     <div class="flex items-center justify-between">
-      <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B]">
-        detalles del umrah
+      <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B] capitalize">
+        detalles del {{ firstSegment }}
       </h2>
       <p class="text-lg md:text-3xl font-bold font-poppins text-orange">
         {{ props.item.price }} €
@@ -36,10 +36,14 @@
 </template>
 <script setup lang="tsx">
 import { formatDateTextEs } from '~/helpers/functions/formatDuration';
-import type { Umrah } from '~/types/Umrah';
+import type { TravelPackage } from '~/types/travel-package';
 
+import { useRequestURL } from '#app'
 
+// SSR-safe: works both server & client
+const url = useRequestURL()
+const firstSegment = url.pathname.split('/')[1] || ''
 const props = defineProps<{
-  item: Umrah;
+  item: TravelPackage;
 }>();
 </script>
