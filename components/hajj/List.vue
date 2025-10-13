@@ -52,7 +52,7 @@ function prev() {
 
 ::v-deep(.swiper-slide-active .hajj-card) {
   transform: scale(1.1);
-  height: 245px;
+  /* height: 245px; */
 }
 
 ::v-deep(.swiper-pagination-bullet) {

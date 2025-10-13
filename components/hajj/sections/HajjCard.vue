@@ -96,7 +96,7 @@ const props = defineProps<{ item: TravelPackage }>();
 }
 
 .hajj-card {
-  height: 240px;
+  height: 100%;
   transform: scale(1);
   transition: all 0.5s ease;
 }
