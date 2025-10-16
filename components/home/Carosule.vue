@@ -4,10 +4,13 @@ import { Carousel, Slide } from "vue3-carousel";
 import leftButton from "@/assets/img/icon/left-arrow.svg";
 import type { TravelPackage } from '~/types/travel-package';
 import rightButton from "@/assets/img/icon/right-arrow.svg";
+import type { Category } from "~/types/Categories";
+
 const loading = ref(false)
 const { getPackages } = useTravelPackagesFront('umrah');
-
+const { getCategories } = useCategories();
 const items = ref<TravelPackage[]>([])
+const categoriesList = ref<Category[]>([]);
 
 const swiperRef = ref<any>(null);
 
@@ -27,20 +30,37 @@ const next = () => {
   }
 };
 
-const categories = [
-  { id: 1, name: "Todo" },
-  { id: 2, name: "Economicos" },
-  { id: 3, name: "Ramadan" },
-  { id: 4, name: "Shawal" },
-];
 
 
 
 
 
-const getData = async () => {
+
+const getCategoriesList = async () => {
+  const firstitem = { "@id": "", "@type": "", "@context": "", id: "", name: "Todo", slug: "", blogPosts: [] };
   try {
-    const data = await getPackages()
+    const data = await getCategories()
+    if (data) {
+      if (data.member) {
+        categoriesList.value = data.member
+        categoriesList.value.unshift(firstitem);
+
+      }
+    }
+  } catch (error) {
+    console.log(error);
+
+  }
+  finally {
+    loading.value = false
+  }
+
+
+
+}
+const getData = async (query?: string) => {
+  try {
+    const data = await getPackages(query)
     if (data) {
       if (data.member) {
         items.value = data.member
@@ -59,11 +79,18 @@ const getData = async () => {
 
 }
 
-onMounted(() => {
-})
-const activeCategory = ref(1);
+
+const activeCategory = ref('');
+watch(activeCategory, (newVal) => {
+  if (newVal === "") {
+    getData();
+  } else {
+    getData(`category=${newVal}`);
+  }
+});
 
 onMounted(() => {
+  getCategoriesList()
   getData()
 
   carouselIndex.value = activeItem.value - 1;
@@ -82,7 +109,7 @@ onMounted(() => {
       </div>
       <div class="overflow-auto mb-8 md:my-0 w-full md:w-auto">
         <div class="flex gap-2">
-          <button v-for="category in categories" :key="category.id" @click="activeCategory = category.id" :class="[
+          <button v-for="category in categoriesList" :key="category.id" @click="activeCategory = category.id" :class="[
             activeCategory === category.id
               ? 'bg-orange text-white'
               : 'bg-white text-orange',

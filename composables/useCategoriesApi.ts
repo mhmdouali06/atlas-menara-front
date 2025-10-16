@@ -1,6 +1,6 @@
 import type { CategoriesResponse } from "~/types/Categories";
 
-export const useCategoriesApi = () => {
+export const useCategories = () => {
   const { $api } = useNuxtApp();
 
   const getCategories = async (query?: string): Promise<CategoriesResponse> => {

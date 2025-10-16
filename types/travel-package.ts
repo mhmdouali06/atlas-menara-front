@@ -4,6 +4,8 @@
  * - Mantengo nombres en inglés para empatar con el formulario
  */
 
+import type { Category } from "./Categories";
+
 /* ───────────────────────── Aux ───────────────────────── */
 
 export type PackageTypeSlug = "umrah" | "hajj" | (string & {}); // permite otros tipos futuros
@@ -86,6 +88,7 @@ export type TravelPackage = {
   documents?: string;
   includes?: string;
   accommodations?: string;
+  category?: Category;
 
   // Si el backend embebe, vendrán con shape concreto; si no, pueden ser IRIs
   hotels: TravelPackageHotelInput[];

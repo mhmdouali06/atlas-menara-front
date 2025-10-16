@@ -12,9 +12,9 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <div class="main cursor-pointer" @click="navigateTo('/umrah/' + props.item.slug)">
+  <div class="main cursor-pointer" @click="navigateTo(`/${props.item.type}/${props.item.slug}/`)">
     <div class="blue-background"></div>
-    <img :src="fileUrl(item?.thumbnail?.filePath, 'umrah')" class="w-full h-full object-cover main-bg"
+    <img :src="fileUrl(item?.thumbnail?.filePath, props.item.type)" class="w-full h-full object-cover main-bg"
       :alt="props.item.title" />
     <div class="p-4 w-full">
       <p class="text-white font-semibold text-2xl font-volkhov w-fit relative title-card">

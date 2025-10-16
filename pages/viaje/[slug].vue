@@ -15,7 +15,7 @@ const item = ref<TravelPackage>()
 const getData = async () => {
   try {
     if (!slug) {
-      navigateTo('/umrah')
+      navigateTo('/viaje')
     }
     const data = await getPackage(slug + "")
 
@@ -26,7 +26,7 @@ const getData = async () => {
   } catch (error: any) {
     console.log(error);
     if (error.response.status == 404) {
-      navigateTo('/umrah')
+      navigateTo('/viaje')
     }
 
   }

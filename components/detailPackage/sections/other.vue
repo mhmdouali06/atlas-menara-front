@@ -9,8 +9,9 @@
 </template>
 <script lang="ts" setup>
 import type { TravelPackage } from '~/types/travel-package';
-
-const { getPackages } = useTravelPackagesFront("umrah");
+const url = useRequestURL()
+const firstSegment = url.pathname.split('/')[1] || ''
+const { getPackages } = useTravelPackagesFront(firstSegment + "");
 
 const items = ref<TravelPackage[]>([])
 

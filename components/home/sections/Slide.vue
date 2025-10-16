@@ -20,9 +20,9 @@ const props = defineProps<{
       <p v-html="formatText(props.item.description)"
         class="text-white font-poppins text-center font-semibold px-4 md:px-0 w-full md:w-1/2"></p>
       <div class="flex flex-col md:flex-row items-center gap-4 mt-4">
-        <button
+        <button @click="navigateTo(`/${props.item.type}/${props.item.slug}`)"
           class="bg-orange text-white px-5 py-2 rounded-full shadow-md font-poppins hover:bg-white hover:text-orange transition-all duration-300 easy">
-          Ver ofertas de Umrah
+          Ver ofertas de <span class="capitalize">{{ props.item.type }}</span>
         </button>
         <button
           class="flex items-center gap-4 border text-white border-white px-5 py-2 rounded-full hover:bg-white hover:text-orange duration-300 easy">
