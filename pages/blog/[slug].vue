@@ -55,7 +55,7 @@ const gallery = computed(() => {
 </script>
 
 <template>
-    <section class="mx-auto max-w-5xl px-6 md:px-8 lg:px-10 py-10">
+    <section class="mx-auto w-[90%] py-10 md:py-16">
         <!-- LOADING -->
         <div v-if="pending" class="animate-pulse">
             <div class="h-8 w-3/4 bg-gray-200 rounded mb-3" />
