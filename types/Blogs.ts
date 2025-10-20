@@ -1,51 +1,46 @@
-export interface BlogCategory {
-  "@context": string;
-  "@id": string;
-  "@type": string;
-  id: string;
+export type MediaLite = {
+  id: number;
+  "@id"?: string;
+  filePath: string;
+  alt?: string | null;
+};
+export type BlogCategoryLite = {
+  id: number;
+  "@id"?: string;
   name: string;
-}
+  slug?: string;
+};
 
-export interface Blog {
-  "@context": string;
-  "@id": string;
-  "@type": string;
-  id: string;
+export type BlogPostCreateInput = {
   title: string;
-  content: string;
-  publicationDate: string;
   slug: string;
-  category: BlogCategory;
-  imageFile: string;
-  imageName: string;
-}
+  content: string;
+  excerpt?: string | null;
+  status: "draft" | "published" | string;
+  publishedAt?: string | null;
+  category?: string | number | null;
+  authorName?: string | null;
+  thumbnailFile: File;
+  galleryFiles?: File[];
+};
 
-export interface BlogsView {
-  "@id": string;
-  type: string;
-  first: string;
-  last: string;
-  previous: string;
-  next: string;
-}
-
-export interface BlogsSearchMapping {
-  "@type": string;
-  variable: string;
-  property: string;
-  required: boolean;
-}
-
-export interface BlogsSearch {
-  "@type": string;
-  template: string;
-  variableRepresentation: string;
-  mapping: BlogsSearchMapping[];
-}
-
+export type BlogPost = {
+  id: number;
+  "@id"?: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt?: string | null;
+  status: string;
+  publishedAt?: string | null;
+  createdAt: string;
+  updatedAt?: string;
+  blogCategory?: BlogCategoryLite;
+  authorName?: string | null;
+  thumbnail: MediaLite;
+  gallery?: Array<string | { "@id": string } | MediaLite>;
+};
 export interface BlogsResponse {
-  member: Blog[];
+  member: BlogPost[];
   totalItems: number;
-  view: BlogsView;
-  search: BlogsSearch;
 }

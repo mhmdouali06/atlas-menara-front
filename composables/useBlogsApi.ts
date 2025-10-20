@@ -1,18 +1,16 @@
-import type { Blog, BlogsResponse } from "~/types/Blogs";
-
 export const useBlogsApi = () => {
   const { $api } = useNuxtApp();
 
-  const getBlogs = async (query?: string): Promise<BlogsResponse> => {
+  const getBlogs = async (query?: string): Promise<any> => {
     const endpoint = query ? `/blog_posts?${query}` : "/blog_posts";
     return await $api(endpoint);
   };
-  const getBlogsCategories = async (slug: string): Promise<BlogsResponse> => {
-    const endpoint =  `/blog_category/slug/${slug}`;
+  const getBlogsCategories = async (slug: string): Promise<any> => {
+    const endpoint = `/blog_category/slug/${slug}`;
     return await $api(endpoint);
   };
-  const getBlog = async (slug: string): Promise<Blog> =>
-    await $api(`/blog_post/slug/${slug}`);
+  const getBlog = async (slug: string): Promise<any> =>
+    await $api(`/blog_posts/slug/${slug}`);
 
   return {
     getBlogs,
