@@ -7,7 +7,7 @@
           <img :src="fileUrl(item?.thumbnail?.filePath, 'hajj')" :alt="item.title"
             class="w-full h-full object-cover transform transition-transform duration-400 hover:scale-105" />
           <div class="absolute top-3 right-3 bg text-xs px-2 py-2 rounded-md font-semibold">
-            {{ item.gallery.length + 1 }} imágenes
+            {{ props.item.gallery.length }} imágenes
           </div>
         </div>
       </div>

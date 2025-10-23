@@ -9,7 +9,8 @@
         <Swiper :modules="modules" :slides-per-view="1.7" :space-between="90" :initial-slide="1" :speed="900"
           :grab-cursor="true" :centered-slides="true" ref="swiperRef"
           :pagination="{ el: '.hajj-pagination', clickable: true }">
-          <SwiperSlide class="py-8" v-for="(it, idx) in props.items" :key="it.id" :style="{ width: slideWidth }">
+          <SwiperSlide v-if="props.items" class="py-8" v-for="(it, idx) in props.items" :key="it.id"
+            :style="{ width: slideWidth }">
             <HajjSectionsHajjCard :item="it" />
           </SwiperSlide>
         </Swiper>
