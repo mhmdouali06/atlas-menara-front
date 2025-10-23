@@ -20,7 +20,7 @@ const props = defineProps<{
       {{ props.item.title }}
     </p>
     <div class="flex justify-end">
-      <button @click="navigateTo('/blog/' + props.item.slug)"
+      <button @click="navigateTo('/blogs/' + props.item.slug)"
         class="flex items-center gap-2 border h-10 w-10 justify-center rounded-full mt-2 hover:bg-[#07123D] delay-100 duration-300 my-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
           <path

@@ -8,6 +8,7 @@ export type BlogCategoryLite = {
   id: number;
   "@id"?: string;
   name: string;
+  blog: BlogPost[];
   slug?: string;
 };
 
@@ -38,7 +39,8 @@ export type BlogPost = {
   blogCategory?: BlogCategoryLite;
   authorName?: string | null;
   thumbnail: MediaLite;
-  gallery?: Array<string | { "@id": string } | MediaLite>;
+  category: BlogCategoryLite;
+  gallery?: MediaLite[];
 };
 export interface BlogsResponse {
   member: BlogPost[];

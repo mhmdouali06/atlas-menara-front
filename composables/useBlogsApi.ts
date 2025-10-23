@@ -5,8 +5,12 @@ export const useBlogsApi = () => {
     const endpoint = query ? `/blog_posts?${query}` : "/blog_posts";
     return await $api(endpoint);
   };
-  const getBlogsCategories = async (slug: string): Promise<any> => {
-    const endpoint = `/blog_category/slug/${slug}`;
+  const getBlogsCategories = async (query: string): Promise<any> => {
+    const endpoint = `/blog_categories?${query}`;
+    return await $api(endpoint);
+  };
+  const getBlogsSlugCategories = async (slug: string): Promise<any> => {
+    const endpoint = `/blog_categories/${slug}`;
     return await $api(endpoint);
   };
   const getBlog = async (slug: string): Promise<any> =>
@@ -16,5 +20,6 @@ export const useBlogsApi = () => {
     getBlogs,
     getBlog,
     getBlogsCategories,
+    getBlogsSlugCategories,
   };
 };
