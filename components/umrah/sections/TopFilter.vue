@@ -1,17 +1,12 @@
 <template>
   <section class="flex justify-center mt-[-50px]">
-    <div class="w-3/4 main p-8 flex gap-8 items-center">
-      <div class="grid grid-cols-12 w-full gap-8">
-        <UmrahSectionsSelectWidthLabel
-          class="col-span-12 md:col-span-4"
-          v-for="item in filters"
-          :iocn="item.icon"
-          :label="item.label"
-          :options="item.options"
-        />
+    <div class="w-3/4 main p-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+      <div class="grid grid-cols-12 w-full gap-4 md:gap-8">
+        <UmrahSectionsSelectWidthLabel class="col-span-12 md:col-span-4 " v-for="item in filters" :iocn="item.icon"
+          :label="item.label" :options="item.options" />
       </div>
-      <div class="">
-        <button>
+      <div class="w-full md:w-auto">
+        <button class="w-full md:w-[50px]">
           <img :src="search" alt="search" />
         </button>
       </div>
@@ -82,11 +77,13 @@ const filters = [
 </script>
 <style scoped>
 .main {
+  box-sizing: content-box;
   border-radius: 16px;
   background: var(--Neutrals, #fff);
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25),
     0 4px 16px 0 rgba(17, 34, 17, 0.05);
 }
+
 button {
   border-radius: 4px;
   background: #0e2041;
@@ -98,6 +95,6 @@ button {
   flex: 1 0 0;
   align-self: stretch;
   height: 50px;
-  width: 50px;
+
 }
 </style>

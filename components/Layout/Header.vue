@@ -7,7 +7,7 @@
       </div>
 
       <!-- Desktop Nav -->
-      <nav class="hidden md:flex md:gap-3 lg:gap-5 items-center relative">
+      <nav class="hidden lg:flex md:gap-3 lg:gap-5 items-center relative">
         <NuxtLink to="/" class="active font-poppins">Inicio</NuxtLink>
 
         <!-- Umrah -->
@@ -106,7 +106,7 @@
       </nav>
 
       <!-- Contact Button -->
-      <div class="hidden md:block">
+      <div class="hidden lg:block">
         <NuxtLink to="/#contact"
           class="bg-orange text-white px-5 py-2 rounded-full shadow-md hover:bg-orange-700 transition">
           Contactar un agente
@@ -114,7 +114,7 @@
       </div>
 
       <!-- Mobile Menu Button -->
-      <button @click="isOpen = !isOpen" class="md:hidden text-gray-700 focus:outline-none">
+      <button @click="isOpen = !isOpen" class="lg:hidden text-gray-700 focus:outline-none">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
@@ -123,7 +123,7 @@
 
     <!-- Mobile Nav -->
     <transition name="fade">
-      <div v-if="isOpen" class="md:hidden bg-white shadow-inner px-4 py-4">
+      <div v-if="isOpen" class="lg:hidden bg-white shadow-inner px-4 py-4">
         <nav class="flex flex-col gap-3">
           <NuxtLink to="/" class="text-orange font-semibold" @click="closeMobileMenu">Inicio</NuxtLink>
 

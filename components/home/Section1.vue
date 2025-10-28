@@ -2,13 +2,14 @@
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import type { TravelPackage } from '~/types/travel-package';
-
-const loading = ref(false)
+const loading = ref(true)
 const { getSlides } = useTravelPackagesFront('');
 
 const items = ref<TravelPackage[]>([])
 
 const getData = async () => {
+
+  loading.value = true
   try {
     const data = await getSlides()
     if (data) {
@@ -21,6 +22,7 @@ const getData = async () => {
 
   }
   finally {
+
     loading.value = false
   }
 
@@ -35,6 +37,7 @@ onMounted(() => {
 
 <template>
   <section>
+    <UiLoader :isLoading="loading" />
     <ClientOnly>
       <Carousel breakpointMode="carousel" ref="swiperRef" :pauseAutoplayOnHover="true" :breakpoints="{
         0: { itemsToShow: 1 },

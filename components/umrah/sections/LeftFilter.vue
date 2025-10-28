@@ -7,11 +7,7 @@
     <div>
       <div class="flex items-center justify-between">
         <span class="font-semibold text-gray-800">Precio</span>
-        <button
-          class="text-sm text-gray-500 hover:text-gray-700"
-          @click="resetPrice"
-          type="button"
-        >
+        <button class="text-sm text-gray-500 hover:text-gray-700" @click="resetPrice" type="button">
           Reset
         </button>
       </div>
@@ -26,32 +22,16 @@
         <!-- slider wrap -->
         <div class="relative h-8">
           <!-- Track background (with selected range highlight) -->
-          <div
-            class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1.5 rounded-full"
-            :style="{ background: trackGradient }"
-          ></div>
+          <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1.5 rounded-full"
+            :style="{ background: trackGradient }"></div>
 
           <!-- Left (min) thumb -->
-          <input
-            type="range"
-            :min="PRICE_MIN"
-            :max="PRICE_MAX"
-            :step="PRICE_STEP"
-            v-model.number="priceMin"
-            @input="onMinInput"
-            class="range-input pointer-events-auto"
-          />
+          <input type="range" :min="PRICE_MIN" :max="PRICE_MAX" :step="PRICE_STEP" v-model.number="priceMin"
+            @input="onMinInput" class="range-input pointer-events-auto" />
 
           <!-- Right (max) thumb -->
-          <input
-            type="range"
-            :min="PRICE_MIN"
-            :max="PRICE_MAX"
-            :step="PRICE_STEP"
-            v-model.number="priceMax"
-            @input="onMaxInput"
-            class="range-input pointer-events-auto"
-          />
+          <input type="range" :min="PRICE_MIN" :max="PRICE_MAX" :step="PRICE_STEP" v-model.number="priceMax"
+            @input="onMaxInput" class="range-input pointer-events-auto" />
         </div>
 
         <!-- current values -->
@@ -72,25 +52,14 @@
     <div>
       <div class="flex items-center justify-between">
         <span class="font-semibold text-gray-800">Estrellas del Hotel</span>
-        <button
-          class="text-sm text-gray-500 hover:text-gray-700"
-          @click="selectedStars = 0"
-          type="button"
-        >
+        <button class="text-sm text-gray-500 hover:text-gray-700" @click="selectedStars = 0" type="button">
           Reset
         </button>
       </div>
       <div class="mt-4 flex flex-wrap gap-2 justify-between">
-        <button
-          v-for="star in [0, 1, 2, 3, 4, 5]"
-          :key="star"
-          type="button"
-          @click="selectedStars = star"
-          class="px-3 py-1 border rounded-lg text-sm font-medium transition border-orange"
-          :class="
-            selectedStars === star ? 'bg-orange text-white ' : 'text-gray-600'
-          "
-        >
+        <button v-for="star in [0, 1, 2, 3, 4, 5]" :key="star" type="button" @click="selectedStars = star"
+          class="px-3 py-1 border rounded-lg text-sm font-medium transition border-orange" :class="selectedStars === star ? 'bg-orange text-white ' : 'text-gray-600'
+            ">
           {{ star }}+
         </button>
       </div>
@@ -101,30 +70,15 @@
       <div class="font-semibold text-gray-800">Ubicación</div>
       <div class="mt-3 space-y-2 text-sm text-gray-700">
         <label class="flex items-center gap-2">
-          <input
-            type="checkbox"
-            v-model="locations"
-            value="todo"
-            class="accent-orange-500"
-          />
+          <input type="checkbox" v-model="locations" value="todo" class="accent-orange-500" />
           todo
         </label>
         <label class="flex items-center gap-2">
-          <input
-            type="checkbox"
-            v-model="locations"
-            value="cerca del HARA"
-            class="accent-orange-500"
-          />
+          <input type="checkbox" v-model="locations" value="cerca del HARA" class="accent-orange-500" />
           cerca del HARA
         </label>
         <label class="flex items-center gap-2">
-          <input
-            type="checkbox"
-            v-model="locations"
-            value="cerca del"
-            class="accent-orange-500"
-          />
+          <input type="checkbox" v-model="locations" value="cerca del" class="accent-orange-500" />
           cerca del
         </label>
       </div>
@@ -132,17 +86,13 @@
 
     <!-- Actions -->
     <div class="flex flex-col gap-3">
-      <button
-        type="button"
+      <button type="button"
         class="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition"
-        @click="apply"
-      >
+        @click="apply">
         Filtrar
       </button>
-      <button
-        type="button"
-        class="w-full py-3 border border-orange-500 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition"
-      >
+      <button type="button"
+        class="w-full py-3 border border-orange-500 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition">
         Solicitar omra personalizada
       </button>
     </div>
@@ -248,7 +198,8 @@ function resetPrice() {
 /* Dual range trick: stack two inputs and hide native tracks */
 .range-input {
   @apply absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full appearance-none bg-transparent pointer-events-none;
-  height: 0; /* visually hidden, thumbs still clickable */
+  height: 0;
+  /* visually hidden, thumbs still clickable */
 }
 
 /* WebKit thumb */
@@ -259,7 +210,8 @@ function resetPrice() {
   width: 18px;
   height: 18px;
   border-radius: 9999px;
-  background: #fb923c; /* orange */
+  background: #fb923c;
+  /* orange */
   border: 2px solid white;
   box-shadow: 0 0 0 2px #fb923c;
   cursor: pointer;
@@ -283,6 +235,7 @@ function resetPrice() {
   appearance: none;
   background: transparent;
 }
+
 .range-input::-moz-range-track {
   background: transparent;
 }

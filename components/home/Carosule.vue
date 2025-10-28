@@ -6,7 +6,7 @@ import type { TravelPackage } from '~/types/travel-package';
 import rightButton from "@/assets/img/icon/right-arrow.svg";
 import type { Category } from "~/types/Categories";
 
-const loading = ref(false)
+const loading = ref(true)
 const { getPackages } = useTravelPackagesFront('umrah');
 const { getCategories } = useCategories();
 const items = ref<TravelPackage[]>([])
@@ -37,6 +37,7 @@ const next = () => {
 
 
 const getCategoriesList = async () => {
+  loading.value = true
   const firstitem = { "@id": "", "@type": "", "@context": "", id: "", name: "Todo", slug: "", blogPosts: [] };
   try {
     const data = await getCategories()
@@ -52,6 +53,7 @@ const getCategoriesList = async () => {
 
   }
   finally {
+
     loading.value = false
   }
 
@@ -98,6 +100,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <UiLoader :isLoading="loading" />
   <section class="my-28 px-4 md:px-12">
     <div class="flex flex-col md:flex-row items-center justify-between">
       <div>

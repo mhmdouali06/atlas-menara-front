@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-const { isLoading } = useLoader()
+const { isLoading } = defineProps<{ isLoading: boolean }>()
 </script>
 
 <style scoped>

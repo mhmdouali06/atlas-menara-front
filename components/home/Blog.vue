@@ -1,4 +1,5 @@
 <template>
+  <UiLoader :isLoading="loading" />
   <section class="my-12 mb-28">
     <div class="px-8">
       <p class="font-volkhov text-orange text-center">Descubre</p>
@@ -29,12 +30,13 @@ import { Carousel, Slide, Pagination } from "vue3-carousel";
 import type { BlogPost } from "~/types/Blogs";
 
 
-const loading = ref(false)
+const loading = ref(true)
 const { getBlogs } = useBlogsApi();
 
 const items = ref<BlogPost[]>([])
 
 const getData = async () => {
+  loading.value = true
   try {
     const data = await getBlogs()
     if (data) {
@@ -49,6 +51,7 @@ const getData = async () => {
 
   }
   finally {
+
     loading.value = false
   }
 

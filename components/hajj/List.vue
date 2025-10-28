@@ -4,7 +4,7 @@
       Descubre nuestros Paquetes <span class="text-orange-500">Hajj</span>
     </h1>
 
-    <ClientOnly>
+    <ClientOnly v-if="!props.loading">
       <div class="relative overflow-hidden">
         <Swiper :modules="modules" :slides-per-view="1.7" :space-between="90" :initial-slide="1" :speed="900"
           :grab-cursor="true" :centered-slides="true" ref="swiperRef"
@@ -19,6 +19,7 @@
         <div class="hajj-pagination flex justify-center gap-1.5"></div>
       </div>
     </ClientOnly>
+    <UiGridLoading v-else />
   </section>
 </template>
 
@@ -30,7 +31,7 @@ import "swiper/css/pagination";
 import "swiper/css";
 import type { TravelPackage } from "~/types/travel-package";
 const modules = [Pagination];
-const props = defineProps<{ items: TravelPackage[] }>();
+const props = defineProps<{ items: TravelPackage[], loading: boolean }>();
 
 
 

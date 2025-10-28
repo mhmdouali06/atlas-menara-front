@@ -4,12 +4,8 @@
     <div class="flex gap-2">
       <img :src="props.iocn" alt="icon" />
       <select name="" id="" class="w-full">
-        <option
-          v-for="(item, index) in props.options"
-          :key="index"
-          :value="item.value"
-          class="font-montserrat text-[#1C1B1F] text-lg w-full"
-        >
+        <option v-for="(item, index) in props.options" :key="index" :value="item.value"
+          class="font-montserrat text-[#1C1B1F] text-lg w-full">
           {{ item.option }}
         </option>
       </select>
@@ -30,7 +26,9 @@ const props = defineProps<{
   background: #fff;
   padding: 1rem;
   position: relative;
+
 }
+
 .label {
   position: absolute;
   top: -0.8rem;
