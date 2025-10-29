@@ -1,12 +1,12 @@
 <template>
   <CarsSection1 />
-  <CarsList v-model:items="items" />
+  <CarsList v-model:items="items" :loading="loading" />
 </template>
 <script lang="ts" setup>
 import type { Car } from '~/types/car';
 
 const { getCars } = useCarsFront();
-const loading = ref(false)
+const loading = ref(true)
 
 const items = ref<Car[]>([])
 
