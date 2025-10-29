@@ -5,6 +5,8 @@ import euro from "@/assets/img/global/euro.png";
 import best from "@/assets/img/global/best.png";
 import hands from "@/assets/img/global/hands.png";
 import bg from "@/assets/img/global/bg-travel.png";
+import { Carousel, Slide } from "vue3-carousel";
+
 const items = [
   {
     id: 1,
@@ -35,19 +37,13 @@ const items = [
 </script>
 
 <template>
-  <section class="relative min-h-[478px]">
+  <section class="relative min-h-[478px] flex flex-col justify-center   ">
     <div class="bg"></div>
 
-    <img
-      :src="bg"
-      alt="bg"
-      class="w-full h-full object-cover absolute left-0 top-0 z-[-2]"
-    />
-    <div class="flex flex-col justify-center items-center h-full absolute">
+    <img :src="bg" alt="bg" class="w-full h-full object-cover absolute left-0 top-0 z-[-2]" />
+    <div class="flex flex-col justify-center items-center  ">
       <p class="font-volkhov text-orange text-center">Algunas razones de</p>
-      <h3
-        class="font-volkhov text-white text-2xl md:text-4xl my-3 font-semibold text-center"
-      >
+      <h3 class="font-volkhov text-white text-2xl md:text-4xl my-3 font-semibold text-center">
         Por qué viajar con nosotros?
       </h3>
       <p class="text-white font-poppins text-center w-full md:w-1/2 mx-auto">
@@ -55,25 +51,23 @@ const items = [
         familia. Prestamos atención al más mínimo detalle para que el viaje sea
         de 10.
       </p>
-      <Carousel
-        breakpointMode="carousel"
-        ref="swiperRef"
-        class="mt-8 px-8"
-        :breakpoints="{
+    </div>
+
+    <div>
+
+      <ClientOnly>
+
+        <Carousel breakpointMode="carousel" ref="swiperRef" :breakpoints="{
           0: { itemsToShow: 1 },
           640: { itemsToShow: 1 },
           768: { itemsToShow: 1 },
           1024: { itemsToShow: 3 },
-        }"
-        :autoplay="2000"
-        :wrap-around="true"
-        snap-align="center"
-        :gap="20"
-      >
-        <Slide v-for="(item, index) in items" :key="index">
-          <HomeSectionsCard :item="item" />
-        </Slide>
-      </Carousel>
+        }" :autoplay="2000" :wrap-around="true" class="mt-8 px-8" snap-align="center" :gap="20">
+          <Slide v-for="(item, index) in items" class="box-content " :key="item.id">
+            <HomeSectionsCard :item="item" />
+          </Slide>
+        </Carousel>
+      </ClientOnly>
     </div>
   </section>
 </template>

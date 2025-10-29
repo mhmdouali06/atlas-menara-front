@@ -61,6 +61,7 @@ const getCategoriesList = async () => {
 
 }
 const getData = async (query?: string) => {
+  loading.value = true
   try {
     const data = await getPackages(query)
     if (data) {
@@ -100,7 +101,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <UiLoader :isLoading="loading" />
   <section class="my-28 px-4 md:px-12">
     <div class="flex flex-col md:flex-row items-center justify-between">
       <div>
@@ -124,7 +124,7 @@ onMounted(() => {
       </div>
     </div>
     <div>
-      <Carousel breakpointMode="carousel" ref="swiperRef" :breakpoints="{
+      <Carousel v-if="!loading" breakpointMode="carousel" ref="swiperRef" :breakpoints="{
         0: { itemsToShow: 1 },
         640: { itemsToShow: 2 },
         768: { itemsToShow: 3 },
@@ -133,7 +133,9 @@ onMounted(() => {
         <Slide v-for="(item, index) in items" :key="index">
           <UiCard :item="item" />
         </Slide>
+
       </Carousel>
+      <UiGridLoading :items="3" v-else />
     </div>
 
     <div class="flex justify-end gap-4 mt-8">
