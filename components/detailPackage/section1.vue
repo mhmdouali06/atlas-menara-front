@@ -1,12 +1,16 @@
 <template>
   <section class="relative h-[239px]">
-    <div class="bg"></div>
-    <img :src="fileUrl(props.item.thumbnail?.filePath, firstSegment)" class="img-bg" alt="umrah bg" />
-    <div class="h-full w-full flex items-center">
-      <h1 class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full">
-        {{ props.item.title }}
-      </h1>
+    <div v-if="props.item" class="h-full w-full relative overflow-hidden flex justify-center items-center">
+
+      <div class="bg"></div>
+      <img :src="fileUrl(props.item.thumbnail?.filePath, firstSegment)" class="img-bg" alt="umrah bg" />
+      <div class="h-full w-full flex items-center">
+        <h1 class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full">
+          {{ props.item.title }}
+        </h1>
+      </div>
     </div>
+    <ui-detail-loader v-else />
   </section>
 </template>
 <script setup lang="ts">
@@ -18,7 +22,7 @@ import { useRequestURL } from '#app'
 const url = useRequestURL()
 const firstSegment = url.pathname.split('/')[1] || ''
 const props = defineProps<{
-  item: TravelPackage;
+  item?: TravelPackage;
 }>();
 console.log(props.item);
 

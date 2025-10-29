@@ -5,16 +5,11 @@ import hero from "@/assets/img/global/illus.png";
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-4 my-28">
-    <div class="grid items-center gap-10 md:gap-14 md:grid-cols-2">
-      <div
-        class="relative mx-auto w-[260px] sm:w-[320px] md:w-[420px] aspect-square"
-      >
-        <img
-          :src="hero"
-          alt="Peregrino realizando súplica"
-          class="absolute inset-0 z-10 m-auto object-contain"
-        />
+  <section class="mx-auto max-w-7xl px-4 mb-10">
+    <div class="grid items-center gap-10 md:gap-4 md:grid-cols-2">
+      <!-- <div class="relative mx-auto w-[260px] sm:w-[320px] md:w-[420px] aspect-square"> -->
+      <div class="relative mx-auto w-full h-full aspect-square">
+        <img :src="hero" alt="Peregrino realizando súplica" class="absolute inset-0 z-10 m-auto object-cover" />
       </div>
 
       <!-- RIGHT: Copy -->
@@ -27,9 +22,7 @@ import hero from "@/assets/img/global/illus.png";
 
         <p class="leading-relaxed text-[#808080] font-poppins">
           Somos una
-          <span class="font-semibold text-orange"
-            >agencia de viajes acreditada</span
-          >
+          <span class="font-semibold text-orange">agencia de viajes acreditada</span>
           por el Ministerio del Hajj para viajes de Peregrinación y Umrah a
           Arabia Saudí.
         </p>

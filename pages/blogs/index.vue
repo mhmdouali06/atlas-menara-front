@@ -61,8 +61,8 @@ useHead({
       </p>
     </div>
 
-    <div v-if="isLoading">
-      <UILoading />
+    <div v-if="isLoading" class="my-10">
+      <UiGridLoading />
     </div>
     <div v-if="posts.length > 0">
       <BlogList :posts="posts" :current-page="currentPage" />

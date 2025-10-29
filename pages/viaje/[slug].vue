@@ -1,6 +1,6 @@
 <template>
-  <DetailPackageSection1 v-if="item" :item="item" />
-  <DetailPackageSection2 v-if="item" :item="item" />
+  <DetailPackageSection1 :loading="loading" :item="item" />
+  <DetailPackageSection2 :loading="loading" :item="item" />
   <DetailPackageSectionsOther />
 </template>
 <script lang="ts" setup>
@@ -13,6 +13,7 @@ const slug = useRoute().params.slug
 const item = ref<TravelPackage>()
 
 const getData = async () => {
+  loading.value = true
   try {
     if (!slug) {
       navigateTo('/viaje')
@@ -25,9 +26,9 @@ const getData = async () => {
     }
   } catch (error: any) {
     console.log(error);
-    if (error.response.status == 404) {
-      navigateTo('/viaje')
-    }
+    // if (error.response.status == 404) {
+    //   navigateTo('/viaje')
+    // }
 
   }
   finally {

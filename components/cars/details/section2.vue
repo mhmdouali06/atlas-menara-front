@@ -1,5 +1,5 @@
 <template>
-  <section class="mx-auto px-4 md:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-10">
+  <section class="mx-auto px-4 md:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-10" v-if="car">
     <!-- LEFT -->
     <article class="lg:col-span-8">
       <!-- Title -->
@@ -41,13 +41,16 @@
       <div class="mt-3 font-poppins leading-relaxed text-[#1f2a44]" v-html="car.documents || '—'"></div>
     </article>
 
+
     <!-- RIGHT -->
     <aside class="lg:col-span-4">
       <div class="lg:sticky lg:top-6">
-        <CarsDetailsReserveForm :privacy-href="privacyHref" />
+        <CarsDetailsReserveForm />
       </div>
     </aside>
   </section>
+  <UiDetailLoader v-else />
+
 </template>
 
 <script setup lang="ts">
@@ -56,10 +59,10 @@ import type { Car } from '~/types/car'
 
 const props = withDefaults(
   defineProps<{
-    car: Car
-    privacyHref?: string
+    car?: Car
+
   }>(),
-  { privacyHref: '#' }
+  {}
 )
 
 const prettyTransmission = (v?: string | null) => {
@@ -81,6 +84,7 @@ const prettyFuel = (v?: string | null) => {
 
 const infoLine = computed(() => {
   const bits: string[] = []
+  if (!props.car) return
 
   if (props.car.brand || props.car.model) {
     bits.push([props.car.brand, props.car.model].filter(Boolean).join(' '))

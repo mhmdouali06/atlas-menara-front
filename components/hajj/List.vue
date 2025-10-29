@@ -19,7 +19,7 @@
         <div class="hajj-pagination flex justify-center gap-1.5"></div>
       </div>
     </ClientOnly>
-    <UiGridLoading v-else />
+    <UiGridLoading v-else :items="3" />
   </section>
 </template>
 

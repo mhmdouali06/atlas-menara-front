@@ -101,7 +101,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="my-28 px-4 md:px-12">
+  <section class="mt-24 px-4 md:px-12">
     <div class="flex flex-col md:flex-row items-center justify-between">
       <div>
         <p class="font-volkhov text-orange text-xl">Explora</p>

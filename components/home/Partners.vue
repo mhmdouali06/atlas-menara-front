@@ -24,23 +24,17 @@ const partnears = [
 ];
 </script>
 <template>
-  <section class="w-full my-28">
+  <section class="w-[90%] mx-auto mt-16 ">
     <h3 class="font-volkhov text-2xl md:text-3xl text-center mb-8">
       Nuestros <span class="text-orange">partners</span> De confianza
     </h3>
-    <Carousel
-      :autoplay="2000"
-      snapAlign="center"
-      class="px-4"
-      :wrap-around="true"
-      breakpointMode="carousel"
-      :breakpoints="{
-        0: { itemsToShow: 1 },
-        640: { itemsToShow: 1 },
-        768: { itemsToShow: 2 },
-        1280: { itemsToShow: 3 },
-      }"
-    >
+    <Carousel :autoplay="2000" snap-align="start" :gap="30" :wrap-around="true" :breakpoints="{
+      0: { itemsToShow: 1 },
+      640: { itemsToShow: 1 },
+      768: { itemsToShow: 3 },
+      1280: { itemsToShow: 4 },
+
+    }">
       <Slide v-for="course in partnears" :key="course.id">
         <img :src="course.img" alt="partnears" />
       </Slide>

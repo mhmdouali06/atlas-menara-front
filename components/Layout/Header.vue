@@ -70,6 +70,7 @@
           </div>
         </div>
 
+        <NuxtLink to="/coches" class="text-gray-800 hover:text-orange">Coches</NuxtLink>
         <NuxtLink to="/viaje" class="text-gray-800 hover:text-orange">Viajes & Tours</NuxtLink>
 
         <!-- Servicios -->
@@ -164,6 +165,8 @@
               </NuxtLink>
             </div>
           </details>
+          <NuxtLink to="/coches" class="text-gray-800" @click="closeMobileMenu">Coches</NuxtLink>
+
 
           <NuxtLink to="/viaje" class="text-gray-800" @click="closeMobileMenu">Viajes & Tours</NuxtLink>
 

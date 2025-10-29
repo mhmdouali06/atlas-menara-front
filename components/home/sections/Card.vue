@@ -12,7 +12,7 @@ const props = defineProps<{
 <!-- HomeSectionsCard.vue -->
 <template>
   <div
-    class="card flex flex-wrap md:flex-nowrap gap-4 w-full p-4 shadow bg-white rounded-lg box-border items-start min-h-[136px]">
+    class="card flex flex-wrap items-center md:flex-nowrap gap-4 w-full p-4 shadow bg-white rounded-lg box-border min-h-[136px]">
     <img :src="props.item.image" :alt="props.item.title" class="w-14 h-14 flex-none shrink-0" />
 
     <div class="content min-w-0">
@@ -20,7 +20,7 @@ const props = defineProps<{
         {{ props.item.title }}
       </h3>
       <p class="font-poppins text-[#808080] text-sm md:text-base ">
-        {{ props.item.description.slice(0, 10) }}
+        {{ props.item.description }}
       </p>
     </div>
   </div>

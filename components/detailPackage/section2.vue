@@ -2,7 +2,7 @@
   <section>
     <div class="main w-[90%] top-[-50px] relative mx-auto">
       <nav>
-        <ul class="flex gap-0 justify-between">
+        <ul class="flex gap-0 justify-between flex-wrap md:flex-nowrap">
           <li @click="active = 1" :class="active == 1 ? 'active' : ''">
             <button><img :src="info" alt="icon" /> información</button>
           </li>
@@ -17,7 +17,7 @@
           </li>
         </ul>
       </nav>
-      <div class="p-8 gap-8 grid grid-cols-12">
+      <div v-if="!loading && item" class="p-8 gap-8 grid grid-cols-12">
 
         <div class="left col-span-12 md:col-span-8 ">
           <div v-show="active == 1">
@@ -38,6 +38,7 @@
           <DetailPackageSectionsContact :item="item" />
         </div>
       </div>
+      <UiDetailLoader v-else />
 
 
     </div>
@@ -51,7 +52,8 @@ import hotel from "@/assets/img/icon/blackHotel.svg";
 import type { TravelPackage } from "~/types/travel-package";
 const active = ref(1);
 const props = defineProps<{
-  item: TravelPackage;
+  item?: TravelPackage;
+  loading: boolean;
 }>();
 </script>
 <style scoped>

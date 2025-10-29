@@ -1,18 +1,19 @@
 <template>
   <CarsDetailsSection1 v-if="gallery.length > 0" :images="gallery" />
-  <CarsDetailsSection2 v-if="item" :car="item" privacy-href="/politica-de-privacidad" />
+  <CarsDetailsSection2 :car="item" :loading="loading" />
 </template>
 <script lang="ts" setup>
 import type { MediaLite, Car } from '~/types/car';
 
 
-const loading = ref(false)
+const loading = ref(true)
 const { getCar } = useCarsFront();
 const slug = useRoute().params.slug
 const gallery = ref<MediaLite[]>([])
 const item = ref<Car>()
 
 const getData = async () => {
+  loading.value = true
   try {
     if (!slug) {
       navigateTo('/coches')
@@ -26,9 +27,9 @@ const getData = async () => {
     }
   } catch (error: any) {
     console.log(error);
-    if (error.response.status == 404) {
-      navigateTo('/coches')
-    }
+    // if (error.response.status == 404) {
+    //   navigateTo('/coches')
+    // }
 
   }
   finally {
