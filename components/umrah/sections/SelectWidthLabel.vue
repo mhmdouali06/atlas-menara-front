@@ -3,7 +3,7 @@
     <p class="label font-montserrat text-[#1C1B1F]">{{ props.label }}</p>
     <div class="flex gap-2">
       <img :src="props.iocn" alt="icon" />
-      <select name="" id="" class="w-full">
+      <select class="w-full" v-model="model">
         <option v-for="(item, index) in props.options" :key="index" :value="item.value"
           class="font-montserrat text-[#1C1B1F] text-lg w-full">
           {{ item.option }}
@@ -17,7 +17,15 @@ const props = defineProps<{
   label: string;
   iocn: string;
   options: { option: string; value: string }[];
+  modelValue?: string;
 }>();
+const emit = defineEmits<{
+  (e: 'update:modelValue', v?: string): void;
+}>();
+const model = computed({
+  get: () => props.modelValue,
+  set: (v: string | undefined) => emit('update:modelValue', v)
+});
 </script>
 <style scoped>
 .mai {

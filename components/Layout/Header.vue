@@ -25,18 +25,11 @@
           </div>
           <div v-if="openDropdown === 'umrah'"
             class="absolute bg-white shadow-lg rounded-md top-full left-0 mt-2 w-48 z-50">
-            <NuxtLink to="/umrah/package1" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Paquete Básico
+            <NuxtLink :to="'/umrah?meses=' + month.value" v-for="month in monthOptions"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
+              {{ month.option }}
             </NuxtLink>
-            <NuxtLink to="/umrah/package2" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Paquete Premium
-            </NuxtLink>
-            <NuxtLink to="/umrah/package3" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Paquete Deluxe
-            </NuxtLink>
+
           </div>
         </div>
 
@@ -55,18 +48,11 @@
           </div>
           <div v-if="openDropdown === 'hajj'"
             class="absolute bg-white shadow-lg rounded-md top-full left-0 mt-2 w-48 z-50">
-            <NuxtLink to="/hajj/package1" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Hajj Regular
+            <NuxtLink :to="'/hajj?category=' + category.slug" v-for="category in categoriesList"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
+              {{ category.name }}
             </NuxtLink>
-            <NuxtLink to="/hajj/package2" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Hajj Plus
-            </NuxtLink>
-            <NuxtLink to="/hajj/package3" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Hajj VIP
-            </NuxtLink>
+
           </div>
         </div>
 
@@ -138,12 +124,10 @@
               </svg>
             </summary>
             <div class="ml-4 mt-2 space-y-2">
-              <NuxtLink to="/umrah/package1" class="block text-sm text-gray-600" @click="closeMobileMenu">Paquete Básico
+              <NuxtLink :to="'/umrah?meses=' + month.value" v-for="month in monthOptions"
+                class="block text-sm text-gray-600" @click="closeMobileMenu">{{ month.option }}
               </NuxtLink>
-              <NuxtLink to="/umrah/package2" class="block text-sm text-gray-600" @click="closeMobileMenu">Paquete
-                Premium</NuxtLink>
-              <NuxtLink to="/umrah/package3" class="block text-sm text-gray-600" @click="closeMobileMenu">Paquete Deluxe
-              </NuxtLink>
+
             </div>
           </details>
 
@@ -157,12 +141,10 @@
               </svg>
             </summary>
             <div class="ml-4 mt-2 space-y-2">
-              <NuxtLink to="/hajj/package1" class="block text-sm text-gray-600" @click="closeMobileMenu">Hajj Regular
+              <NuxtLink :to="'/hajj?category=' + category.slug" v-for="category in categoriesList"
+                class="block text-sm text-gray-600" @click="closeMobileMenu">{{ category.name }}
               </NuxtLink>
-              <NuxtLink to="/hajj/package2" class="block text-sm text-gray-600" @click="closeMobileMenu">Hajj Plus
-              </NuxtLink>
-              <NuxtLink to="/hajj/package3" class="block text-sm text-gray-600" @click="closeMobileMenu">Hajj VIP
-              </NuxtLink>
+
             </div>
           </details>
           <NuxtLink to="/coches" class="text-gray-800" @click="closeMobileMenu">Coches</NuxtLink>
@@ -202,10 +184,15 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import logo from "@/assets/img/global/logo.png";
+const { getCategories } = useCategories();
 
+import logo from "@/assets/img/global/logo.png";
+import type { Category } from "~/types/Categories";
+import { monthOptions } from "~/constants/options";
+const loading = ref(true);
 const isOpen = ref(false);
 const openDropdown = ref<string | null>(null);
+const categoriesList = ref<Category[]>([]);
 
 // Refs for dropdown containers
 const umrahDropdownRef = ref<HTMLElement | null>(null);
@@ -244,6 +231,31 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 };
 
+//get hajj catagories
+
+const getCategoriesList = async () => {
+  loading.value = true
+  try {
+    const data = await getCategories("type=umrah");
+    if (data) {
+      if (data.member) {
+        categoriesList.value = data.member
+
+      }
+    }
+  } catch (error) {
+    console.log(error);
+
+  }
+  finally {
+
+    loading.value = false
+  }
+
+
+
+}
+
 // Route change handler
 const route = useRoute();
 watch(() => route.path, () => {
@@ -254,6 +266,7 @@ watch(() => route.path, () => {
 // Set up event listeners
 onMounted(() => {
   document.addEventListener('click', handleClickOutside);
+  getCategoriesList()
 });
 
 onUnmounted(() => {

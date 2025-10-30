@@ -7,11 +7,33 @@
         Ofertas <span class="text-orange">Umrah</span>, hechas a medida
       </h1>
     </div>
-    <UmrahSectionsTopFilter />
+    <UmrahSectionsTopFilter v-model:month="monthProxy" v-model:duration="durationProxy" v-model:room="roomProxy" />
   </section>
 </template>
 <script lang="ts" setup>
 import bg from "@/assets/img/global/umrah-bg.png";
+const props = defineProps<{
+  month?: string;
+  duration?: string;
+  room?: string;
+}>();
+const emit = defineEmits<{
+  (e: 'update:month', v?: string): void;
+  (e: 'update:duration', v?: string): void;
+  (e: 'update:room', v?: string): void;
+}>();
+const monthProxy = computed({
+  get: () => props.month,
+  set: (v?: string) => emit('update:month', v)
+});
+const durationProxy = computed({
+  get: () => props.duration,
+  set: (v?: string) => emit('update:duration', v),
+});
+const roomProxy = computed({
+  get: () => props.room,
+  set: (v?: string) => emit('update:room', v),
+});
 </script>
 <style scoped>
 .bg {

@@ -1,39 +1,44 @@
 <template>
-  <UmrahSection1 />
+  <UmrahSection1 v-model:month="month" v-model:duration="duration" v-model:room="room" />
   <UmrahCustomUmrah />
   <UmrahList :items="items" :loading="loading" />
 </template>
 
 <script lang="ts" setup>
 import type { TravelPackage } from '~/types/travel-package';
+import { startDateFilter, toQueryString } from '@/utils/dateBounds';
 
-const loading = ref(true)
+const route = useRoute();
+
+const month = ref<string | undefined>();
+const duration = ref<string | undefined>();
+const room = ref<string | undefined>();
+
+const loading = ref(true);
+const items = ref<TravelPackage[]>([]);
+
 const { getPackages } = useTravelPackagesFront('umrah');
 
-const items = ref<TravelPackage[]>([])
-
-const getData = async () => {
-  loading.value = true
+async function fetchPackages() {
+  loading.value = true;
   try {
-    const data = await getPackages()
-    if (data) {
-      if (data.member) {
-        items.value = data.member
-      }
-    }
-  } catch (error) {
-    console.log(error);
-
+    const dateParams = startDateFilter(month.value);
+    const query = toQueryString(dateParams);
+    const data = await getPackages(query);
+    if (data?.member) items.value = data.member;
+  } finally {
+    loading.value = false;
   }
-  finally {
-    loading.value = false
-  }
-
-
-
 }
 
-onMounted(() => {
-  getData()
-})
+watch(
+  () => route.query.meses,
+  (q) => { month.value = typeof q === 'string' && q.length ? q : undefined; },
+  { immediate: true }
+);
+
+watch(month, () => { fetchPackages(); });
+
+
+onMounted(fetchPackages);
 </script>

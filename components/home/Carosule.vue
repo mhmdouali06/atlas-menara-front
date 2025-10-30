@@ -40,7 +40,7 @@ const getCategoriesList = async () => {
   loading.value = true
   const firstitem = { "@id": "", "@type": "", "@context": "", id: "", name: "Todo", slug: "", blogPosts: [] };
   try {
-    const data = await getCategories()
+    const data = await getCategories("type=umrah");
     if (data) {
       if (data.member) {
         categoriesList.value = data.member
@@ -88,7 +88,7 @@ watch(activeCategory, (newVal) => {
   if (newVal === "") {
     getData();
   } else {
-    getData(`category=${newVal}`);
+    getData(`category.slug=${newVal}`);
   }
 });
 
@@ -112,8 +112,8 @@ onMounted(() => {
       </div>
       <div class="overflow-auto mb-8 md:my-0 w-full md:w-auto">
         <div class="flex gap-2">
-          <button v-for="category in categoriesList" :key="category.id" @click="activeCategory = category.id" :class="[
-            activeCategory === category.id
+          <button v-for="category in categoriesList" :key="category.id" @click="activeCategory = category.slug" :class="[
+            activeCategory === category.slug
               ? 'bg-orange text-white'
               : 'bg-white text-orange',
             'category-button rounded-full px-4 py-2 text-lg font-semibold border border-orange  hover:bg-orange hover:text-white transition duration-300 easy',
