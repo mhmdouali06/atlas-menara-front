@@ -74,18 +74,11 @@
           </div>
           <div v-if="openDropdown === 'servicios'"
             class="absolute bg-white shadow-lg rounded-md top-full left-0 mt-2 w-48 z-50">
-            <NuxtLink to="/servicios/visa" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Visa Assistance
+            <NuxtLink v-for="link in servicesMenu" :to="'/servicios#' + link.slug"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
+              {{ link.label }}
             </NuxtLink>
-            <NuxtLink to="/servicios/transport" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Transporte
-            </NuxtLink>
-            <NuxtLink to="/servicios/hotel" class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
-              @click="closeAllDropdowns">
-              Reservas de Hotel
-            </NuxtLink>
+
           </div>
         </div>
 
@@ -162,12 +155,9 @@
               </svg>
             </summary>
             <div class="ml-4 mt-2 space-y-2">
-              <NuxtLink to="/servicios/visa" class="block text-sm text-gray-600" @click="closeMobileMenu">Visa
-                Assistance</NuxtLink>
-              <NuxtLink to="/servicios/transport" class="block text-sm text-gray-600" @click="closeMobileMenu">
-                Transporte</NuxtLink>
-              <NuxtLink to="/servicios/hotel" class="block text-sm text-gray-600" @click="closeMobileMenu">Reservas de
-                Hotel</NuxtLink>
+              <NuxtLink v-for="link in servicesMenu" :to="'/servicios#' + link.slug" class="block text-sm text-gray-600"
+                @click="closeMobileMenu">{{ link.label }}</NuxtLink>
+
             </div>
           </details>
 
@@ -188,7 +178,7 @@ const { getCategories } = useCategories();
 
 import logo from "@/assets/img/global/logo.png";
 import type { Category } from "~/types/Categories";
-import { monthOptions } from "~/constants/options";
+import { monthOptions, servicesMenu } from "~/constants/options";
 const loading = ref(true);
 const isOpen = ref(false);
 const openDropdown = ref<string | null>(null);

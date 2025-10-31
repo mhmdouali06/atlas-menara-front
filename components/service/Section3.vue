@@ -1,29 +1,15 @@
 <template>
   <section class="w-[90%] mx-auto my-8">
     <div class="grid grid-cols-12 gap-8">
-      <div
-        v-for="service in services"
-        class="flex flex-col md:flex-row gap-8 mb-2 md:mb-8"
-        :key="service.id"
-        :class="
-          service.cat == 'small'
-            ? 'col-span-12 md:col-span-4'
-            : 'col-span-12 md:col-span-8'
-        "
-      >
-        <div
-          class="border border-dashed border-[#07113D]"
-          v-if="service.id % 2 == 0"
-        ></div>
-        <ServiceSectionsBigCard
-          :service="service"
-          v-if="service.cat == 'big'"
-        />
+      <div v-for="service in services" :id="service.link" class="flex flex-col md:flex-row gap-8 mb-2 md:mb-8"
+        :key="service.id" :class="service.cat == 'small'
+          ? 'col-span-12 md:col-span-4'
+          : 'col-span-12 md:col-span-8'
+          ">
+        <div class="border border-dashed border-[#07113D]" v-if="service.id % 2 == 0"></div>
+        <ServiceSectionsBigCard :service="service" v-if="service.cat == 'big'" />
 
-        <ServiceSectionsSmallCard
-          :service="service"
-          v-if="service.cat == 'small'"
-        />
+        <ServiceSectionsSmallCard :service="service" v-if="service.cat == 'small'" />
       </div>
     </div>
   </section>
@@ -40,6 +26,7 @@ import passport from "@/assets/img/global/visa-passport.png";
 const services = [
   {
     id: 1,
+    link: "venta-de-billetes-aereos",
     title: "Venta de billetes aéreos",
     img: airpot,
     cat: "big",
@@ -49,6 +36,8 @@ const services = [
   },
   {
     id: 2,
+    link: "billetes-aereos-equipo",
+
     title: "Nuestro equipo se ocupa de:",
     list: [
       "Buscar las mejores combinaciones de vuelos.",
@@ -64,6 +53,8 @@ const services = [
   },
   {
     id: 3,
+    link: "te-ofrecemos-ferries",
+
     cat: "small",
     title: "Te ofrecemos:",
     list: [
@@ -78,6 +69,8 @@ const services = [
   },
   {
     id: 4,
+    link: "billetes-de-barco-entre-algeciras-tarifa-y-tanger",
+
     title: "billetes de barco entre Algeciras, Tarifa y Tánger",
     img: steamShip,
     cat: "big",
@@ -87,6 +80,8 @@ const services = [
   },
   {
     id: 5,
+    link: "reserva-de-hoteles",
+
     title: "Reserva de hoteles",
     img: hotel,
     cat: "big",
@@ -96,6 +91,8 @@ const services = [
   },
   {
     id: 6,
+    link: "ventajas-de-reservar",
+
     cat: "small",
     title: "Ventajas de reservar con nosotros:",
     list: [
@@ -110,6 +107,8 @@ const services = [
   },
   {
     id: 7,
+    link: "visados-equipo",
+
     cat: "small",
     title: "Nuestro equipo se encarga de todo el proceso:",
     list: [
@@ -124,6 +123,8 @@ const services = [
   },
   {
     id: 8,
+    link: "tramitacion-de-visados-umrah-y-turista",
+
     title: "Tramitación de visados (Umrah y turista)",
     img: passport,
     cat: "big",

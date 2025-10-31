@@ -43,4 +43,13 @@ export const optionHabitation = [
     option: "Triple",
     value: "triple",
   },
+]; // inside your header <script setup>
+export const servicesMenu = [
+  { label: "Billetes avión", slug: "venta-de-billetes-aereos" },
+  {
+    label: "Billetes barco",
+    slug: "billetes-de-barco-entre-algeciras-tarifa-y-tanger",
+  },
+  { label: "Hoteles", slug: "reserva-de-hoteles" },
+  { label: "Visados", slug: "tramitacion-de-visados-umrah-y-turista" },
 ];
