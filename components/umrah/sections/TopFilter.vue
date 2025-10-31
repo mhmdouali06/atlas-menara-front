@@ -19,7 +19,7 @@ import calendarIcon from "@/assets/img/icon/BlackCalendar.svg";
 import clockIcon from "@/assets/img/icon/Clock.svg";
 import bed from "@/assets/img/icon/Bed.svg";
 import search from "@/assets/img/icon/SearchIcon.svg";
-import { monthOptions } from "~/constants/options";
+import { monthOptions, optionHabitation } from "~/constants/options";
 const props = defineProps<{
   month?: string;
   duration?: string;
@@ -100,20 +100,7 @@ const filters: Array<{
       icon: bed,
       key: 'habitacion',
 
-      options: [
-        {
-          option: "Triple ",
-          value: "triple",
-        },
-        {
-          option: "Doble",
-          value: "doble",
-        },
-        {
-          option: "Simple",
-          value: "simple",
-        },
-      ],
+      options: optionHabitation,
     },
   ];
 </script>

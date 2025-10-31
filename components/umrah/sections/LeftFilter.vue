@@ -69,18 +69,11 @@
     <div>
       <div class="font-semibold text-gray-800">Ubicación</div>
       <div class="mt-3 space-y-2 text-sm text-gray-700">
-        <label class="flex items-center gap-2">
-          <input type="checkbox" v-model="locations" value="todo" class="accent-orange-500" />
-          todo
+        <label class="flex items-center gap-2" v-for="items in positionOptions" :key="items.value">
+          <input type="checkbox" v-model="locations" :value="items.value" class="accent-orange-500" />
+          {{ items.label }}
         </label>
-        <label class="flex items-center gap-2">
-          <input type="checkbox" v-model="locations" value="cerca del HARA" class="accent-orange-500" />
-          cerca del HARA
-        </label>
-        <label class="flex items-center gap-2">
-          <input type="checkbox" v-model="locations" value="cerca del" class="accent-orange-500" />
-          cerca del
-        </label>
+
       </div>
     </div>
 
@@ -101,6 +94,7 @@
 
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
+import { positionOptions } from "~/constants/options";
 
 /** Price slider constants (match your screenshot scale) */
 const PRICE_MIN = 1000;
