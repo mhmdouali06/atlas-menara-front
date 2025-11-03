@@ -7,7 +7,7 @@
           @update:modelValue="setValue(item.key, $event)" />
       </div>
       <div class="w-full md:w-auto">
-        <button class="w-full md:w-[50px]">
+        <button class="w-full md:w-[50px]" @click="emit('apply')">
           <img :src="search" alt="search" />
         </button>
       </div>
@@ -30,6 +30,7 @@ const emit = defineEmits<{
   (e: 'update:month', v?: string): void;
   (e: 'update:duration', v?: string): void;
   (e: 'update:room', v?: string): void;
+  (e: 'apply'): void;
 }>();
 // Only this one syncs with parent/URL
 const monthModel = computed({

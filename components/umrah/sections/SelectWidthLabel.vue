@@ -4,6 +4,9 @@
     <div class="flex gap-2">
       <img :src="props.iocn" alt="icon" />
       <select class="w-full" v-model="model">
+        <option :value="undefined" class="font-montserrat text-[#1C1B1F] text-lg w-full">
+          -- Seleccione una opción --
+        </option>
         <option v-for="(item, index) in props.options" :key="index" :value="item.value"
           class="font-montserrat text-[#1C1B1F] text-lg w-full">
           {{ item.option }}

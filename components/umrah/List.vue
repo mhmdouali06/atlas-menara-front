@@ -60,7 +60,7 @@ import type { TravelPackage } from "~/types/travel-package";
 
 const emit = defineEmits<{
   (e: 'next-page'): void
-  (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string[] }): void
+  (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string }): void
 }>()
 
 </script>

@@ -70,7 +70,7 @@
       <div class="font-semibold text-gray-800">Ubicación</div>
       <div class="mt-3 space-y-2 text-sm text-gray-700">
         <label class="flex items-center gap-2" v-for="items in positionOptions" :key="items.value">
-          <input type="checkbox" v-model="locations" :value="items.value" class="accent-orange-500" />
+          <input type="radio" v-model="locations" :value="items.value" class="accent-orange-500" />
           {{ items.label }}
         </label>
       </div>
@@ -104,7 +104,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'update:range', value: { min: number; max: number }): void
-  (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string[] }): void
+  (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string }): void
 }>()
 
 /** Resolve dynamic bounds */
@@ -176,7 +176,7 @@ const trackGradient = computed(() => {
 
 /** Extra filters */
 const selectedStars = ref(0)
-const locations = ref<string[]>([])
+const locations = ref<string>('')
 
 function apply() {
 

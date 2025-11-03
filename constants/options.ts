@@ -43,7 +43,7 @@ export const optionHabitation = [
     option: "Triple",
     value: "triple",
   },
-]; // inside your header <script setup>
+];
 export const servicesMenu = [
   { label: "Billetes avión", slug: "venta-de-billetes-aereos" },
   {

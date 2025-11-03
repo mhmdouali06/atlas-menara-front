@@ -1,5 +1,6 @@
 <template>
-  <UmrahSection1 v-model:month="month" v-model:duration="duration" v-model:room="room" :durationItems="durationItems" />
+  <UmrahSection1 v-model:month="month" v-model:duration="duration" v-model:room="room" :durationItems="durationItems"
+    @apply="topFilter" />
   <UmrahCustomUmrah />
   <UmrahList :items="items" :loading="loading" @next-page="gotToNextPage" :totalItem="totalItems" :prices="prices"
     @apply="onApplyFilters" />
@@ -14,8 +15,8 @@ const route = useRoute();
 const month = ref<string | undefined>();
 const duration = ref<string | undefined>();
 const durationItems = ref<{ option: string, value: string }[]>([])
-const starts = ref(0)
-const locations = ref<string[]>([])
+const _starts = ref(0)
+const _locations = ref<string | undefined>()
 const prices = ref<{ min: number, max: number }>({ min: 0, max: 0 })
 const minPrice = ref(0)
 const maxPrice = ref(0)
@@ -25,18 +26,25 @@ const loading = ref(true);
 const items = ref<TravelPackage[]>([]);
 
 const { getPackages, getStates } = useTravelPackagesFront('umrah');
+const topFilter = async () => {
+  page.value = 1
+  items.value = []
+
+  fetchPackages()
+
+}
 
 const onApplyFilters = async ({
   priceMin,
   priceMax,
   stars,
   locations
-}: { priceMin: number; priceMax: number; stars: number; locations: string[] }) => {
+}: { priceMin: number; priceMax: number; stars: number; locations: string }) => {
   minPrice.value = Number(priceMin)
   maxPrice.value = Number(priceMax)
 
-
-
+  _locations.value = locations
+  _starts.value = stars
   page.value = 1
   items.value = []
   fetchPackages()
@@ -45,8 +53,11 @@ const onApplyFilters = async ({
 async function fetchPackages() {
   loading.value = true;
   try {
-    const dateParams = startDateFilter(month.value);
-    const query = new URLSearchParams(dateParams);
+    let query = new URLSearchParams();
+    if (month.value) {
+      const dateParams = startDateFilter(month.value);
+      query = new URLSearchParams(dateParams);
+    }
 
     // add or update params
     query.set('page', String(page.value));
@@ -54,9 +65,21 @@ async function fetchPackages() {
 
       query.set('duration', String(duration.value));
     }
+    if (room.value) {
+      query.set('habitation', String(room.value));
+    }
     if (minPrice.value > 0 && maxPrice.value > 0) {
       query.set('price[lte]', `${maxPrice.value}`)
       query.set('price[gte]', `${minPrice.value}`)
+
+    }
+    if (_locations.value && _locations.value != 'all') {
+      query.set('position', _locations.value)
+    }
+
+
+    if (_starts.value > 0) {
+      query.set('averageRating', String(_starts.value))
 
     }
 
@@ -90,12 +113,15 @@ const gotToNextPage = () => {
 };
 watch(
   () => route.query.meses,
-  (q) => { month.value = typeof q === 'string' && q.length ? q : undefined; },
+  (q) => {
+    month.value = typeof q === 'string' && q.length ? q : undefined;
+    topFilter()
+  },
   { immediate: true }
 );
 
-watch([month], () => { fetchPackages(); });
-watch([duration], () => { page.value = 1; items.value = []; fetchPackages(); });
+// watch([month], () => { fetchPackages(); });
+// watch([duration], () => { page.value = 1; items.value = []; fetchPackages(); });
 
 
 onMounted(() => {

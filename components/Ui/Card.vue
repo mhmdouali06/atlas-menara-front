@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import vol from "@/assets/img/icon/vol.svg";
-import ticket from "@/assets/img/icon/ticket.svg";
+import bed from "@/assets/img/icon/WhiteBed.svg";
 import hotel from "@/assets/img/icon/hotel.svg";
 import visa from "@/assets/img/icon/visa.svg";
 import { fileUrl } from "~/helpers/functions/imageURl";
@@ -30,7 +30,10 @@ const props = defineProps<{
             <img :src="vol" alt="vol" />
           </div>
           <div>
-            <img :src="ticket" alt="ticket" />
+            <span class="text-white font-poppins text-sm me-1">{{ props.item.habitation === "simple" ? 1 :
+              props.item.habitation === "doble" ? 2 :
+                3 }}</span>
+            <img :src="bed" alt="bed" class="bed" />
           </div>
           <div>
             <img :src="hotel" alt="hotel" />
@@ -62,6 +65,8 @@ const props = defineProps<{
   justify-content: end;
   align-items: start;
 }
+
+
 
 .main-bg {
   border-radius: 10px;
@@ -100,6 +105,11 @@ const props = defineProps<{
   height: 21px;
   margin: 0;
   padding: 0;
+}
+
+.other .bed {
+  width: 15px;
+  height: 15px;
 }
 
 .title-card::after {
