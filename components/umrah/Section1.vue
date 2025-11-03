@@ -7,7 +7,8 @@
         Ofertas <span class="text-orange">Umrah</span>, hechas a medida
       </h1>
     </div>
-    <UmrahSectionsTopFilter v-model:month="monthProxy" v-model:duration="durationProxy" v-model:room="roomProxy" />
+    <UmrahSectionsTopFilter v-model:month="monthProxy" v-model:duration="durationProxy" :durationItems="durationItems"
+      v-model:room="roomProxy" />
   </section>
 </template>
 <script lang="ts" setup>
@@ -16,6 +17,7 @@ const props = defineProps<{
   month?: string;
   duration?: string;
   room?: string;
+  durationItems?: { option: string; value: string }[];
 }>();
 const emit = defineEmits<{
   (e: 'update:month', v?: string): void;

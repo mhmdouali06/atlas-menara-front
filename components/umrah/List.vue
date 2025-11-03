@@ -8,7 +8,8 @@
       <div class="grid grid-cols-12 gap-4 md:gap-10  justify-between">
         <!-- Filters -->
         <div class="col-span-12 md:col-span-4">
-          <UmrahSectionsLeftFilter />
+          <UmrahSectionsLeftFilter v-if="prices.max > 0" :prices="prices" @apply="emit('apply', $event)" />
+
         </div>
         <!-- 4 items -->
         <div v-if="!props.loading" class="col-span-12 md:col-span-8 grid grid-cols-12 gap-4 md:gap-10">
@@ -51,12 +52,16 @@
   </section>
 </template>
 <script lang="ts" setup>
-const props = defineProps<{ items: TravelPackage[], loading: boolean, totalItem: number }>()
+const props = defineProps<{ items: TravelPackage[], loading: boolean, totalItem: number, prices: { min: number, max: number } }>()
 import img1 from "@/assets/img/umrah/tour-img7 (1).png";
 import img2 from "@/assets/img/umrah/tour-img7 (3).png";
 import img3 from "@/assets/img/umrah/tour-img7.png";
 import type { TravelPackage } from "~/types/travel-package";
 
+const emit = defineEmits<{
+  (e: 'next-page'): void
+  (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string[] }): void
+}>()
 
 </script>
 <style scoped>

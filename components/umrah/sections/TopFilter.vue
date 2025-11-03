@@ -24,6 +24,7 @@ const props = defineProps<{
   month?: string;
   duration?: string;
   room?: string;
+  durationItems?: { option: string; value: string }[];
 }>();
 const emit = defineEmits<{
   (e: 'update:month', v?: string): void;
@@ -80,20 +81,7 @@ const filters: Array<{
       icon: clockIcon,
       key: 'duracion',
 
-      options: [
-        { option: "1 dia", value: "1" },
-        { option: "2 dias", value: "2" },
-        { option: "3 dias", value: "3" },
-        { option: "4 dias", value: "4" },
-        { option: "5 dias", value: "5" },
-        { option: "6 dias", value: "6" },
-        { option: "7 dias", value: "7" },
-        { option: "8 dias", value: "8" },
-        { option: "9 dias", value: "9" },
-        { option: "10 dias", value: "10" },
-        { option: "11 dias", value: "11" },
-        { option: "12 dias", value: "12" },
-      ],
+      options: props.durationItems || [],
     },
     {
       label: "Tipo de habitación",

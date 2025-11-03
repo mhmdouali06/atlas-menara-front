@@ -26,12 +26,12 @@
             :style="{ background: trackGradient }"></div>
 
           <!-- Left (min) thumb -->
-          <input type="range" :min="PRICE_MIN" :max="PRICE_MAX" :step="PRICE_STEP" v-model.number="priceMin"
-            @input="onMinInput" class="range-input pointer-events-auto" />
+          <input type="range" :min="min" :max="max" :step="step" v-model.number="priceMin" @input="onMinInput"
+            class="range-input pointer-events-auto" />
 
           <!-- Right (max) thumb -->
-          <input type="range" :min="PRICE_MIN" :max="PRICE_MAX" :step="PRICE_STEP" v-model.number="priceMax"
-            @input="onMaxInput" class="range-input pointer-events-auto" />
+          <input type="range" :min="min" :max="max" :step="step" v-model.number="priceMax" @input="onMaxInput"
+            class="range-input pointer-events-auto" />
         </div>
 
         <!-- current values -->
@@ -58,8 +58,8 @@
       </div>
       <div class="mt-4 flex flex-wrap gap-2 justify-between">
         <button v-for="star in [0, 1, 2, 3, 4, 5]" :key="star" type="button" @click="selectedStars = star"
-          class="px-3 py-1 border rounded-lg text-sm font-medium transition border-orange" :class="selectedStars === star ? 'bg-orange text-white ' : 'text-gray-600'
-            ">
+          class="px-3 py-1 border rounded-lg text-sm font-medium transition border-orange"
+          :class="selectedStars === star ? 'bg-orange text-white' : 'text-gray-600'">
           {{ star }}+
         </button>
       </div>
@@ -73,7 +73,6 @@
           <input type="checkbox" v-model="locations" :value="items.value" class="accent-orange-500" />
           {{ items.label }}
         </label>
-
       </div>
     </div>
 
@@ -93,107 +92,124 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
-import { positionOptions } from "~/constants/options";
+import { computed, ref, watch } from 'vue'
+import { positionOptions } from '~/constants/options'
 
-/** Price slider constants (match your screenshot scale) */
-const PRICE_MIN = 1000;
-const PRICE_MAX = 3000;
-const PRICE_STEP = 50;
+/** Bounds (not selected values) come from props.prices */
+const props = defineProps<{
+  prices?: { min?: number; max?: number; step?: number },
+  /** Two-way bound selected range */
+  range?: { min: number; max: number }
+}>()
 
-const priceMin = ref(1400);
-const priceMax = ref(2600);
+const emit = defineEmits<{
+  (e: 'update:range', value: { min: number; max: number }): void
+  (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string[] }): void
+}>()
 
-const selectedStars = ref(0);
-const locations = ref<string[]>([]);
+/** Resolve dynamic bounds */
+const min = computed(() => Number.isFinite(props.prices?.min) ? Number(props.prices!.min) : 1000)
+const max = computed(() => {
+  const v = Number.isFinite(props.prices?.max) ? Number(props.prices!.max) : 3000
+  return v > min.value ? v : min.value + 1
+})
 
-/** Keep handles from crossing */
-function onMinInput() {
-  if (priceMin.value > priceMax.value - PRICE_STEP) {
-    priceMin.value = priceMax.value - PRICE_STEP;
+/** Smooth default step ≈ 1% of range, at least 1 */
+const step = computed(() => {
+  const custom = props.prices?.step
+  if (Number.isFinite(custom) && (custom as number) > 0) return Number(custom)
+  return Math.max(1, Math.round((max.value - min.value) / 100))
+})
+
+/** Local selection, initialized from v-model:range or full bounds */
+const priceMin = ref(props.range?.min ?? min.value)
+const priceMax = ref(props.range?.max ?? max.value)
+
+/** Keep thumbs valid when bounds change */
+watch([min, max], () => {
+  // If parent hasn't provided a range, default to full bounds
+  if (props.range == null) {
+    priceMin.value = min.value
+    priceMax.value = max.value
+  } else {
+    // Clamp incoming v-model to new bounds
+    priceMin.value = Math.max(min.value, Math.min(props.range.min, max.value - step.value))
+    priceMax.value = Math.min(max.value, Math.max(props.range.max, min.value + step.value))
   }
+}, { immediate: true })
+
+/** Sync when parent changes v-model:range explicitly */
+watch(() => props.range, (r) => {
+  if (!r) return
+  priceMin.value = Math.max(min.value, Math.min(r.min, max.value - step.value))
+  priceMax.value = Math.min(max.value, Math.max(r.max, min.value + step.value))
+}, { deep: true })
+
+/** Emit on every change so parent always holds latest selection */
+watch([priceMin, priceMax], () => {
+  emit('update:range', { min: priceMin.value, max: priceMax.value })
+})
+
+/** Prevent crossing */
+function onMinInput() {
+  if (priceMin.value > priceMax.value - step.value) {
+    priceMin.value = priceMax.value - step.value
+  }
+  if (priceMin.value < min.value) priceMin.value = min.value
 }
 function onMaxInput() {
-  if (priceMax.value < priceMin.value + PRICE_STEP) {
-    priceMax.value = priceMin.value + PRICE_STEP;
+  if (priceMax.value < priceMin.value + step.value) {
+    priceMax.value = priceMin.value + step.value
   }
+  if (priceMax.value > max.value) priceMax.value = max.value
 }
 
-/** Nice labels */
-const minLabel = computed(() => PRICE_MIN.toString());
-const maxLabel = computed(() => PRICE_MAX.toString());
-
-/** Highlight selected range on the track using a gradient */
+/** Labels and track highlight */
+const minLabel = computed(() => String(min.value))
+const maxLabel = computed(() => String(max.value))
 const trackGradient = computed(() => {
-  const range = PRICE_MAX - PRICE_MIN;
-  const start = ((priceMin.value - PRICE_MIN) / range) * 100;
-  const end = ((priceMax.value - PRICE_MIN) / range) * 100;
-  // light gray -> orange -> light gray
-  return `linear-gradient(
-    to right,
-    #e5e7eb ${start}%,
-    #fb923c ${start}%,
-    #fb923c ${end}%,
-    #e5e7eb ${end}%
-  )`;
-});
+  const rangeSize = max.value - min.value
+  const start = ((priceMin.value - min.value) / rangeSize) * 100
+  const end = ((priceMax.value - min.value) / rangeSize) * 100
+  return `linear-gradient(to right,#e5e7eb ${start}%,#fb923c ${start}%,#fb923c ${end}%,#e5e7eb ${end}%)`
+})
 
-/** Emit selected values so the parent can actually filter */
-const emit = defineEmits<{
-  (
-    e: "update:filters",
-    payload: {
-      priceMin: number;
-      priceMax: number;
-      stars: number;
-      locations: string[];
-    }
-  ): void;
-  (
-    e: "apply",
-    payload: {
-      priceMin: number;
-      priceMax: number;
-      stars: number;
-      locations: string[];
-    }
-  ): void;
-}>();
-
-watch(
-  [priceMin, priceMax, selectedStars, locations],
-  () => {
-    emit("update:filters", {
-      priceMin: priceMin.value,
-      priceMax: priceMax.value,
-      stars: selectedStars.value,
-      locations: locations.value,
-    });
-  },
-  { immediate: true }
-);
+/** Extra filters */
+const selectedStars = ref(0)
+const locations = ref<string[]>([])
 
 function apply() {
-  emit("apply", {
+
+
+  emit('apply', {
     priceMin: priceMin.value,
     priceMax: priceMax.value,
     stars: selectedStars.value,
-    locations: locations.value,
-  });
+    locations: locations.value
+  })
 }
-
 function resetPrice() {
-  priceMin.value = PRICE_MIN + 400;
-  priceMax.value = PRICE_MAX - 400;
+  priceMin.value = min.value
+  priceMax.value = max.value
 }
 </script>
+
 
 <style scoped>
 /* Dual range trick: stack two inputs and hide native tracks */
 .range-input {
-  @apply absolute left-0 right-0 top-1/2 -translate-y-1/2 w-full appearance-none bg-transparent pointer-events-none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  /* thumbs remain clickable */
   height: 0;
-  /* visually hidden, thumbs still clickable */
+  /* visually hidden track */
 }
 
 /* WebKit thumb */
@@ -206,7 +222,7 @@ function resetPrice() {
   border-radius: 9999px;
   background: #fb923c;
   /* orange */
-  border: 2px solid white;
+  border: 2px solid #fff;
   box-shadow: 0 0 0 2px #fb923c;
   cursor: pointer;
 }
@@ -218,7 +234,7 @@ function resetPrice() {
   height: 18px;
   border-radius: 9999px;
   background: #fb923c;
-  border: 2px solid white;
+  border: 2px solid #fff;
   box-shadow: 0 0 0 2px #fb923c;
   cursor: pointer;
 }

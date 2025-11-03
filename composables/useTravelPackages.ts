@@ -34,9 +34,12 @@ export const useTravelPackagesFront = (typeSlug: string) => {
   const getPackage = async (slug: string): Promise<TravelPackage> =>
     await $api(`/travel_packages/slug/${encodeURIComponent(slug)}`);
 
+  const getStates = async (type: string): Promise<any> =>
+    await $api(`/packages/stats?type=${type}`);
   return {
     getPackages,
     getPackage,
     getSlides,
+    getStates,
   };
 };
