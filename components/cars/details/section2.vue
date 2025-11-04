@@ -9,7 +9,7 @@
 
       <!-- Location -->
       <p class="mt-2 text-[15px] font-poppins md:text-base text-[#2b395b]">
-        {{ car.city || '—' }}
+        {{ car.city.title || '—' }}
       </p>
 
       <!-- Inline info (pipe-separated) -->
@@ -65,22 +65,8 @@ const props = withDefaults(
   {}
 )
 
-const prettyTransmission = (v?: string | null) => {
-  const s = v?.toLowerCase?.() || ''
-  if (!s) return null
-  if (s.includes('auto')) return 'Automática'
-  if (s.includes('man')) return 'Manual'
-  return v
-}
-const prettyFuel = (v?: string | null) => {
-  const s = v?.toLowerCase?.() || ''
-  if (!s) return null
-  if (s.includes('gas')) return 'Gasolina'
-  if (s.includes('dies')) return 'Diésel'
-  if (s.includes('hyb')) return 'Híbrido'
-  if (s.includes('elec')) return 'Eléctrico'
-  return v
-}
+
+
 
 const infoLine = computed(() => {
   const bits: string[] = []
@@ -89,14 +75,10 @@ const infoLine = computed(() => {
   if (props.car.brand || props.car.model) {
     bits.push([props.car.brand, props.car.model].filter(Boolean).join(' '))
   }
-  if (props.car.year) bits.push(String(props.car.year))
-  if (prettyTransmission(props.car.transmission)) bits.push(prettyTransmission(props.car.transmission)!)
-  if (prettyFuel(props.car.fuelType)) bits.push(prettyFuel(props.car.fuelType)!)
   if (props.car.seats != null) bits.push(`${props.car.seats} asientos`)
   if (props.car.doors != null) bits.push(`${props.car.doors} puertas`)
   if (props.car.luggage != null) bits.push(`${props.car.luggage} maletas`)
-  if (props.car.ac != null) bits.push(`A/C: ${props.car.ac ? 'Sí' : 'No'}`)
-  if (props.car.status) bits.push(`Estado: ${props.car.status}`)
+
 
   return bits.join(' | ')
 })

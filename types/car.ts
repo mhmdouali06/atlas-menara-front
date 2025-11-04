@@ -31,7 +31,9 @@ export type CarCreateInput = {
 
   pricePerDay: number;
   status: string; // your CAR_STATUS_OPTIONS values
-  city: string;
+  city: {
+    title: string;
+  };
 
   averageRating: number | null;
   reviewCount: number | null;
@@ -65,8 +67,9 @@ export type Car = {
 
   pricePerDay: number;
   status?: string | null;
-  city?: string | null;
-
+  city: {
+    title: string;
+  };
   averageRating?: number | null;
   reviewCount?: number | null;
 
