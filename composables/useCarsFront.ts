@@ -20,8 +20,8 @@ export const useCarsFront = () => {
   const { $api } = useNuxtApp();
 
   // List with optional query: page, itemsPerPage, filters...
-  const getCars = async (query?: string): Promise<HydraList<Car>> => {
-    const endpoint = `/cars${query && query.trim().length ? `?${query}` : ""}`;
+  const getCars = async (query?: any): Promise<HydraList<Car>> => {
+    const endpoint = `/cars?${query}`;
     return await $api(endpoint);
   };
 

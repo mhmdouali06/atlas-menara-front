@@ -22,7 +22,7 @@
         {{ item.title }}
       </h3>
       <p class="text-xs uppercase tracking-wide text-slate-400">
-        {{ item.model }}
+        {{ item.category.name }}
       </p>
     </div>
 

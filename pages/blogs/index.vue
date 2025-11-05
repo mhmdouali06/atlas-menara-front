@@ -9,8 +9,8 @@ const posts = ref<BlogPost[]>([]);
 const isLoading = ref(true);
 
 const fetchBlogs = async () => {
+  isLoading.value = true;
   try {
-    isLoading.value = true;
     const data = await getBlogs();
     if (data) {
       posts.value = data.member;
@@ -64,7 +64,7 @@ useHead({
     <div v-if="isLoading" class="my-10">
       <UiGridLoading />
     </div>
-    <div v-if="posts.length > 0">
+    <div v-if="posts.length > 0 && !isLoading">
       <BlogList :posts="posts" :current-page="currentPage" />
       <BlogOtheBlogs />
     </div>

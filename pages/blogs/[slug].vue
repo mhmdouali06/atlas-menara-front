@@ -28,7 +28,9 @@ onMounted(async () => {
     fetchBlog()
   }
   finally {
-    isLoading.value = false
+    setTimeout(() => {
+      isLoading.value = false
+    }, 500);
   }
 });
 </script>
@@ -52,8 +54,9 @@ onMounted(async () => {
       </div>
     </section>
 
-    <div v-if="isLoading" class="loader-container">
-      <div class="loader"></div>
+    <div v-if="isLoading" class="loader-container my-24">
+
+      <ui-detail-loader />
     </div>
 
     <div v-if="!post && !isLoading" class="not-found">

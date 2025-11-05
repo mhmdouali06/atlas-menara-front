@@ -1,17 +1,15 @@
 <template>
   <section class="flex justify-center mt-[-50px]">
-    <div class="w-3/4 main p-8 flex gap-8 items-center">
-      <div class="grid grid-cols-12 w-full gap-8">
-        <UmrahSectionsSelectWidthLabel
-          class="col-span-12 md:col-span-6"
-          v-for="item in filters"
-          :iocn="item.icon"
-          :label="item.label"
-          :options="item.options"
-        />
+    <div class="main w-[90%] max-w-6xl md:w-3/4 p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 w-full gap-4 md:gap-8 min-w-0">
+        <UmrahSectionsSelectWidthLabel v-for="(item, i) in filters" :key="i" class="col-span-1 md:col-span-6"
+          :iocn="item.icon" :label="item.label" :options="item.options" :model-value="item.modelValue.value"
+          @update:modelValue="val => (item.modelValue.value = val)" />
       </div>
-      <div class="">
-        <button>
+
+      <!-- Button sits below on mobile, right side on md+; size unchanged -->
+      <div class="flex md:block justify-center w-full md:w-auto">
+        <button @click="emit('apply', { type: type, city: city })" aria-label="Buscar">
           <img :src="search" alt="search" />
         </button>
       </div>
@@ -23,44 +21,48 @@ import car from "@/assets/img/icon/car.svg";
 import position from "@/assets/img/icon/emptyPostion.svg";
 import wallet from "@/assets/img/icon/wallet.svg";
 import search from "@/assets/img/icon/SearchIcon.svg";
+const type = ref<string | undefined>(undefined);
+const categoryOpions = ref<Option[]>([]);
+const cityOpions = ref<Option[]>([]);
+const city = ref<string | undefined>(undefined);
+type Option = { option: string; value: string };
+
+const emit = defineEmits(["apply"]);
+const { getCategories, getCities } = useCategories();
+const getCategoryOptions = async () => {
+  const data = await getCategories("type=cars&pagination=false");
+  if (data.member) {
+    data.member.forEach((item: any) => {
+      categoryOpions.value.push({ option: item.name, value: item.id });
+    })
+  }
+}
+const getCitiesptions = async () => {
+  const data = await getCities("pagination=false");
+  if (data.member) {
+    data.member.forEach((item: any) => {
+      cityOpions.value.push({ option: item.title, value: item.id });
+    })
+  }
+}
 const filters = [
   {
     label: "Coche",
     icon: car,
-    options: [
-      { option: "Enero", value: "enero" },
-      { option: "Febrero", value: "febrero" },
-      { option: "Marzo", value: "marzo" },
-      { option: "Abril", value: "abril" },
-      { option: "Mayo", value: "mayo" },
-      { option: "Junio", value: "junio" },
-      { option: "Julio", value: "julio" },
-      { option: "Agosto", value: "agosto" },
-      { option: "Septiembre", value: "septiembre" },
-      { option: "Octubre", value: "octubre" },
-      { option: "Noviembre", value: "noviembre" },
-      { option: "Diciembre", value: "diciembre" },
-    ],
+    modelValue: type,
+    options: categoryOpions.value,
   },
   {
     label: "Ciudad",
     icon: position,
-    options: [
-      { option: "1 dia", value: "1" },
-      { option: "2 dias", value: "2" },
-      { option: "3 dias", value: "3" },
-      { option: "4 dias", value: "4" },
-      { option: "5 dias", value: "5" },
-      { option: "6 dias", value: "6" },
-      { option: "7 dias", value: "7" },
-      { option: "8 dias", value: "8" },
-      { option: "9 dias", value: "9" },
-      { option: "10 dias", value: "10" },
-      { option: "11 dias", value: "11" },
-      { option: "12 dias", value: "12" },
-    ],
+    modelValue: city,
+    options: cityOpions.value,
   },
 ];
+onMounted(() => {
+  getCategoryOptions();
+  getCitiesptions();
+})
 </script>
 <style scoped>
 .main {
@@ -69,6 +71,7 @@ const filters = [
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25),
     0 4px 16px 0 rgba(17, 34, 17, 0.05);
 }
+
 button {
   border-radius: 4px;
   background: #0e2041;

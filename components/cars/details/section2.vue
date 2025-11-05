@@ -6,7 +6,9 @@
       <h1 class="font-Poppins text-3xl md:text-4xl font-extrabold text-[#0E2041]">
         {{ car.title }}
       </h1>
-
+      <p class="mt-2 text-[15px] font-poppins md:text-base text-[#2b395b]">
+        {{ car.category.name }}
+      </p>
       <!-- Location -->
       <p class="mt-2 text-[15px] font-poppins md:text-base text-[#2b395b]">
         {{ car.city.title || '—' }}
@@ -72,9 +74,7 @@ const infoLine = computed(() => {
   const bits: string[] = []
   if (!props.car) return
 
-  if (props.car.brand || props.car.model) {
-    bits.push([props.car.brand, props.car.model].filter(Boolean).join(' '))
-  }
+
   if (props.car.seats != null) bits.push(`${props.car.seats} asientos`)
   if (props.car.doors != null) bits.push(`${props.car.doors} puertas`)
   if (props.car.luggage != null) bits.push(`${props.car.luggage} maletas`)

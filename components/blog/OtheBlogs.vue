@@ -19,8 +19,8 @@ const { getBlogsCategories } = useBlogsApi()
 // --------------------------------------
 
 const fetchBlogsCategories = async () => {
+  isLoading.value = true
   try {
-    isLoading.value = true
     const data = await getBlogsCategories("pagination=false")
     if (data) {
       categories.value = data.member
@@ -38,13 +38,17 @@ onMounted(fetchBlogsCategories
 </script>
 <template>
   <section>
-    <div v-for="category in categories" :key="category.id" class="box">
+    <div v-if="isLoading" class="my-10">
+      <UiGridLoading />
+    </div>
+    <div v-else v-for="category in categories" :key="category.id" class="box">
       <div class="flex justify-between ">
 
         <h3 class=" blog- ">{{ category.name }}</h3>
         <NuxtLink :to="`/blogs/category/${category.id}`" class="border border-gray p-1 box-border font-poppins">Ver todo
         </NuxtLink>
       </div>
+
       <div class="flex overflow-x-auto flex-1 overflow-y-hidden gap-8 ">
 
         <BlogCard v-for="blog in category.blog" v-if="category.blog.length > 0" :item="blog"

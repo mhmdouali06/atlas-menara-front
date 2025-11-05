@@ -3,17 +3,16 @@
     <div class="bg"></div>
     <img :src="bg" class="img-bg" alt="umrah bg" />
     <div class="h-full w-full flex items-center">
-      <h1
-        class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full"
-      >
+      <h1 class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full">
         Alquiler de <span class="text-orange">coches</span> con conductor
       </h1>
     </div>
-    <CarsSectionsTopFilter />
+    <CarsSectionsTopFilter @apply="emit('apply', $event)" />
   </section>
 </template>
 <script lang="ts" setup>
 import bg from "@/assets/img/global/bg-cars.png";
+const emit = defineEmits<{ (e: "apply", payload: any): void }>();
 </script>
 <style scoped>
 .bg {
@@ -25,6 +24,7 @@ import bg from "@/assets/img/global/bg-cars.png";
   position: absolute;
   z-index: -1;
 }
+
 .img-bg {
   width: 100%;
   height: 100%;

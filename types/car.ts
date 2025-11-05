@@ -70,6 +70,9 @@ export type Car = {
   city: {
     title: string;
   };
+  category: {
+    name: string;
+  };
   averageRating?: number | null;
   reviewCount?: number | null;
 
