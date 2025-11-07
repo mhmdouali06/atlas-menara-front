@@ -12,7 +12,7 @@
           </p>
         </div>
         <div class="mb-4">
-          <button>Personalizar Omra <img :src="icon" alt="icon" /></button>
+          <button @click="emit('open-modal')">Personalizar Omra <img :src="icon" alt="icon" /></button>
         </div>
         <img :src="left" class="hidden md:block md:absolute left-0 bottom-0 h-[100%] w-100%" alt="couples" />
         <div class="bg"></div>
@@ -25,6 +25,7 @@
 import icon from "@/assets/img/icon/WhiteStart.svg";
 import bg from "@/assets/img/global/bg-cutom-umrah.png";
 import left from "@/assets/img/global/left-bg-umrah.png";
+const emit = defineEmits(['open-modal', 'close-modal'])
 </script>
 <style scoped>
 button {

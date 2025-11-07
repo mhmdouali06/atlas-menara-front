@@ -8,7 +8,8 @@
       <div class="grid grid-cols-12 gap-4 md:gap-10  justify-between">
         <!-- Filters -->
         <div class="col-span-12 md:col-span-4">
-          <UmrahSectionsLeftFilter v-if="prices.max > 0" :prices="prices" @apply="emit('apply', $event)" />
+          <UmrahSectionsLeftFilter v-if="prices.max > 0" :prices="prices" @apply="emit('apply', $event)"
+            @open="emit('open')" />
 
         </div>
         <!-- 4 items -->
@@ -60,6 +61,7 @@ import type { TravelPackage } from "~/types/travel-package";
 
 const emit = defineEmits<{
   (e: 'next-page'): void
+  (e: 'open'): void
   (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string }): void
 }>()
 

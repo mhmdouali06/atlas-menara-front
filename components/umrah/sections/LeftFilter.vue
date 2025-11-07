@@ -83,7 +83,7 @@
         @click="apply">
         Filtrar
       </button>
-      <button type="button"
+      <button type="button" @click="emit('open')"
         class="w-full py-3 border border-orange-500 text-orange-500 font-semibold rounded-xl hover:bg-orange-50 transition">
         Solicitar omra personalizada
       </button>
@@ -104,6 +104,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'update:range', value: { min: number; max: number }): void
+  (e: 'open'): void
   (e: 'apply', payload: { priceMin: number; priceMax: number; stars: number; locations: string }): void
 }>()
 

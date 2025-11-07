@@ -15,7 +15,7 @@
         confianza y al mejor precio.
       </p>
       <div class="flex flex-col md:flex-row items-center gap-4 mt-4">
-        <button
+        <button @click="openModal"
           class="bg-orange text-white px-5 py-2 rounded-full shadow-md font-poppins hover:bg-white hover:text-orange transition-all duration-300 easy">
           Organizar mi propio viaje
         </button>
@@ -26,11 +26,20 @@
         </button>
       </div>
     </div>
+    <TravelsModalCustoTravel :open="isOpen" @close="closeModal" />
   </section>
 </template>
 <script lang="ts" setup>
+import { TravelsModalCustoTravel } from "#components";
 import bg from "@/assets/img/global/umrah-bg.png";
 import icon from "@/assets/img/icon/start.svg";
+const isOpen = ref(false)
+const openModal = () => {
+  isOpen.value = true
+}
+const closeModal = () => {
+  isOpen.value = false
+}
 </script>
 <style scoped>
 h1 {

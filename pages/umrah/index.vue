@@ -1,15 +1,24 @@
 <template>
   <UmrahSection1 v-model:month="month" v-model:duration="duration" v-model:room="room" :durationItems="durationItems"
     @apply="topFilter" />
-  <UmrahCustomUmrah />
+  <UmrahCustomUmrah @open-modal="openModal" @close-modal="closeModal" />
   <UmrahList :items="items" :loading="loading" @next-page="gotToNextPage" :totalItem="totalItems" :prices="prices"
-    @apply="onApplyFilters" />
+    @apply="onApplyFilters" @open="openModal" />
+  <UmrahSectionsModalCustomUmrah :open="isOpen" @close="closeModal" />
+
 </template>
 
 <script lang="ts" setup>
 import type { TravelPackage } from '~/types/travel-package';
 import { startDateFilter, toQueryString } from '@/utils/dateBounds';
 const page = ref(1)
+const isOpen = ref(false)
+const openModal = () => {
+  isOpen.value = true
+}
+const closeModal = () => {
+  isOpen.value = false
+}
 const route = useRoute();
 
 const month = ref<string | undefined>();
