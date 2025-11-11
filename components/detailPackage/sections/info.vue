@@ -14,9 +14,16 @@
     <!-- date && descreptions  -->
     <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
       Fechas: {{ formatDateTextEs(props.item.startsAt) }} al {{ formatDateTextEs(props.item.endsAt) }}
+      <sub class="text-[12px] mt-1 font-poppins text[#112211] text-opacity-75">
+        ( {{ formatDuration(props.item.startsAt, props.item.endsAt) }} )
+      </sub>
     </p>
     <p class="mt-2 font-poppins" v-html="item.description">
     </p>
+    <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
+      Tipo de habitación: {{ getHabitationLabel(props.item.habitation + "") }}
+    </p>
+
 
     <!-- inclue -->
     <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
@@ -35,10 +42,11 @@
   </section>
 </template>
 <script setup lang="tsx">
-import { formatDateTextEs } from '~/helpers/functions/formatDuration';
+import { formatDateTextEs, formatDuration } from '~/helpers/functions/formatDuration';
 import type { TravelPackage } from '~/types/travel-package';
 
 import { useRequestURL } from '#app'
+import { getHabitationLabel } from '~/constants/options';
 
 // SSR-safe: works both server & client
 const url = useRequestURL()

@@ -44,6 +44,12 @@ export const optionHabitation = [
     value: "triple",
   },
 ];
+const habitationMap = Object.fromEntries(
+  optionHabitation.map((item) => [item.value, item.option])
+);
+export const getHabitationLabel = (value: string) => {
+  return habitationMap[value] || value;
+};
 export const servicesMenu = [
   { label: "Billetes avión", slug: "venta-de-billetes-aereos" },
   {

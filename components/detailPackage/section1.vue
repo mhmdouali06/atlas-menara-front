@@ -7,6 +7,7 @@
       <div class="h-full w-full flex items-center">
         <h1 class="text-3xl md:text-5xl font-bold text-center font-volkhov text-white w-full">
           {{ props.item.title }}
+
         </h1>
       </div>
     </div>
