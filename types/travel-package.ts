@@ -63,6 +63,7 @@ export type TravelPackageCreateInput = {
 
 export type TravelPackage = {
   includesTransport: boolean;
+
   premiumPrice: number;
   id: number;
   "@id"?: string;

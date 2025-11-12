@@ -8,12 +8,14 @@
 
       <!-- Desktop Nav -->
       <nav class="hidden lg:flex md:gap-3 lg:gap-5 items-center relative">
-        <NuxtLink to="/" class="active font-poppins">Inicio</NuxtLink>
+        <!-- Home: exact match only -->
+        <NuxtLink to="/" exact-active-class="active" class="font-poppins">Inicio</NuxtLink>
 
         <!-- Umrah -->
         <div class="relative" ref="umrahDropdownRef">
           <div class="flex items-center">
-            <NuxtLink to="/umrah" class="text-gray-800 hover:text-orange">Umrah</NuxtLink>
+            <!-- Section links: active if current path starts with it -->
+            <NuxtLink to="/umrah" active-class="active" class="text-gray-800 hover:text-orange">Umrah</NuxtLink>
             <button @click="toggleDropdown('umrah')"
               class="text-gray-800 hover:text-orange flex items-center gap-1 ml-1">
               <svg class="w-4 h-4 text-gray-500 hover:text-orange transition"
@@ -25,18 +27,17 @@
           </div>
           <div v-if="openDropdown === 'umrah'"
             class="absolute bg-white shadow-lg rounded-md top-full left-0 mt-2 w-48 z-50">
-            <NuxtLink :to="'/umrah?meses=' + month.value" v-for="month in monthOptions"
+            <NuxtLink v-for="month in monthOptions" :key="month.value" :to="'/umrah?meses=' + month.value"
               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
               {{ month.option }}
             </NuxtLink>
-
           </div>
         </div>
 
         <!-- Hajj -->
         <div class="relative" ref="hajjDropdownRef">
           <div class="flex items-center">
-            <NuxtLink to="/hajj" class="text-gray-800 hover:text-orange">Hajj</NuxtLink>
+            <NuxtLink to="/hajj" active-class="active" class="text-gray-800 hover:text-orange">Hajj</NuxtLink>
             <button @click="toggleDropdown('hajj')"
               class="text-gray-800 hover:text-orange flex items-center gap-1 ml-1">
               <svg class="w-4 h-4 text-gray-500 hover:text-orange transition"
@@ -48,21 +49,20 @@
           </div>
           <div v-if="openDropdown === 'hajj'"
             class="absolute bg-white shadow-lg rounded-md top-full left-0 mt-2 w-48 z-50">
-            <NuxtLink :to="'/hajj?category=' + category.slug" v-for="category in categoriesList"
+            <NuxtLink v-for="category in categoriesList" :key="category.slug" :to="'/hajj?category=' + category.slug"
               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
               {{ category.name }}
             </NuxtLink>
-
           </div>
         </div>
 
-        <NuxtLink to="/coches" class="text-gray-800 hover:text-orange">Coches</NuxtLink>
-        <NuxtLink to="/viaje" class="text-gray-800 hover:text-orange">Viajes & Tours</NuxtLink>
+        <NuxtLink to="/coches" active-class="active" class="text-gray-800 hover:text-orange">Coches</NuxtLink>
+        <NuxtLink to="/viaje" active-class="active" class="text-gray-800 hover:text-orange">Viajes & Tours</NuxtLink>
 
         <!-- Servicios -->
         <div class="relative" ref="serviciosDropdownRef">
           <div class="flex items-center">
-            <NuxtLink to="/servicios" class="text-gray-800 hover:text-orange">Servicios</NuxtLink>
+            <NuxtLink to="/servicios" active-class="active" class="text-gray-800 hover:text-orange">Servicios</NuxtLink>
             <button @click="toggleDropdown('servicios')"
               class="text-gray-800 hover:text-orange flex items-center gap-1 ml-1">
               <svg class="w-4 h-4 text-gray-500 hover:text-orange transition"
@@ -74,16 +74,16 @@
           </div>
           <div v-if="openDropdown === 'servicios'"
             class="absolute bg-white shadow-lg rounded-md top-full left-0 mt-2 w-48 z-50">
-            <NuxtLink v-for="link in servicesMenu" :to="'/servicios#' + link.slug"
+            <NuxtLink v-for="link in servicesMenu" :key="link.slug" :to="'/servicios#' + link.slug"
               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
               {{ link.label }}
             </NuxtLink>
-
           </div>
         </div>
 
-        <NuxtLink to="/blogs" class="text-gray-800 hover:text-orange">Blogs</NuxtLink>
+        <NuxtLink to="/blogs" active-class="active" class="text-gray-800 hover:text-orange">Blogs</NuxtLink>
       </nav>
+
 
       <!-- Contact Button -->
       <div class="hidden lg:block">
@@ -211,15 +211,11 @@ const closeMobileMenu = () => {
 
 // Click outside handler
 const handleClickOutside = (event: MouseEvent) => {
-  // Check if click is outside all dropdown containers
-  if (
-    umrahDropdownRef.value && !umrahDropdownRef.value.contains(event.target as Node) &&
-    hajjDropdownRef.value && !hajjDropdownRef.value.contains(event.target as Node) &&
-    serviciosDropdownRef.value && !serviciosDropdownRef.value.contains(event.target as Node)
-  ) {
-    closeAllDropdowns();
-  }
+  const targets = [umrahDropdownRef.value, hajjDropdownRef.value, serviciosDropdownRef.value];
+  const clickedOutsideAll = targets.every(el => !el || !el.contains(event.target as Node));
+  if (clickedOutsideAll) closeAllDropdowns();
 };
+
 
 //get hajj catagories
 

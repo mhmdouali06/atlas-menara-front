@@ -59,3 +59,43 @@ export const servicesMenu = [
   { label: "Hoteles", slug: "reserva-de-hoteles" },
   { label: "Visados", slug: "tramitacion-de-visados-umrah-y-turista" },
 ];
+export const STATUS_OPTIONS = [
+  { label: "Disponible", value: "available" },
+  { label: "Plazas limitadas", value: "limited" },
+  { label: "Sin plazas", value: "sold_out" },
+  { label: "Agotado", value: "unavailable" },
+  { label: "Últimas plazas", value: "last_spots" },
+  { label: "Confirmado", value: "confirmed" },
+  { label: "Cancelado", value: "cancelled" },
+  { label: "Próximamente", value: "coming_soon" },
+  { label: "En revisión", value: "reviewing" },
+  { label: "Finalizado", value: "ended" },
+];
+
+export const STATUS_COLORS = [
+  { value: "available", color: "bg-green-600 text-white" },
+
+  {
+    value: "limited",
+    color: "bg-yellow-300 text-gray-800 border border-yellow-500",
+  },
+
+  { value: "sold_out", color: "bg-red-600 text-white" },
+
+  { value: "unavailable", color: "bg-gray-500 text-white" },
+
+  {
+    value: "last_spots",
+    color: "bg-yellow-400 text-gray-900 border border-yellow-600",
+  },
+
+  { value: "confirmed", color: "bg-blue-600 text-white" },
+
+  { value: "cancelled", color: "bg-gray-400 text-gray-900" },
+
+  { value: "coming_soon", color: "bg-purple-500 text-white" },
+
+  { value: "reviewing", color: "bg-indigo-500 text-white" },
+
+  { value: "ended", color: "bg-zinc-700 text-white" },
+];

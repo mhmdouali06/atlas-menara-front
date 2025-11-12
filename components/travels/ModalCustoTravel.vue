@@ -14,9 +14,7 @@
                             <DialogPanel class="w-[95%] max-w-3xl rounded-[10px] shadow-xl bg-[#EDEDED] relative">
                                 <button type="button" @click="close"
                                     class="absolute right-3 top-3 text-[#0E2041]/60 hover:text-[#0E2041] text-2xl"
-                                    aria-label="Cerrar">
-                                    ×
-                                </button>
+                                    aria-label="Cerrar">×</button>
 
                                 <div class="px-5 pt-4 pb-3 text-center">
                                     <h2 class="text-[#0E2041] text-[24px] md:text-[26px] font-semibold">
@@ -49,10 +47,11 @@
                                     <div
                                         class="mt-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                                         <UiCheckBox v-model="form.acceptPolicy" name="acceptPolicy"
-                                            label="Acepto el procesamiento de mis datos personales según la política de privacidad." />
+                                            :label="`Acepto el procesamiento de mis datos personales según la <a href='#' class='underline'>política de privacidad</a>.`" />
                                         <button type="submit" :disabled="isLoading || !form.acceptPolicy"
                                             class="h-[45px] rounded-lg px-6 bg-[#FF9F1C] text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed">
-                                            Enviar solicitud
+                                            <span v-if="!isLoading">Enviar solicitud</span>
+                                            <span v-else>Enviando…</span>
                                         </button>
                                     </div>
                                 </div>
@@ -66,65 +65,78 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from "vue";
-import {
-    Dialog,
-    DialogPanel,
-    DialogOverlay,
-    TransitionRoot,
-    TransitionChild,
-} from "@headlessui/vue";
+import { ref, reactive } from 'vue'
+import { Dialog, DialogPanel, DialogOverlay, TransitionRoot, TransitionChild } from '@headlessui/vue'
+import iconUser from '@/assets/img/icon/user.svg'
+import iconUsers from '@/assets/img/icon/users.svg'
+import iconMail from '@/assets/img/icon/mail.svg'
+import iconPhone from '@/assets/img/icon/phone.svg'
 
-// ICON IMAGES (Assuming paths are correct)
-import iconUser from "@/assets/img/icon/user.svg";
-import iconUsers from "@/assets/img/icon/users.svg";
-import iconMail from "@/assets/img/icon/mail.svg";
-import iconPhone from "@/assets/img/icon/phone.svg";
-// Keep other icons if needed elsewhere, removed from this form
-import iconLocation from "@/assets/img/icon/location.svg";
-import iconCalendar from "@/assets/img/icon/calendar.svg";
-import iconHotel from "@/assets/img/icon/hotel2.svg";
+const icons = { user: iconUser, users: iconUsers, mail: iconMail, phone: iconPhone }
 
-const icons = {
-    user: iconUser,
-    users: iconUsers,
-    mail: iconMail,
-    phone: iconPhone,
-    // Keep other icons if needed by UiIconInput
-    location: iconLocation,
-    calendar: iconCalendar,
-    hotel: iconHotel,
-};
+const props = defineProps<{
+    open: boolean
+    endpoint?: string      // default below
+    autoClose?: boolean    // close after success
+}>()
+const emit = defineEmits<{ (e: 'close'): void }>()
+const close = () => emit('close')
 
-const props = defineProps<{ open: boolean }>();
-const emit = defineEmits<{
-    (e: "close"): void;
-    (e: "submit-form", v: any): void;
-}>();
+const endpoint = props.endpoint ?? '/travel_quotes' // API path from ApiResource
+const runtime = useRuntimeConfig()
+const toast = useToast()
+const isLoading = ref(false)
 
-const isLoading = ref(false);
-
-// MOD: Simplified form state to match the image
 const form = reactive({
-    fullName: "",
+    fullName: '',
     totalTravelers: null as number | null,
-    email: "",
-    phone: "",
-    comments: "",
-    acceptPolicy: false,
-});
+    email: '',
+    phone: '',
+    comments: '',
+    acceptPolicy: false
+})
 
-async function onSubmit() {
-    if (!form.acceptPolicy) return;
-    isLoading.value = true;
-    try {
-        emit("submit-form", JSON.parse(JSON.stringify(form)));
-    } finally {
-        isLoading.value = false;
-    }
+function tError(message: string) { toast.error({ message }) }
+function tSuccess(message: string) { toast.success({ message }) }
+
+function validate() {
+    if (!form.fullName?.trim()) return tError('Nombre y apellido es obligatorio.'), false
+    if (!form.phone?.trim()) return tError('Número de teléfono es obligatorio.'), false
+    if (!form.totalTravelers || form.totalTravelers <= 0) return tError('Número total de viajeros inválido.'), false
+    if (form.email && !/\S+@\S+\.\S+/.test(form.email)) return tError('E-mail no válido.'), false
+    if (!form.acceptPolicy) return tError('Debes aceptar la política de privacidad.'), false
+    return true
 }
 
-function close() {
-    emit("close");
+function resetForm() {
+    Object.assign(form, {
+        fullName: '', totalTravelers: null, email: '', phone: '', comments: '', acceptPolicy: false
+    })
+}
+
+async function onSubmit() {
+    if (!validate() || isLoading.value) return
+    isLoading.value = true
+    try {
+        const base = runtime.public.apiBase || ''
+        const url = `${base}${endpoint}`
+        const payload = {
+            fullName: form.fullName,
+            totalTravelers: form.totalTravelers,
+            email: form.email || null,
+            phone: form.phone,
+            comments: form.comments || null,
+            consent: form.acceptPolicy
+        }
+        await $fetch(url, { method: 'POST', body: payload, headers: { 'Content-Type': 'application/json' } })
+        tSuccess('Solicitud enviada. Te contactaremos pronto.')
+        resetForm()
+        if (props.autoClose) close()
+    } catch (e: any) {
+        const msg = e?.data?.['hydra:description'] || e?.data?.message || e?.message || 'No se pudo enviar la solicitud.'
+        tError(msg)
+    } finally {
+        isLoading.value = false
+    }
 }
 </script>

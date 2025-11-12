@@ -12,7 +12,14 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <div class="main cursor-pointer" @click="navigateTo(`/${props.item.type}/${props.item.slug}/`)">
+
+  <div class="main cursor-pointer " @click="navigateTo(`/${props.item.type}/${props.item.slug}/`)">
+    <div v-if="props.item.status"
+      class="absolute top-3 right-3 z-[3] rounded-full px-3 py-1 text-[10px] font-semibold shadow-md"
+      :class="getStatusColor(props.item.status)">
+      {{ getStatusLabel(props.item.status) }}
+    </div>
+
     <div class="blue-background"></div>
     <img :src="fileUrl(item?.thumbnail?.filePath, props.item.type)" class="w-full h-full object-cover main-bg"
       :alt="props.item.title" />
@@ -50,10 +57,10 @@ const props = defineProps<{
   </div>
 </template>
 <style scoped>
-* {
+/* * {
   position: relative;
   z-index: 1;
-}
+} */
 
 .main {
   position: relative;

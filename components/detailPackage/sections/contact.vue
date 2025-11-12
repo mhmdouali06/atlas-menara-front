@@ -1,18 +1,13 @@
-<!-- components/ReserveForm.vue -->
 <template>
   <section class="w-full">
     <div class="mx-auto max-w-md rounded-lg">
       <form class="mt-6 space-y-4" @submit.prevent="onSubmit">
-        <!-- fixed-height panel with internal scroll -->
-        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-6 pt-5 pb-0
-         flex flex-col h-[80vh] max-h-[80vh]">
+        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-6 pt-5 pb-0 flex flex-col h-[80vh] max-h-[80vh]">
           <h2 class="text-center font-volkhov text-[40px] leading-none font-bold text-[#0E2041]">
             Reservar
           </h2>
 
-          <!-- SCROLLABLE CONTENT -->
           <div class="mt-4 space-y-4 flex-1 overflow-y-auto overscroll-contain pr-2 -mr-2">
-            <!-- Titular -->
             <UiInputWithIcon v-model="form.name" :icon="grayUser" icon-alt="user" name="name"
               placeholder="NOMBRE Y APELLIDO*" required />
             <UiInputWithIcon v-model="form.email" :icon="grayMail" icon-alt="email" type="email" name="email"
@@ -22,13 +17,14 @@
             <UiInputWithIcon v-model="form.city" :icon="grayLocation" icon-alt="location" name="city"
               placeholder="Ciudad*" required />
 
-            <!-- Companions list -->
+            <!-- Companions -->
             <div v-for="(guest, i) in form.guests" :key="i"
               class="rounded-lg bg-white/70 p-4 space-y-3 border border-[#e4e7ee]">
               <div class="flex items-center justify-between">
                 <p class="font-poppins text-[#1c274c] font-semibold">Familiar/Pareja #{{ i + 1 }}</p>
-                <button type="button" class="text-sm text-red-600 hover:underline"
-                  @click="removeCompanion(i)">Eliminar</button>
+                <button type="button" class="text-sm text-red-600 hover:underline" @click="removeCompanion(i)">
+                  Eliminar
+                </button>
               </div>
 
               <UiInputWithIcon v-model="guest.fullName" :icon="grayUser" icon-alt="user" :name="`guest-name-${i}`"
@@ -48,7 +44,6 @@
               </div>
             </div>
 
-            <!-- Add companion button inside scrollable area -->
             <button type="button"
               class="flex items-center font-poppins justify-center w-full gap-2 text-[17px] text-[#0E2041] hover:opacity-80"
               @click="addCompanion">
@@ -59,15 +54,17 @@
             </button>
           </div>
 
-          <!-- STICKY FOOTER (not scrolling) -->
-          <div class="mt-4 flex items-center justify-between sticky bottom-0
-           bg-[#eeeeee] px-6 py-4 -mx-6 border-t border-[#e4e7ee]">
+          <!-- STICKY FOOTER -->
+          <div
+            class="mt-4 flex items-center justify-between sticky bottom-0 bg-[#eeeeee] px-6 py-4 -mx-6 border-t border-[#e4e7ee]">
             <p class="text-[26px] font-bold font-poppins tracking-wide text-[#1c274c]">
               <span class="mr-2">Total :</span>{{ formattedTotal }}
             </p>
-            <button type="submit"
-              class="rounded-full bg-[#f5a524] font-poppins px-6 py-3 text-[16px] font-semibold text-white shadow-sm hover:bg-[#e29510] focus:outline-none focus:ring-2 focus:ring-[#f5a524]/50">
-              Reservar
+            <button type="submit" :disabled="isSubmitting" class="rounded-full bg-[#f5a524] font-poppins px-6 py-3 text-[16px] font-semibold text-white shadow-sm
+                     hover:bg-[#e29510] focus:outline-none focus:ring-2 focus:ring-[#f5a524]/50
+                     disabled:opacity-60 disabled:cursor-not-allowed">
+              <span v-if="!isSubmitting">Reservar</span>
+              <span v-else>Enviando…</span>
             </button>
           </div>
         </div>
@@ -93,28 +90,30 @@ import grayUser from "@/assets/img/icon/grayPerson.svg";
 import grayMail from "@/assets/img/icon/grayEmail.svg";
 import grayPhone from "@/assets/img/icon/grayPhone.svg";
 import grayLocation from "@/assets/img/icon/grayPosition.svg";
+import type { TravelPackage } from "~/types/travel-package";
 
 type GuestGroup = "adults" | "adults_kids";
-interface Guest {
-  fullName: string;
-  group: GuestGroup;
-}
+interface Guest { fullName: string; group: GuestGroup; }
 
-const props = withDefaults(
-  defineProps<{
-    total?: number;
-    currency?: string;
-    privacyHref?: string;
-  }>(),
-  { total: 2450, currency: "$", privacyHref: "#" }
-);
+const { contactTravel } = useContact();
+const toast = useToast();
+toast.settings({ position: "topRight" });
+const runtime = useRuntimeConfig();
+const isSubmitting = ref(false);
+
+const props = withDefaults(defineProps<{
+  item: TravelPackage;
+  total?: number;
+  currency?: string;
+  privacyHref?: string;
+}>(), { total: 2450, currency: "$", privacyHref: "#" });
 
 const form = reactive({
   name: "",
   email: "",
   phone: "",
   city: "",
-  guests: [] as Guest[], // <- array you asked for
+  guests: [] as Guest[],
 });
 
 const accepted = ref(false);
@@ -127,10 +126,55 @@ function removeCompanion(index: number) {
   form.guests.splice(index, 1);
 }
 
-function onSubmit() {
-  if (!accepted.value) return;
-  // send the whole payload (titular + guests)
-  // e.g. await $fetch("/api/reservas", { method: "POST", body: form });
-  alert("Reserva enviada ✅");
+function validate() {
+  if (!form.name?.trim() || !form.email?.trim() || !form.phone?.trim() || !form.city?.trim()) {
+    toast.error({ message: "Completa todos los campos obligatorios." });
+    return false;
+  }
+  if (!/\S+@\S+\.\S+/.test(form.email)) {
+    toast.error({ message: "E-mail no válido." });
+    return false;
+  }
+  if (!accepted.value) {
+    toast.error({ message: "Debes aceptar la política de privacidad." });
+    return false;
+  }
+  return true;
+}
+
+function resetForm() {
+  Object.assign(form, { name: "", email: "", phone: "", city: "", guests: [] as Guest[] });
+  accepted.value = false;
+}
+
+async function onSubmit() {
+  if (!validate() || isSubmitting.value) return;
+  isSubmitting.value = true;
+
+  try {
+    const payload = {
+      fullName: form.name,
+      email: form.email,
+      phone: form.phone,
+      city: form.city,
+      packageType: props.item.type,        // 'umrah' | 'hajj' | 'travel'
+      packageTitle: props.item.title,
+      packageSlug: props.item.slug,
+      packageId: props.item.id,
+      quotedTotal: String(props.total),     // fix: don’t pass the function reference
+      currency: props.currency,
+      guests: form.guests,
+      consent: true,
+    };
+
+    await contactTravel(payload);
+    toast.success({ message: "Solicitud enviada. Te llamaremos para confirmar." });
+    resetForm();
+  } catch (e: any) {
+    const msg = e?.data?.["hydra:description"] || e?.data?.message || e?.message || "No se pudo enviar la solicitud.";
+    toast.error({ message: msg });
+  } finally {
+    isSubmitting.value = false;
+  }
 }
 </script>

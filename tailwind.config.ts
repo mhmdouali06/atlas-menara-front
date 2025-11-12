@@ -7,6 +7,23 @@ const config: Config = {
     "./pages/**/*.{vue,js,ts}",
     "./app.vue",
   ],
+  safelist: [
+    "bg-green-600",
+    "bg-amber-500",
+    "bg-red-600",
+    "bg-gray-500",
+    "bg-yellow-400",
+    "bg-blue-600",
+    "bg-gray-400",
+    "bg-purple-500",
+    "bg-indigo-500",
+    "bg-zinc-700",
+    "text-white",
+    "text-gray-900",
+    "border",
+    "border-yellow-500",
+    "border-yellow-600",
+  ],
   theme: {
     extend: {
       colors: {

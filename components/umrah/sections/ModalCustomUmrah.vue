@@ -1,3 +1,4 @@
+<!-- components/PersonalizeUmrahModal.vue -->
 <template>
     <div>
         <client-only>
@@ -14,9 +15,7 @@
                             <DialogPanel class="w-[95%] max-w-3xl rounded-[10px] shadow-xl bg-[#EDEDED] relative">
                                 <button type="button" @click="close"
                                     class="absolute right-3 top-3 text-[#0E2041]/60 hover:text-[#0E2041] text-2xl"
-                                    aria-label="Cerrar">
-                                    ×
-                                </button>
+                                    aria-label="Cerrar">×</button>
 
                                 <div class="px-5 pt-4 pb-3 text-center">
                                     <h2 class="text-[#0E2041] text-[24px] md:text-[26px] font-semibold">
@@ -31,7 +30,7 @@
                                                 label="NOMBRE Y APELLIDO (responsable)*" type="text" />
 
                                             <div
-                                                class="h-[50px] flex justify-center gap-2 items-center bg-white border border-[#E4E7EE]  p-3  text-[13px] text-[#0E2041]/80">
+                                                class="h-[50px] flex justify-center gap-2 items-center bg-white border border-[#E4E7EE] p-3 text-[13px] text-[#0E2041]/80">
                                                 <label class="flex items-center gap-2 cursor-pointer">
                                                     <input type="radio" name="travelerType" value="adults_only"
                                                         v-model="form.travelerType" class="accent-[#0d72ff]" />
@@ -120,9 +119,7 @@
                                             <UiIconInput v-model="form.madinahNights" :icon="icons.hotel"
                                                 name="madinahNights" label="Numero de dias de estancia*"
                                                 type="number" />
-                                            <div class="hidden  md:block h-[19px]"></div>
-
-
+                                            <div class="hidden md:block h-[19px]"></div>
                                             <UiIconInput v-model="form.makkahNights" :icon="icons.hotel"
                                                 name="makkahNights" label="Numero de dias de estancia*" type="number" />
                                         </div>
@@ -138,7 +135,8 @@
                                             :label="`Acepto el procesamiento de mis datos personales según la <a href='#' class='underline'>política de privacidad</a>.`" />
                                         <button type="submit" :disabled="isLoading || !form.acceptPolicy"
                                             class="h-[45px] rounded-lg px-6 bg-[#FF9F1C] text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed">
-                                            Enviar solicitud
+                                            <span v-if="!isLoading">Enviar solicitud</span>
+                                            <span v-else>Enviando…</span>
                                         </button>
                                     </div>
                                 </div>
@@ -154,16 +152,9 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 import {
-    Dialog,
-    DialogPanel,
-    DialogOverlay,
-    TransitionRoot,
-    TransitionChild,
+    Dialog, DialogPanel, DialogOverlay, TransitionRoot, TransitionChild,
 } from "@headlessui/vue";
 
-
-
-// ICON IMAGES (replace these with your real paths)
 import iconUser from "@/assets/img/icon/user.svg";
 import iconUsers from "@/assets/img/icon/users.svg";
 import iconMail from "@/assets/img/icon/mail.svg";
@@ -172,25 +163,20 @@ import iconLocation from "@/assets/img/icon/location.svg";
 import iconCalendar from "@/assets/img/icon/calendar.svg";
 import iconHotel from "@/assets/img/icon/hotel2.svg";
 
+const icons = { user: iconUser, users: iconUsers, mail: iconMail, phone: iconPhone, location: iconLocation, calendar: iconCalendar, hotel: iconHotel };
 
-const icons = {
-    user: iconUser,
-    users: iconUsers,
-    mail: iconMail,
-    phone: iconPhone,
-    location: iconLocation,
-    calendar: iconCalendar,
-    hotel: iconHotel,
-
-};
-
-const props = defineProps<{ open: boolean }>();
-const emit = defineEmits<{
-    (e: "close"): void;
-    (e: "submit-form", v: any): void;
+const props = defineProps<{
+    open: boolean;
+    endpoint?: string; // override if needed
+    autoClose?: boolean; // close modal after success
 }>();
+const emit = defineEmits<{ (e: "close"): void }>();
 
+const endpoint = props.endpoint ?? "/contact_umrah_requests";
 const isLoading = ref(false);
+const toast = useToast();
+toast.settings({ position: "topRight" });
+const runtime = useRuntimeConfig();
 
 const form = reactive({
     fullName: "",
@@ -213,17 +199,95 @@ const form = reactive({
     acceptPolicy: false,
 });
 
+function close() { emit("close"); }
+
+function tError(message: string) { toast.error({ message }); }
+function tSuccess(message: string) { toast.success({ message }); }
+
+function validate() {
+    const req = (v: any) => v !== null && v !== undefined && String(v).trim().length > 0;
+
+    if (!req(form.fullName) || !req(form.email) || !req(form.phone)) return tError("Completa nombre, email y teléfono."), false;
+    if (!req(form.totalTravelers) || Number(form.totalTravelers) <= 0) return tError("Número total de viajeros inválido."), false;
+    if (form.travelerType === "adults_minors" && (form.minorsUnder12 === null || form.minorsUnder12 < 0))
+        return tError("Indica el número de menores de 12 años."), false;
+
+    if (!req(form.departCity) || !req(form.returnCity)) return tError("Indica ciudades de ida y regreso."), false;
+    if (!req(form.departDate) || !req(form.returnDate)) return tError("Indica fechas de ida y regreso."), false;
+
+    if (!req(form.hotelMadinah) || !req(form.madinahNights)) return tError("Completa hotel y días de estancia en Madinah."), false;
+    if (!req(form.hotelMakkah) || !req(form.makkahNights)) return tError("Completa hotel y días de estancia en Makkah."), false;
+
+    if (!form.acceptPolicy) return tError("Debes aceptar la política de privacidad."), false;
+    return true;
+}
+
+function resetForm() {
+    Object.assign(form, {
+        fullName: "",
+        totalTravelers: null,
+        travelerType: "adults_only",
+        minorsUnder12: null,
+        email: "",
+        phone: "",
+        departCity: "",
+        departDate: "",
+        returnCity: "",
+        returnDate: "",
+        hotelMadinah: "",
+        madinahNights: null,
+        madinahRoom: "individual",
+        hotelMakkah: "",
+        makkahNights: null,
+        makkahRoom: "individual",
+        comments: "",
+        acceptPolicy: false,
+    });
+}
+
 async function onSubmit() {
-    if (!form.acceptPolicy) return;
+    if (!validate() || isLoading.value) return;
+
     isLoading.value = true;
     try {
-        emit("submit-form", JSON.parse(JSON.stringify(form)));
+        const base = runtime.public.apiBase || "";
+        const url = `${base}${endpoint}`;
+
+        const payload = {
+            fullName: form.fullName,
+            email: form.email,
+            phone: form.phone,
+            totalTravelers: form.totalTravelers,
+            travelerType: form.travelerType,
+            minorsUnder12: form.travelerType === "adults_minors" ? form.minorsUnder12 : 0,
+            departCity: form.departCity,
+            departDate: form.departDate,   // backend setter handles string -> DateTimeImmutable
+            returnCity: form.returnCity,
+            returnDate: form.returnDate,
+            hotelMadinah: form.hotelMadinah,
+            madinahNights: form.madinahNights,
+            madinahRoom: form.madinahRoom,
+            hotelMakkah: form.hotelMakkah,
+            makkahNights: form.makkahNights,
+            makkahRoom: form.makkahRoom,
+            comments: form.comments || null,
+            consent: form.acceptPolicy,
+        };
+
+        await $fetch(url, {
+            method: "POST",
+            body: payload,
+            headers: { "Content-Type": "application/json" },
+        });
+
+        tSuccess("Solicitud enviada. Te contactaremos pronto.");
+        resetForm();
+        if (props.autoClose) close();
+    } catch (e: any) {
+        const msg = e?.data?.["hydra:description"] || e?.data?.message || e?.message || "No se pudo enviar la solicitud.";
+        tError(msg);
     } finally {
         isLoading.value = false;
     }
-}
-
-function close() {
-    emit("close");
 }
 </script>
