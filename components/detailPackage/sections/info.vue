@@ -5,10 +5,16 @@
       <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B] capitalize">
         detalles del {{ firstSegment }}
       </h2>
-      <p class="text-lg md:text-3xl font-bold font-poppins text-orange">
-        {{ props.item.price }} €
-        <span class="text-[#7D7D7D] text-sm">/ Per person</span>
-      </p>
+      <div>
+
+        <p class="text-lg md:text-3xl font-bold font-poppins text-orange">
+          {{ props.item.price }} €
+          <span class="text-[#7D7D7D] text-sm">/ Per person</span>
+        </p>
+        <p v-if="item.premiumPrice" class="text-[10px] md:text-xs text-[#112211] text-opacity-75 text-nowrap">
+          Precio real aproximado : {{ item.premiumPrice }} €
+        </p>
+      </div>
     </div>
 
     <!-- date && descreptions  -->

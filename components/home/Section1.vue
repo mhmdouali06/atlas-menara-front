@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { UiDetailLoader } from "#components";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
 import type { TravelPackage } from '~/types/travel-package';
@@ -37,7 +38,7 @@ onMounted(() => {
 
 <template>
   <section>
-    <UiLoader :isLoading="loading" />
+    <UiHomeSliderSkeleton v-if="loading" />
     <ClientOnly>
       <Carousel breakpointMode="carousel" ref="swiperRef" :pauseAutoplayOnHover="true" :breakpoints="{
         0: { itemsToShow: 1 },

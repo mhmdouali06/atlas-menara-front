@@ -15,7 +15,7 @@ const props = defineProps<{
 
   <div class="main cursor-pointer " @click="navigateTo(`/${props.item.type}/${props.item.slug}/`)">
     <div v-if="props.item.status"
-      class="absolute top-3 right-3 z-[3] rounded-full px-3 py-1 text-[10px] font-semibold shadow-md"
+      class="absolute top-3 right-3 z-[3] rounded-full px-3 py-1 text-[10px] font-semibold shadow-md bg-opacity-50"
       :class="getStatusColor(props.item.status)">
       {{ getStatusLabel(props.item.status) }}
     </div>

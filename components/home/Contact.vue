@@ -145,7 +145,7 @@ button {
   display: flex;
   height: 60px;
   width: fit-content;
-  padding: 18px 60px;
+  padding: 15px 30px;
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
@@ -153,7 +153,7 @@ button {
   color: #f3f4f8;
   text-align: center;
   font-family: "Montserrat";
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: .2px;
   text-transform: capitalize;
