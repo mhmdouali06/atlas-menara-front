@@ -21,7 +21,7 @@
           <UiInputWithIcon v-model="form.dropoff" :icon="grayCalendar" icon-alt="dropoff" type="datetime-local"
             name="dropoff" placeholder="Fecha y hora de llegada*" required />
 
-          <div class="mt-4 flex items-center justify-between font-poppins">
+          <div class="mt-4 flex flex-col md:flex-row items-center justify-between font-poppins">
             <p class="text-xl font-bold text-[#1c274c]">
               <span class="mr-2">Total :</span>
               <span class="text-[#F00] font-normal text-[16px]">se informa en llamada*</span>
@@ -39,7 +39,7 @@
             class="mt-1 h-5 w-5 cursor-pointer rounded border-gray-300 text-[#1c274c] focus:ring-[#1c274c]" required />
           <span class="select-none">
             Acepto el procesamiento de mis datos personales según
-            <NuxtLink :to="privacyHref" class="underline hover:text-[#0e1a35]" target="_blank">
+            <NuxtLink to="/politica-de-privacidad" class="underline hover:text-[#0e1a35]" target="_blank">
               la política de privacidad
             </NuxtLink>.
           </span>

@@ -120,21 +120,23 @@ const gotToNextPage = () => {
   page.value += 1;
   fetchPackages();
 };
-// watch(
-//   () => route.query.meses,
-//   (q) => {
-//     month.value = typeof q === 'string' && q.length ? q : undefined;
-//     topFilter()
-//   },
-//   { immediate: true }
-// );
+watch(
+  () => route.query.meses,
+  (q) => {
+    month.value = typeof q === 'string' && q.length ? q : undefined;
+    topFilter()
+  },
+  { immediate: true }
+);
 
 // watch([month], () => { fetchPackages(); });
 // watch([duration], () => { page.value = 1; items.value = []; fetchPackages(); });
 
 
 onMounted(() => {
-  fetchPackages();
+  if (route.query.meses) {
+    fetchPackages();
+  }
   fetchDuration();
 }
 

@@ -2,7 +2,7 @@
   <div>
     <div class="grid grid-cols-12 gap-4 object-contain">
       <div class="left col-span-4">
-        <div v-for="(image, index) in slots.slice(0, 3)" :key="index" class="flex flex-col gap-8">
+        <div v-for="(image, index) in slots.slice(0, 3)" :key="index" class="flex flex-col gap-4 md:gap-8">
           <img :src="fileUrl(image.filePath, id)" :alt="id" class="w-full h-[200px] mb-4 object-cover" />
         </div>
       </div>

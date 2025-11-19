@@ -2,7 +2,7 @@
 import { resolve } from "path";
 
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: "2025-11-01",
   devtools: { enabled: true },
   alias: {
     "@": resolve(__dirname, "./"),
@@ -26,12 +26,8 @@ export default defineNuxtConfig({
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "format-detection", content: "telephone=no" },
-        { name: "theme-color", content: "#ffffff" },
-        { name: "author", content: "ARB Home" },
-        { name: "robots", content: "index, follow" },
+        { name: "robots", content: "index,follow" },
       ],
-      link: [{ rel: "icon", type: "image/ico", href: "/favicon.ico" }],
     },
   },
 });

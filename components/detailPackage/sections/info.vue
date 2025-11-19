@@ -1,10 +1,11 @@
 <template>
   <section class="">
     <!-- top info -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col md:flex-row items-center justify-between">
       <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B] capitalize">
         detalles del {{ firstSegment }}
       </h2>
+
       <div>
 
         <p class="text-lg md:text-3xl font-bold font-poppins text-orange">
@@ -16,6 +17,16 @@
         </p>
       </div>
     </div>
+    <div class="flex items-center gap-2 mt-1" v-if="props.item.rating && props.item.review">
+      <div class="flex items-center gap-0">
+        <img v-for="value in props.item.rating" :key="value" :src="star" class="w-4 h-4 object-contain" />
+      </div>
+
+      <p class="font-poppins text-sm text-[#7D7D7D] font-semibold">
+        ({{ abbr(props.item.review) }} reviews)
+      </p>
+    </div>
+
 
     <!-- date && descreptions  -->
     <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
@@ -48,11 +59,13 @@
   </section>
 </template>
 <script setup lang="tsx">
+import star from "@/assets/img/icon/star.svg";
 import { formatDateTextEs, formatDuration } from '~/helpers/functions/formatDuration';
 import type { TravelPackage } from '~/types/travel-package';
 
 import { useRequestURL } from '#app'
 import { getHabitationLabel } from '~/constants/options';
+import { abbr } from "~/helpers/functions/formatNumber";
 
 // SSR-safe: works both server & client
 const url = useRequestURL()

@@ -1,8 +1,8 @@
 <template>
   <section>
-    <div class="main w-[90%] top-[-50px] relative mx-auto">
+    <div class="main w-[95%]  md:w-[90%] top-[-50px] relative mx-auto">
       <nav>
-        <ul class="flex gap-0 justify-between flex-wrap md:flex-nowrap">
+        <ul class="flex gap-0 justify-between flex-nowrap overflow-x-auto md:overflow-visible md:flex-nowrap">
           <li @click="active = 1" :class="active == 1 ? 'active' : ''">
             <button><img :src="info" alt="icon" /> información</button>
           </li>
@@ -17,8 +17,8 @@
           </li>
         </ul>
       </nav>
-      <div v-if="!loading && item" class="p-8 gap-8 grid grid-cols-12">
 
+      <div v-if="!loading && item" class="p-4 md:p-8 gap-4 md:gap-8 grid grid-cols-12">
         <div class="left col-span-12 md:col-span-8 ">
           <div v-show="active == 1">
             <DetailPackageSectionsInfo :item="item" />
@@ -32,18 +32,18 @@
           <div v-show="active == 4">
             <DetailPackageSectionsHotel :item="item" />
           </div>
-
         </div>
+
         <div class="right col-span-12 md:col-span-4">
           <DetailPackageSectionsContact :item="item" />
         </div>
       </div>
+
       <UiDetailLoader v-else />
-
-
     </div>
   </section>
 </template>
+
 <script setup lang="ts">
 import info from "@/assets/img/icon/info.svg";
 import plan from "@/assets/img/icon/plan.svg";
@@ -90,5 +90,32 @@ li button {
 
 .active {
   background-color: #fff;
+}
+
+/* ------- MOBILE ONLY (no changes on desktop) ------- */
+@media (max-width: 767px) {
+  nav ul {
+    /* horizontal scroll for tabs */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  li {
+    /* no full width, act as pills */
+    width: auto;
+    padding: 0.9rem 1.2rem;
+    flex: 0 0 auto;
+  }
+
+  li button {
+    font-size: 14px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .main {
+    top: 0;
+    /* evita que se “meta” demasiado hacia arriba en móvil */
+  }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <section class="relative h-[422px]">
+  <section class="relative min-h-[422px]  py-12 px-6  flex items-center justify-center ">
     <div class="bg"></div>
     <img :src="bg" class="img-bg" alt="umrah bg" />
     <div class="h-full w-full flex items-center flex-col justify-center gap-6">

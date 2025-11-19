@@ -24,7 +24,7 @@ const props = defineProps<{
           class="bg-orange text-white px-5 py-2 rounded-full shadow-md font-poppins hover:bg-white hover:text-orange transition-all duration-300 easy">
           Ver ofertas de <span class="capitalize">{{ props.item.type }}</span>
         </button>
-        <button
+        <button @click="navigateTo('/#contact')"
           class="flex items-center gap-4 border text-white border-white px-5 py-2 rounded-full hover:bg-white hover:text-orange duration-300 easy">
           <span class="font-semibold font-poppins">Contactar un agente</span>
           <img :src="icon" alt="icon" />

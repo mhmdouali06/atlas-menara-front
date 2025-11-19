@@ -1,14 +1,13 @@
 <template>
   <section class="mx-auto my-12" id="contact">
-    <div class="main mx-auto p-6 grid grid-cols-12 relative">
+    <div class="main mx-auto  grid grid-cols-12 relative">
       <img :src="bg" alt="background" class="absolute h-full w-full left-0 top-0 z-[-1] object-cover" />
 
-      <div class="col-span-12 md:col-span-5 relative">
-        <img :src="man" class="relative h-full object-contain md:absolute bottom-[-4vw] md:bottom-[-1.63vw]"
-          alt="man" />
+      <div class="col-span-12 md:col-span-5 relative hidden md:block">
+        <img :src="man" class="relative  object-contain md:absolute  p-0 m-0  bottom-0" alt="man" />
       </div>
 
-      <div class="col-span-12 md:col-span-7 mt-8">
+      <div class="col-span-12 md:col-span-7 mt-8 p-6">
         <h3 class="main-title">Solicitar informacion</h3>
         <p class="main-text">
           Rellena tus datos y nuestro equipo te contactará para ofrecerte la solución adecuada.
@@ -36,7 +35,7 @@
           <div class="flex justify-between items-center mb-8 flex-wrap">
             <div>
               <UiCheckBox v-model="form.accept" name="accept" class="text-white "
-                label="Acepto el procesamiento de mis datos personales según la política de privacidad." />
+                label="Acepto el procesamiento de mis datos personales según <a href='/politica-de-privacidad' class='underline'> la política de privacidad</a>." />
             </div>
             <div>
               <button type="submit" :disabled="isSubmitting">

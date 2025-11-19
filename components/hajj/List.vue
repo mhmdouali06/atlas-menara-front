@@ -1,17 +1,17 @@
 <template>
-  <section class="my-10 w-[90%] mx-auto">
+  <section class="my-10 ">
     <h1 class="font-Poppins text-3xl text-center md:text-4xl font-extrabold text-[#0E2041] mb-8">
       Descubre nuestros Paquetes <span class="text-orange-500">Hajj</span>
     </h1>
 
     <ClientOnly v-if="!props.loading">
       <!-- before: class="relative overflow-hidden px-4" -->
-      <div class="relative px-4 overflow-visible md:overflow-hidden">
+      <div class="relative  overflow-visible md:overflow-hidden">
         <Swiper :modules="modules" :slides-per-view="1.7" :space-between="90" :initial-slide="0" :speed="900"
           :grab-cursor="true" :centered-slides="true" :centered-slides-bounds="true"
           :loop="(props.items?.length || 0) > 1" ref="swiperRef"
           :pagination="{ el: '.hajj-pagination', clickable: true }" :breakpoints="{
-            0: { slidesPerView: 'auto', spaceBetween: 16, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 8, slidesOffsetAfter: 8 },
+            0: { slidesPerView: 'auto', spaceBetween: 24, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 8, slidesOffsetAfter: 8 },
             640: { slidesPerView: 'auto', spaceBetween: 24, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 12, slidesOffsetAfter: 12 },
             768: { slidesPerView: 1.25, spaceBetween: 32, centeredSlides: true, centeredSlidesBounds: true },
             1024: { slidesPerView: 1.55, spaceBetween: 48, centeredSlides: true },

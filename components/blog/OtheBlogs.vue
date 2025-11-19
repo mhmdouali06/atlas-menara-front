@@ -49,7 +49,7 @@ onMounted(fetchBlogsCategories
         </NuxtLink>
       </div>
 
-      <div class="flex overflow-x-auto flex-1 overflow-y-hidden gap-8 ">
+      <div class="flex overflow-x-auto flex-1 overflow-y-hidden gap-4 md:gap-8  ">
 
         <BlogCard v-for="blog in category.blog" v-if="category.blog.length > 0" :item="blog"
           class="min-w-[300px] max-w-[350px] flex-shrink-0 p-4 " />

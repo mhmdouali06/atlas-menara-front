@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section id="services">
     <div class="grid grid-cols-12">
       <!-- ------------------------------------- left ----------------------------- -->
       <div class="col-span-12 md:col-span-4 lg:col-span-3 relative top-[-15px] z-[-3]">

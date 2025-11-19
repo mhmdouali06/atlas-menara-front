@@ -2,7 +2,7 @@
   <section class="w-full">
     <div class="mx-auto max-w-md rounded-lg">
       <form class="mt-6 space-y-4" @submit.prevent="onSubmit">
-        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-6 pt-5 pb-0 flex flex-col h-[80vh] max-h-[80vh]">
+        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-2 md:px-6 pt-5 pb-0 flex flex-col h-[85vh] md:h-[80vh] ">
           <h2 class="text-center font-volkhov text-[40px] leading-none font-bold text-[#0E2041]">
             Reservar
           </h2>
@@ -39,7 +39,7 @@
                 <label class="flex items-center gap-3 text-[#1c274c]">
                   <input type="radio" :name="`group-${i}`" value="adults_kids" v-model="guest.group"
                     class="h-5 w-5 cursor-pointer rounded border-gray-300 text-[#1c274c] focus:ring-[#1c274c]" />
-                  <span>Adultos + menores de 12 años</span>
+                  <span>Menores de 12 años</span>
                 </label>
               </div>
             </div>
@@ -56,7 +56,7 @@
 
           <!-- STICKY FOOTER -->
           <div
-            class="mt-4 flex items-center justify-between sticky bottom-0 bg-[#eeeeee] px-6 py-4 -mx-6 border-t border-[#e4e7ee]">
+            class="mt-4 flex flex-col md:flex-row items-center justify-between sticky bottom-0 bg-[#eeeeee] px-6 py-4 -mx-6 border-t border-[#e4e7ee]">
             <p class="text-[26px] font-bold font-poppins tracking-wide text-[#1c274c]">
               <span class="mr-2">Total :</span>{{ formattedTotal }}
             </p>
@@ -74,7 +74,7 @@
             class="mt-1 h-5 w-5 cursor-pointer rounded border-gray-300 text-[#1c274c] focus:ring-[#1c274c]" required />
           <span class="select-none">
             Acepto el procesamiento de mis datos personales según
-            <NuxtLink :to="privacyHref" class="underline hover:text-[#0e1a35]" target="_blank">
+            <NuxtLink to="/politica-de-privacidad" class="underline hover:text-[#0e1a35]" target="_blank">
               la política de privacidad
             </NuxtLink>.
           </span>
@@ -100,13 +100,13 @@ const toast = useToast();
 toast.settings({ position: "topRight" });
 const runtime = useRuntimeConfig();
 const isSubmitting = ref(false);
-
-const props = withDefaults(defineProps<{
+const total = computed(() => {
+  return (1 + form.guests.length) * props.item.price;
+});
+const props = defineProps<{
   item: TravelPackage;
-  total?: number;
-  currency?: string;
-  privacyHref?: string;
-}>(), { total: 2450, currency: "$", privacyHref: "#" });
+
+}>();
 
 const form = reactive({
   name: "",
@@ -116,8 +116,9 @@ const form = reactive({
   guests: [] as Guest[],
 });
 
+
 const accepted = ref(false);
-const formattedTotal = computed(() => `${props.total} ${props.currency}`);
+const formattedTotal = computed(() => `${total.value} €`);
 
 function addCompanion() {
   form.guests.push({ fullName: "", group: "adults" });
@@ -161,8 +162,8 @@ async function onSubmit() {
       packageTitle: props.item.title,
       packageSlug: props.item.slug,
       packageId: props.item.id,
-      quotedTotal: String(props.total),     // fix: don’t pass the function reference
-      currency: props.currency,
+      quotedTotal: total.value.toString(),
+      currency: "EUR",
       guests: form.guests,
       consent: true,
     };

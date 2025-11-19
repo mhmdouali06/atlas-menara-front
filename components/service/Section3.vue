@@ -1,13 +1,13 @@
 <template>
   <section class="w-[90%] mx-auto my-8">
-    <div class="grid grid-cols-12 gap-8">
-      <div v-for="service in services" :id="service.link" class="flex flex-col md:flex-row gap-8 mb-2 md:mb-8"
+    <div class="grid grid-cols-12 gap-4 md:gap-8">
+      <div v-for="service in services" :id="service.link" class="flex flex-col md:flex-row gap-4 md:gap-8 mb-2 md:mb-8"
         :key="service.id" :class="service.cat == 'small'
           ? 'col-span-12 md:col-span-4'
           : 'col-span-12 md:col-span-8'
           ">
         <div class="border border-dashed border-[#07113D]" v-if="service.id % 2 == 0"></div>
-        <ServiceSectionsBigCard :service="service" v-if="service.cat == 'big'" />
+        <ServiceSectionsBigCard @open="$emit('open', service.service)" :service="service" v-if="service.cat == 'big'" />
 
         <ServiceSectionsSmallCard :service="service" v-if="service.cat == 'small'" />
       </div>
@@ -23,14 +23,29 @@ import hotel from "@/assets/img/global/hotel.png";
 import building from "@/assets/img/icon/whiteBulding.svg";
 import visa from "@/assets/img/icon/whiteVise.svg";
 import passport from "@/assets/img/global/visa-passport.png";
-const services = [
+const emit = defineEmits<{
+  (e: "open", key: 'plane' | 'boat' | 'hotel' | 'visa'): void;
+}>();
+interface serviceInterface {
+  id: number;
+  link: string;
+  title: string;
+  img?: string;
+  list?: string[];
+  cat: "big" | "small";
+  bg?: "orange" | "blue";
+  icon?: string;
+  service: 'plane' | 'boat' | 'hotel' | 'visa';
+  bottom: string;
+}
+const services: serviceInterface[] = [
   {
     id: 1,
     link: "venta-de-billetes-aereos",
     title: "Venta de billetes aéreos",
     img: airpot,
     cat: "big",
-
+    service: "plane",
     bottom:
       "Nos encargamos de gestionar tus billetes de avión internacionales y nacionales al mejor precio. Contamos con acuerdos con las principales aerolíneas, lo que nos permite ofrecerte tarifas competitivas y un servicio de atención personalizada en todo momento.",
   },
@@ -45,7 +60,7 @@ const services = [
       "Ofrecer opciones adaptadas a tu presupuesto y horarios.",
     ],
     cat: "small",
-
+    service: "plane",
     bg: "orange",
     icon: plane,
     bottom:
@@ -64,6 +79,7 @@ const services = [
     ],
     bg: "blue",
     icon: ship,
+    service: "boat",
     bottom:
       "Tanto si viajas por turismo o negocios , nuestros ferries son la opción ideal para disfrutar de un trayecto seguro y eficiente.",
   },
@@ -74,7 +90,7 @@ const services = [
     title: "billetes de barco entre Algeciras, Tarifa y Tánger",
     img: steamShip,
     cat: "big",
-
+    service: "boat",
     bottom:
       "Conectamos España y Marruecos de manera sencilla y económica gracias a nuestro servicio de reserva de billetes de ferry entre los puertos de Algeciras, Tarifa y Tánger.",
   },
@@ -85,7 +101,7 @@ const services = [
     title: "Reserva de hoteles",
     img: hotel,
     cat: "big",
-
+    service: "hotel",
     bottom:
       "Haz de tu viaje una experiencia completa con nuestra gestión de reservas en hoteles cuidadosamente seleccionados. Ofrecemos opciones para todos los gustos y presupuestos: desde alojamientos económicos hasta hoteles de lujo de 5 estrellas, siempre en zonas estratégicas y cercanas a los principales puntos de interés.",
   },
@@ -94,6 +110,7 @@ const services = [
     link: "ventajas-de-reservar",
 
     cat: "small",
+    service: "hotel",
     title: "Ventajas de reservar con nosotros:",
     list: [
       "Tarifas preferenciales negociadas con nuestros partners.",
@@ -110,6 +127,7 @@ const services = [
     link: "visados-equipo",
 
     cat: "small",
+    service: "visa",
     title: "Nuestro equipo se encarga de todo el proceso:",
     list: [
       "Revisión de la documentación necesaria.",
@@ -128,7 +146,7 @@ const services = [
     title: "Tramitación de visados (Umrah y turista)",
     img: passport,
     cat: "big",
-
+    service: "visa",
     bottom:
       "Sabemos que los trámites administrativos pueden ser un dolor de cabeza. Por eso, ponemos a tu disposición un servicio integral de gestión de visados para Umrah y turismo.",
   },

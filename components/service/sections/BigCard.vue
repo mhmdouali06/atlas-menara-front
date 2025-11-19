@@ -1,39 +1,34 @@
 <template>
-  <div
-    class="big font-poppins relative overflow-hidden flex flex-col justify-end p-8 pb-14"
-  >
+  <div class="big font-poppins relative overflow-hidden flex flex-col justify-end p-8 pb-14">
     <div class="bg"></div>
-    <img
-      :src="props.service.img"
-      alt="background"
-      class="w-full h-full absolute left-0 top-0 z-[-2] object-cover"
-    />
+    <img :src="props.service.img" alt="background" class="w-full h-full absolute left-0 top-0 z-[-2] object-cover" />
     <h3 class="font-extrabold text-white relative my-4 text-3l md:text-5xl">
       {{ props.service.title }}
     </h3>
 
     <p class="text-white">{{ props.service.bottom }}</p>
-    <button
-      class="inline-flex w-fit items-center mt-6 text-white gap-2 rounded-full border border-white px-6 py-3 font-semibold shadow-sm"
-    >
+    <button @click="emit('open', props.service.service)"
+      class="inline-flex w-fit items-center mt-6 text-white gap-2 rounded-full border border-white px-6 py-3 font-semibold shadow-sm">
       Solicitar
-      <span
-        class="relative inline-flex h-5 w-5 items-center justify-center rounded-full"
-      >
+      <span class="relative inline-flex h-5 w-5 items-center justify-center rounded-full">
         <img :src="start" alt="icon" />
       </span>
     </button>
   </div>
 </template>
 <script setup lang="ts">
+
 import start from "@/assets/img/icon/start.svg";
 interface serviceInterface {
   id: number;
   title: string;
   img?: string;
+  service: 'plane' | 'boat' | 'hotel' | 'visa';
   bottom: string;
 }
-
+const emit = defineEmits<{
+  (e: "open", key: 'plane' | 'boat' | 'hotel' | 'visa'): void;
+}>();
 const props = defineProps<{
   service: serviceInterface;
 }>();

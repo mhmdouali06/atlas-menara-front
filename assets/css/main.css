@@ -2,6 +2,7 @@
 @import "./text.css";
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   scroll-behavior: smooth;

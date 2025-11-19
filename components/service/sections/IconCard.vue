@@ -1,12 +1,12 @@
 <template>
-  <article class="flex h-full w-full flex-col items-start p-6 min-h-[230px]">
+  <article class="flex h-full w-full flex-col items-center p-6 min-h-[230px]">
     <!-- Icon tile -->
     <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl icon p-2">
       <img :src="icon" :alt="title" class="h-8 w-8" />
     </div>
 
     <!-- Title -->
-    <h3 class="mb-6 text-xl font-extrabold tracking-tight text-[#07113D] font-poppins">
+    <h3 class="mb-6 text-xl font-extrabold tracking-tight text-center text-[#07113D] font-poppins">
       {{ title }}
     </h3>
 
@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import start from '@/assets/img/icon/start-orange.svg';
+
 defineProps<{
   title: string;
   cta?: string;

@@ -95,5 +95,9 @@ useHead({
   .blog-header .paragraph {
     width: 90%;
   }
+
+  .title {
+    font-size: 32px;
+  }
 }
 </style>

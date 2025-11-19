@@ -1,6 +1,6 @@
 <template>
-  <section class="relative px-4 py-10 md:py-14 w-[92%] mx-auto">
-    <div class="grid gap-10 grid-cols-12">
+  <section class="relative px-2 py-10 md:py-14 w-[92%] mx-auto">
+    <div class="grid gap-4 md:gap-10 grid-cols-12 ">
       <!-- Left: Image card -->
       <div
         class="relative col-span-12 md:col-span-4 lg:col-span-3 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
@@ -9,7 +9,7 @@
           Adaptada a Ti
         </span>
 
-        <figure class="aspect-[3/4] w-full md:aspect-[4/5] h-full">
+        <figure class="aspect-[3/4]  w-full md:aspect-[4/5] h-full">
           <img :src="bg" alt="Cúpulas y minaretes" class="h-full w-full object-cover rounded-2xl" loading="lazy" />
         </figure>
 
@@ -23,7 +23,7 @@
       <!-- Right: Content -->
       <div class="flex flex-col justify-between col-span-12 md:col-span-8 lg:col-span-9">
         <div>
-          <p class="mb-3 flex items-center gap-2 text-lg text-[#4361EE] font-poppins">
+          <p class="mb-3 flex items-center gap-2 text-lg text-[#4361EE] font-poppins mt-5 md:mt-auto">
             ✨ ¿Quieres conocer el precio de tu viaje de ensueño?
           </p>
 

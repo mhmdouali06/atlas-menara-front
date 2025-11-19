@@ -47,7 +47,7 @@
                                     <div
                                         class="mt-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                                         <UiCheckBox v-model="form.acceptPolicy" name="acceptPolicy"
-                                            :label="`Acepto el procesamiento de mis datos personales según la <a href='#' class='underline'>política de privacidad</a>.`" />
+                                            :label="`Acepto el procesamiento de mis datos personales según la <a href='/politica-de-privacidad' class='underline'>política de privacidad</a>.`" />
                                         <button type="submit" :disabled="isLoading || !form.acceptPolicy"
                                             class="h-[45px] rounded-lg px-6 bg-[#FF9F1C] text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed">
                                             <span v-if="!isLoading">Enviar solicitud</span>
