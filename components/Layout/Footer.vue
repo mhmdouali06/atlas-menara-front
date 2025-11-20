@@ -45,13 +45,23 @@ import x from "@/assets/img/icon/orange-twitter.svg";
         <div class="space-y-3">
           <h3 class="font-poppins font-semibold text-lg">ENLACES DE INTERES</h3>
           <ul class="list-disc ml-5 space-y-1 text-[15px]">
-            <li><a href="#" class="hover:underline">Sobre Nosotros</a></li>
-            <li><a href="#" class="hover:underline">Contáctanos</a></li>
-            <li><a href="#" class="hover:underline">FAQs</a></li>
-            <li><a href="#" class="hover:underline">Condiciones de uso</a></li>
-            <li><a href="#" class="hover:underline">Cookies</a></li>
             <li>
-              <a href="#" class="hover:underline">Políticas de Privacidad</a>
+              <NuxtLink to="/#about-us" class="hover:underline">Sobre Nosotros</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/#contact" class="hover:underline">Contáctanos</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/faq" class="hover:underline">FAQs</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/condiciones-de-uso" class="hover:underline">Condiciones de uso</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/cookies" class="hover:underline">Cookies</NuxtLink>
+            </li>
+            <li>
+              <NuxtLink to="/politica-de-privacidad" class="hover:underline">Políticas de Privacidad</NuxtLink>
             </li>
           </ul>
         </div>
