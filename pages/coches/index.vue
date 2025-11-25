@@ -1,5 +1,5 @@
 <template>
-  <CarsSection1 @apply="onApplyFilters" />
+  <CarsSection1 @apply="onApplyFilters" :loading="loading" />
   <CarsList v-model:items="items" :loading="loading" @next-page="gotToNextPage" :totalItem="totalItems"
     @onToggleLike="onToggleLike" />
 </template>

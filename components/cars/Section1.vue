@@ -7,11 +7,14 @@
         Alquiler de <span class="text-orange">coches</span> con conductor
       </h1>
     </div>
-    <CarsSectionsTopFilter @apply="emit('apply', $event)" />
+    <CarsSectionsTopFilter @apply="emit('apply', $event)" :loading="loading" />
   </section>
 </template>
 <script lang="ts" setup>
 import bg from "@/assets/img/global/bg-cars.png";
+const props = defineProps<{
+  loading?: boolean;
+}>()
 const emit = defineEmits<{ (e: "apply", payload: any): void }>();
 </script>
 <style scoped>

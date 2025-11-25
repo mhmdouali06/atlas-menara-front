@@ -10,8 +10,12 @@
       <!-- Button sits below on mobile, right side on md+; size unchanged -->
       <div class="flex md:block justify-center w-full md:w-auto">
         <button @click="emit('apply', { type: type, city: city })" aria-label="Buscar">
-          <img :src="search" alt="search" />
-        </button>
+          <img v-if="!loading" :src="search" alt="search" />
+
+          <!-- Loader -->
+          <span v-else class="inline-flex items-center justify-center">
+            <span class="loader-circle"></span>
+          </span> </button>
       </div>
     </div>
   </section>
@@ -26,7 +30,9 @@ const categoryOpions = ref<Option[]>([]);
 const cityOpions = ref<Option[]>([]);
 const city = ref<string | undefined>(undefined);
 type Option = { option: string; value: string };
-
+const props = defineProps<{
+  loading?: boolean;
+}>();
 const emit = defineEmits(["apply"]);
 const { getCategories, getCities } = useCategories();
 const getCategoryOptions = async () => {
@@ -84,5 +90,14 @@ button {
   align-self: stretch;
   height: 50px;
   width: 50px;
+}
+
+.loader-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  animation: spin 0.7s linear infinite;
 }
 </style>

@@ -8,7 +8,7 @@
       </h1>
     </div>
     <UmrahSectionsTopFilter @apply="emit('apply')" v-model:month="monthProxy" v-model:duration="durationProxy"
-      :durationItems="durationItems" v-model:room="roomProxy" />
+      :durationItems="durationItems" v-model:room="roomProxy" :loading="loading" />
   </section>
 </template>
 <script lang="ts" setup>
@@ -17,6 +17,7 @@ const props = defineProps<{
   month?: string;
   duration?: string;
   room?: string;
+  loading?: boolean;
   durationItems?: { option: string; value: string }[];
 }>();
 const emit = defineEmits<{

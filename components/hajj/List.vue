@@ -3,30 +3,33 @@
     <h1 class="font-Poppins text-3xl text-center md:text-4xl font-extrabold text-[#0E2041] mb-8">
       Descubre nuestros Paquetes <span class="text-orange-500">Hajj</span>
     </h1>
+    <div v-if="!props.loading">
 
-    <ClientOnly v-if="!props.loading">
-      <!-- before: class="relative overflow-hidden px-4" -->
-      <div class="relative  overflow-visible md:overflow-hidden">
-        <Swiper :modules="modules" :slides-per-view="1.7" :space-between="90" :initial-slide="0" :speed="900"
-          :grab-cursor="true" :centered-slides="true" :centered-slides-bounds="true"
-          :loop="(props.items?.length || 0) > 1" ref="swiperRef"
-          :pagination="{ el: '.hajj-pagination', clickable: true }" :breakpoints="{
-            0: { slidesPerView: 'auto', spaceBetween: 24, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 8, slidesOffsetAfter: 8 },
-            640: { slidesPerView: 'auto', spaceBetween: 24, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 12, slidesOffsetAfter: 12 },
-            768: { slidesPerView: 1.25, spaceBetween: 32, centeredSlides: true, centeredSlidesBounds: true },
-            1024: { slidesPerView: 1.55, spaceBetween: 48, centeredSlides: true },
-            1280: { slidesPerView: 1.7, spaceBetween: 90, centeredSlides: true }
-          }">
-          <SwiperSlide v-for="it in props.items" :key="it.id" class="py-8 slide-w">
-            <HajjSectionsHajjCard :item="it" />
-          </SwiperSlide>
-        </Swiper>
-      </div>
+      <ClientOnly>
+        <!-- before: class="relative overflow-hidden px-4" -->
+        <div class="relative  overflow-visible md:overflow-hidden">
+          <Swiper :modules="modules" :slides-per-view="1.7" :space-between="90" :initial-slide="0" :speed="900"
+            :grab-cursor="true" :centered-slides="true" :centered-slides-bounds="true"
+            :loop="(props.items?.length || 0) > 1" ref="swiperRef"
+            :pagination="{ el: '.hajj-pagination', clickable: true }" :breakpoints="{
+              0: { slidesPerView: 'auto', spaceBetween: 24, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 8, slidesOffsetAfter: 8 },
+              640: { slidesPerView: 'auto', spaceBetween: 24, centeredSlides: true, centeredSlidesBounds: true, slidesOffsetBefore: 12, slidesOffsetAfter: 12 },
+              768: { slidesPerView: 1.25, spaceBetween: 32, centeredSlides: true, centeredSlidesBounds: true },
+              1024: { slidesPerView: 1.55, spaceBetween: 48, centeredSlides: true },
+              1280: { slidesPerView: 1.7, spaceBetween: 90, centeredSlides: true }
+            }">
+            <SwiperSlide v-for="it in props.items" :key="it.id" class="py-8 slide-w">
+              <HajjSectionsHajjCard :item="it" />
+            </SwiperSlide>
+          </Swiper>
+        </div>
 
-      <div class="mt-4">
-        <div class="hajj-pagination flex justify-center gap-1.5"></div>
-      </div>
-    </ClientOnly>
+        <div class="mt-4">
+          <div class="hajj-pagination flex justify-center gap-1.5"></div>
+        </div>
+      </ClientOnly>
+    </div>
+
     <UiGridLoading v-else :items="3" />
   </section>
 </template>

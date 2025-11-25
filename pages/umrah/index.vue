@@ -1,6 +1,6 @@
 <template>
-  <UmrahSection1 v-model:month="month" v-model:duration="duration" v-model:room="room" :durationItems="durationItems"
-    @apply="topFilter" />
+  <UmrahSection1 v-model:month="month" :loading="loading" v-model:duration="duration" v-model:room="room"
+    :durationItems="durationItems" @apply="topFilter" />
   <UmrahCustomUmrah @open-modal="openModal" @close-modal="closeModal" />
   <UmrahList :items="items" :loading="loading" @next-page="gotToNextPage" :totalItem="totalItems" :prices="prices"
     @apply="onApplyFilters" @open="openModal" />
