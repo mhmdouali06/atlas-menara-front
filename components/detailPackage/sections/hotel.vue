@@ -1,5 +1,5 @@
 <template>
-  <div class="left col-span-8 p-8">
+  <div class="left col-span-8 mt-4 pd:p-4 md:p-8">
     <UiGallery :images="props.item.gallery" :id="firstSegment" />
   </div>
 

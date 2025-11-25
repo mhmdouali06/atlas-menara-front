@@ -7,6 +7,8 @@ import inst from "@/assets/img/icon/orange_instagram.svg";
 import fb from "@/assets/img/icon/orange-facebook.svg";
 import yt from "@/assets/img/icon/orange-youtube.svg";
 import x from "@/assets/img/icon/orange-twitter.svg";
+const instgram = import.meta.env.VITE_URL_INSTAGRAM;
+const facebook = import.meta.env.VITE_URL_FACEBOOK;
 </script>
 
 <template>
@@ -89,18 +91,18 @@ import x from "@/assets/img/icon/orange-twitter.svg";
         <ul class="flex items-center gap-3">
           <!-- Social button -->
           <li>
-            <a href="#" target="_blank" rel="noopener" aria-label="Instagram"
+            <a :href="instgram" target="_blank" rel="noopener" aria-label="Instagram"
               class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-orange hover:opacity-90 transition-opacity">
               <img :src="inst" alt="" class="h-5 w-5" />
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noopener" aria-label="Facebook"
+            <a :href="facebook" target="_blank" rel="noopener" aria-label="Facebook"
               class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-orange hover:opacity-90 transition-opacity">
               <img :src="fb" alt="" class="h-5 w-5" />
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="#" target="_blank" rel="noopener" aria-label="YouTube"
               class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-orange hover:opacity-90 transition-opacity">
               <img :src="yt" alt="" class="h-5 w-5" />
@@ -111,7 +113,7 @@ import x from "@/assets/img/icon/orange-twitter.svg";
               class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-white text-orange hover:opacity-90 transition-opacity">
               <img :src="x" alt="" class="h-5 w-5" />
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>

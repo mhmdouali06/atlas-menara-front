@@ -42,4 +42,17 @@ const getData = async () => {
 onMounted(() => {
   getData()
 })
+useSeoMeta({
+  title: () =>
+    `${item.value?.title ?? 'Viaje a Marruecos'} | Viajes Atlas Menara`,
+  description: () =>
+    `Detalles de ${item.value?.title ?? 'este viaje a Marruecos'}: itinerario día a día, servicios incluidos, alojamientos y extras opcionales para viajar desde España.`,
+  ogTitle: () =>
+    `${item.value?.title ?? 'Viaje a Marruecos'} | Viajes Atlas Menara`,
+  ogDescription: () =>
+    `Organiza tu viaje a Marruecos con una agencia especializada en rutas, desierto y circuitos culturales.`,
+  ogType: 'website',
+  ogUrl: () => `https://atlasmenara.com/viaje/${item.value?.slug}`,
+  robots: 'index,follow'
+})
 </script>

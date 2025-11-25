@@ -399,3 +399,16 @@
         </div>
     </section>
 </template>
+<script setup lang="ts">
+useSeoMeta({
+    title: 'Política de cookies | Viajes Atlas Menara',
+    description:
+        'Información sobre el uso de cookies en la web de Viajes Atlas Menara: tipos de cookies utilizadas, finalidad y cómo configurarlas en tu navegador.',
+    ogTitle: 'Política de cookies | Viajes Atlas Menara',
+    ogDescription:
+        'Conoce cómo gestionamos las cookies en nuestra página web.',
+    ogType: 'website',
+    ogUrl: 'https://atlasmenara.com/cookies',
+    robots: 'noindex,follow'
+})
+</script>

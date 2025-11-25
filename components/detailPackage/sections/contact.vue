@@ -2,7 +2,7 @@
   <section class="w-full">
     <div class="mx-auto max-w-md rounded-lg">
       <form class="mt-6 space-y-4" @submit.prevent="onSubmit">
-        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-2 md:px-6 pt-5 pb-0 flex flex-col h-[85vh] md:h-[80vh] ">
+        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-2 md:px-6 pt-5 pb-0 flex flex-col h-[80vh] md:h-[80vh] ">
           <h2 class="text-center font-volkhov text-[40px] leading-none font-bold text-[#0E2041]">
             Reservar
           </h2>
@@ -56,7 +56,7 @@
 
           <!-- STICKY FOOTER -->
           <div
-            class="mt-4 flex flex-col md:flex-row items-center justify-between sticky bottom-0 bg-[#eeeeee] px-6 py-4 -mx-6 border-t border-[#e4e7ee]">
+            class="w-[90%] mx-auto mt-4 flex flex-col md:flex-row items-center justify-between sticky bottom-0 bg-[#eeeeee] px-6 py-4  border-t border-[#e4e7ee]">
             <p class="text-[26px] font-bold font-poppins tracking-wide text-[#1c274c]">
               <span class="mr-2">Total :</span>{{ formattedTotal }}
             </p>

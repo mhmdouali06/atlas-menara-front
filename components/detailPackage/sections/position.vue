@@ -14,7 +14,7 @@
         {{ item.name }}<br />
         {{ item.name2 }}
       </p>
-      <iframe :src="item.map" width="600" height="400" class="mt-4" style="border: 0" loading="lazy"
+      <iframe :src="item.map" width="100%" height="400" class="mt-4" style="border: 0" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <!-- <p class="mt-8 font-poppins text-[#181E4B]">

@@ -1,1 +1,18 @@
 
+User-agent: *
+Allow: /
+
+# Bloquea rutas internas (ajusta si tienes otras)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+
+# Páginas legales siguen accesibles pero puedes decidir no enlazarlas mucho
+# (Google igual las verá si las encuentra)
+# Disallow: /condiciones-de-uso
+# Disallow: /cookies
+# Disallow: /politica-de-privacidad
+# Disallow: /terminos-legales
+
+Sitemap: https://atlasmenara.com/sitemap.xml
+Host: atlasmenara.com

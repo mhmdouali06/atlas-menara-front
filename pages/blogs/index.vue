@@ -27,26 +27,16 @@ onMounted(() => {
 });
 
 useSeoMeta({
-  title: "Blog de Viajes | Umrah, Hajj y Destinos Personalizados | Atlas Menara",
+  title: 'Blog de Umrah, Hajj y viajes a Marruecos | Viajes Atlas Menara',
   description:
-    "Consejos, experiencias y noticias sobre el mundo de los viajes espirituales y de lujo. Descubre Umrah, Hajj y destinos únicos con Atlas Menara.",
-  ogTitle: "Blog de Viajes | Umrah, Hajj y Destinos Personalizados | Atlas Menara",
+    'Artículos y guías sobre Umrah, Hajj y viajes a Marruecos desde España: consejos, documentación, experiencias de viajeros y recomendaciones prácticas.',
+  ogTitle: 'Blog de Umrah, Hajj y viajes a Marruecos',
   ogDescription:
-    "Todo sobre Umrah, Hajj, viajes a Maldivas, Turquía y otros destinos exclusivos. Inspiración y guía de viaje con Atlas Menara.",
-  ogImage: "https://atlas-menara.com/_nuxt/images/blog.jpg",
-  ogUrl: "https://atlas-menara.com/blogs",
-  twitterCard: "summary_large_image",
-});
-
-useHead({
-  meta: [
-    {
-      name: "keywords",
-      content:
-        "blog de viajes, umrah, hajj, maldivas, destinos personalizados, atlas menara, agencia de viajes",
-    },
-  ],
-});
+    'Inspírate y prepara mejor tu Umrah, Hajj o viaje a Marruecos con las guías del blog de Viajes Atlas Menara.',
+  ogType: 'website',
+  ogUrl: 'https://atlasmenara.com/blogs',
+  robots: 'index,follow'
+})
 </script>
 
 <template>

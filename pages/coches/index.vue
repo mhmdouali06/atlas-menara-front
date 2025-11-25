@@ -101,4 +101,15 @@ function onToggleLike(item: Car) {
 onMounted(() => {
   getData();
 });
+useSeoMeta({
+  title: 'Alquiler de coches en Marruecos | Transfers y viajes | Viajes Atlas Menara',
+  description:
+    'Alquiler de coches en Marruecos con chofer o sin chofer, transfers de aeropuerto y servicios privados para viajes y peregrinaciones con asistencia en español.',
+  ogTitle: 'Alquiler de coches en Marruecos | Viajes Atlas Menara',
+  ogDescription:
+    'Reserva tu coche en Marruecos con una agencia especializada en viajes, Umrah y Hajj, con servicio profesional y flota propia.',
+  ogType: 'website',
+  ogUrl: 'https://atlasmenara.com/coches',
+  robots: 'index,follow'
+})
 </script>

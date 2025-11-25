@@ -26,7 +26,6 @@ const getData = async () => {
 
     }
   } catch (error: any) {
-    console.log(error);
     // if (error.response.status == 404) {
     //   navigateTo('/coches')
     // }
@@ -42,5 +41,18 @@ const getData = async () => {
 
 onMounted(() => {
   getData()
+})
+useSeoMeta({
+  title: () =>
+    `Alquiler ${item.value?.brand ?? ''} ${item.value?.model ?? ''} en Marruecos | Viajes Atlas Menara`,
+  description: () =>
+    `Reserva el coche ${item.value?.brand ?? ''} ${item.value?.model ?? ''} para tus viajes por Marruecos, transfers de Umrah, Hajj o turismo, con servicio en español.`,
+  ogTitle: () =>
+    `Alquiler ${item.value?.brand ?? ''} ${item.value?.model ?? ''} en Marruecos`,
+  ogDescription: () =>
+    `Coche disponible para alquiler en Marruecos con condiciones claras, asistencia y gestión desde España.`,
+  ogType: 'website',
+  ogUrl: () => `https://atlasmenara.com/coches/${item.value?.slug}`,
+  robots: 'index,follow'
 })
 </script>

@@ -15,7 +15,6 @@ const fetchBlogsCategories = async () => {
     const data = await getBlogs("blogCategory.id=" + slug)
     if (data) {
       categories.value = data.member;
-      console.log(data);
 
     }
   } catch (e) {
@@ -35,6 +34,19 @@ watch(
     fetchBlogsCategories()
   }
 )
+useSeoMeta({
+  title: () =>
+    `Artículos sobre ${route.params.category ?? 'viajes'} | Blog de Viajes Atlas Menara`,
+  description: () =>
+    `Lista de artículos sobre ${route.params.category ?? 'Umrah, Hajj y viajes a Marruecos'} con consejos, experiencias y recomendaciones para viajeros desde España.`,
+  ogTitle: () =>
+    `Artículos sobre ${route.params.category ?? 'viajes'} | Viajes Atlas Menara`,
+  ogDescription: () =>
+    `Explora guías y contenidos sobre ${route.params.category ?? 'Umrah, Hajj y viajes a Marruecos'} en el blog de Viajes Atlas Menara.`,
+  ogType: 'website',
+  ogUrl: () => `https://atlasmenara.com/blogs/category/${route.params.slug}`,
+  robots: 'index,follow'
+})
 // {{ route.params.slug }}  
 </script>
 

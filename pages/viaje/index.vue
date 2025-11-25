@@ -34,4 +34,16 @@ const getData = async () => {
 onMounted(() => {
   getData()
 })
+useSeoMeta({
+  title: 'Viajes y circuitos a Marruecos desde España | Viajes Atlas Menara',
+  description:
+    'Descubre circuitos, escapadas y viajes organizados a Marruecos desde España: desierto del Sahara, ciudades imperiales, costa atlántica y experiencias auténticas con agencia especializada.',
+  ogTitle: 'Viajes a Marruecos desde España | Viajes Atlas Menara',
+  ogDescription:
+    'Reserva tu viaje a Marruecos con itinerarios organizados, guías locales y asistencia en español.',
+  ogType: 'website',
+  ogUrl: 'https://atlasmenara.com/viaje',
+  robots: 'index,follow'
+})
+
 </script>

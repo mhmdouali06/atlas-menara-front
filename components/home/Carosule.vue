@@ -111,12 +111,12 @@ onMounted(() => {
         </h3>
       </div>
       <div class="overflow-auto mb-8 md:my-0 w-full md:w-auto">
-        <div class="flex gap-2">
+        <div class="flex gap-2 overflow-x-auto">
           <button v-for="category in categoriesList" :key="category.id" @click="activeCategory = category.slug" :class="[
             activeCategory === category.slug
               ? 'bg-orange text-white'
               : 'bg-white text-orange',
-            'category-button rounded-full px-4 py-2 text-lg font-semibold border border-orange  hover:bg-orange hover:text-white transition duration-300 easy',
+            'category-button text-nowrap rounded-full px-4 py-2 text-lg font-semibold border border-orange  hover:bg-orange hover:text-white transition duration-300 easy',
           ]">
             {{ category.name }}
           </button>

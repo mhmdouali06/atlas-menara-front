@@ -2,6 +2,10 @@
 import { resolve } from "path";
 
 export default defineNuxtConfig({
+  ssr: false,
+  nitro: {
+    preset: "static",
+  },
   compatibilityDate: "2025-11-01",
   devtools: { enabled: true },
   alias: {
@@ -23,10 +27,24 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: "es",
       },
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+
+        { rel: "manifest", href: "/site.webmanifest" },
+      ],
       meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { name: "robots", content: "index,follow" },
+        {
+          property: "og:image",
+          content: "https://atlasmenara.com/favicon.ico",
+        },
+        { property: "og:site_name", content: "Viajes Atlas Menara" },
+        { property: "og:locale", content: "es_ES" },
+
+        { name: "twitter:card", content: "summary_large_image" },
+        {
+          name: "twitter:image",
+          content: "https://atlasmenara.com/favicon.ico",
+        },
       ],
     },
   },

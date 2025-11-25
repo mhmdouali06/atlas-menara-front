@@ -288,3 +288,16 @@
         </div>
     </section>
 </template>
+<script setup lang="ts">
+useSeoMeta({
+    title: 'Condiciones de uso | Viajes Atlas Menara',
+    description:
+        'Consulta las condiciones de uso del sitio web de Viajes Atlas Menara, agencia de viajes especializada en Umrah, Hajj y viajes a Marruecos desde España.',
+    ogTitle: 'Condiciones de uso | Viajes Atlas Menara',
+    ogDescription:
+        'Información legal sobre el uso de la web y los servicios de Viajes Atlas Menara.',
+    ogType: 'website',
+    ogUrl: 'https://atlasmenara.com/condiciones-de-uso',
+    robots: 'noindex,follow'
+})
+</script>

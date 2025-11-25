@@ -142,4 +142,15 @@ onMounted(() => {
 
 
 );
+useSeoMeta({
+  title: 'Paquetes de Umrah desde España 2025 | Viajes Atlas Menara',
+  description:
+    'Paquetes de Umrah desde España con vuelos, hoteles cerca del Haram, traslados, visado y guía en español. Viaja a La Meca con una agencia especializada en Umrah y Hajj.',
+  ogTitle: 'Umrah desde España | Paquetes completos | Viajes Atlas Menara',
+  ogDescription:
+    'Elige tu paquete de Umrah desde España con organización profesional, hoteles seleccionados y asistencia en español 24/7.',
+  ogType: 'website',
+  ogUrl: 'https://atlasmenara.com/umrah',
+  robots: 'index,follow'
+})
 </script>

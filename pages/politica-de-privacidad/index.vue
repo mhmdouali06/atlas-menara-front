@@ -523,3 +523,16 @@
         </div>
     </section>
 </template>
+<script setup lang="ts">
+useSeoMeta({
+    title: 'Política de privacidad | Viajes Atlas Menara',
+    description:
+        'Lee la política de privacidad de Viajes Atlas Menara y cómo protegemos tus datos personales según la normativa de protección de datos en España y la UE.',
+    ogTitle: 'Política de privacidad | Viajes Atlas Menara',
+    ogDescription:
+        'Información sobre el tratamiento de datos personales por parte de Viajes Atlas Menara.',
+    ogType: 'website',
+    ogUrl: 'https://atlasmenara.com/politica-de-privacidad',
+    robots: 'noindex,follow'
+})
+</script>

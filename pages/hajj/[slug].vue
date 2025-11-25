@@ -42,4 +42,17 @@ const getData = async () => {
 onMounted(() => {
   getData()
 })
+useSeoMeta({
+  title: () =>
+    `${item.value?.title ?? 'Paquete de Hajj'} | Hajj desde España | Viajes Atlas Menara`,
+  description: () =>
+    `Detalles de ${item.value?.title ?? 'este paquete de Hajj'}: vuelos, hoteles, traslados, servicios incluidos y acompañamiento en español para tu peregrinación a La Meca.`,
+  ogTitle: () =>
+    `${item.value?.title ?? 'Paquete de Hajj'} | Viajes Atlas Menara`,
+  ogDescription: () =>
+    `Conoce todo sobre ${item.value?.title ?? 'este paquete de Hajj'} y reserva tu peregrinación con una agencia especializada en Hajj y Umrah.`,
+  ogType: 'website',
+  ogUrl: () => `https://atlasmenara.com/hajj/${item.value?.slug}`,
+  robots: 'index,follow'
+})
 </script>

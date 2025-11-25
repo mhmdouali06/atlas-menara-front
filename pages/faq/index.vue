@@ -70,7 +70,6 @@ const faqs: Faq[] = [
     }
 ]
 
-// ✅ ahora puede haber múltiples abiertos o todos cerrados
 const openIds = ref<string[]>([])
 
 const isOpen = (id: string) => openIds.value.includes(id)
@@ -82,6 +81,17 @@ const toggle = (id: string) => {
         openIds.value = [...openIds.value, id]
     }
 }
+useSeoMeta({
+    title: 'Preguntas frecuentes sobre Umrah, Hajj y viajes | Viajes Atlas Menara',
+    description:
+        'Respuestas a las preguntas más frecuentes sobre Umrah, Hajj, documentación, pagos, reservas, hoteles, vuelos y viajes a Marruecos organizados desde España.',
+    ogTitle: 'FAQ Umrah, Hajj y viajes | Viajes Atlas Menara',
+    ogDescription:
+        'Aclara tus dudas sobre paquetes de Umrah, Hajj y viajes a Marruecos antes de reservar.',
+    ogType: 'website',
+    ogUrl: 'https://atlasmenara.com/faq',
+    robots: 'index,follow'
+})
 </script>
 
 <template>

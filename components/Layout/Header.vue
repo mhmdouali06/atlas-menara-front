@@ -88,7 +88,7 @@
       <!-- Contact Button -->
       <div class="hidden lg:block">
         <NuxtLink to="/#contact"
-          class="bg-orange text-white px-5 py-2 rounded-full shadow-md hover:bg-orange-700 transition">
+          class="bg-orange text-white px-5 py-2 rounded-full shadow-md hover:bg-orange-700 transition text-nowrap">
           Contactar un agente
         </NuxtLink>
       </div>
