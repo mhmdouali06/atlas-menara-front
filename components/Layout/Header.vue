@@ -1,13 +1,13 @@
 <template>
   <header>
-    <div class="mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+    <div class="mx-auto px-4 py-1 sm:px-6 lg:px-8 md:py-4 flex items-center justify-between">
       <!-- Logo -->
       <div class="text-2xl font-bold text-blue">
         <NuxtLink to="/"><img :src="logo" alt="logo" /></NuxtLink>
       </div>
 
       <!-- Desktop Nav -->
-      <nav class="hidden lg:flex md:gap-3 lg:gap-5 items-center relative">
+      <nav class="hidden lg:flex md:gap-3 lg:gap-6 items-center relative">
         <!-- Home: exact match only -->
         <NuxtLink to="/" exact-active-class="active" class="font-poppins">Inicio</NuxtLink>
 
@@ -56,7 +56,6 @@
           </div>
         </div>
 
-        <NuxtLink to="/coches" active-class="active" class="text-gray-800 hover:text-orange">Coches</NuxtLink>
         <NuxtLink to="/viaje" active-class="active" class="text-gray-800 hover:text-orange">Viajes & Tours</NuxtLink>
 
         <!-- Servicios -->
@@ -78,6 +77,8 @@
               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
               {{ link.label }}
             </NuxtLink>
+            <NuxtLink to="/coches" active-class="active" class="text-gray-800 hover:text-orange">Coches</NuxtLink>
+
           </div>
         </div>
 
@@ -140,7 +141,6 @@
 
             </div>
           </details>
-          <NuxtLink to="/coches" class="text-gray-800" @click="closeMobileMenu">Coches</NuxtLink>
 
 
           <NuxtLink to="/viaje" class="text-gray-800" @click="closeMobileMenu">Viajes & Tours</NuxtLink>
@@ -157,6 +157,7 @@
             <div class="ml-4 mt-2 space-y-2">
               <NuxtLink v-for="link in servicesMenu" :to="'/servicios#' + link.slug" class="block text-sm text-gray-600"
                 @click="closeMobileMenu">{{ link.label }}</NuxtLink>
+              <NuxtLink to="/coches" class="text-gray-800" @click="closeMobileMenu">Coches</NuxtLink>
 
             </div>
           </details>

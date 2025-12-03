@@ -14,7 +14,7 @@ const items = [
     id: 1,
     title: "Ouafae El Miri Otmani",
     category: "Umrah",
-    rating: 5,
+    rating: 4.9,
     description:
       "Profesional como la copa de un pino. Viajes asequibles y trato muy cercano.",
     image: ouafae,
@@ -32,7 +32,7 @@ const items = [
     id: 3,
     title: "Jorge",
     category: "Viaje",
-    rating: 5,
+    rating: 4.5,
     description: "Muy buena experiencia. Trato excelente.",
     image: jorge,
   },
@@ -40,7 +40,7 @@ const items = [
     id: 4,
     title: "anis shaikh",
     category: "Haj",
-    rating: 5,
+    rating: 4.8,
     description:
       "salamoualaykum... I travelled with this agency, very professional, honest and trustworthy. Highly recommend.",
     image: anis,
@@ -58,7 +58,7 @@ const items = [
     id: 6,
     title: "Karima Benhari",
     category: "Umrah",
-    rating: 5,
+    rating: 4.3,
     description:
       "Todo súper bien desde la salida hasta el regreso. Muy humana la atención.",
     image: karima,
@@ -85,7 +85,7 @@ const items = [
     id: 9,
     title: "Andrés López",
     category: "Viaje",
-    rating: 5,
+    rating: 4.4,
     description:
       "Excelente calidad-precio. Muy recomendable para viajes en familia.",
     image: andres,
@@ -94,7 +94,7 @@ const items = [
     id: 10,
     title: "Samira H.",
     category: "Umrah",
-    rating: 5,
+    rating: 4.5,
     description:
       "Gracias por acompañarnos en cada paso. Viaje espiritual inolvidable.",
     image: samira,
@@ -104,7 +104,7 @@ const items = [
 </script>
 
 <template>
-  <section class="my-12">
+  <section class="my-12 mx-8 md:mx-0">
     <div class="px-8">
       <p class="font-volkhov text-orange">Lee</p>
       <h3 class="font-poppins text-2xl md:text-4xl my-3 font-semibold">
@@ -116,8 +116,8 @@ const items = [
       0: { itemsToShow: 1 },
       640: { itemsToShow: 1 },
       768: { itemsToShow: 1 },
-      1024: { itemsToShow: 3.5 },
-    }" :autoplay="3000" :wrap-around="true" snap-align="center" :gap="20">
+      1024: { itemsToShow: 2.75 },
+    }" :autoplay="3000" :wrap-around="true" snap-align="start" :gap="20">
       <Slide v-for="(item, index) in items" :key="index">
         <HomeSectionsCardReview :item="item" />
       </Slide>
@@ -126,8 +126,8 @@ const items = [
       0: { itemsToShow: 1 },
       640: { itemsToShow: 1 },
       768: { itemsToShow: 1 },
-      1024: { itemsToShow: 3.5 },
-    }" dir="right-to-left" :autoplay="2000" :wrap-around="true" snap-align="center" :gap="20">
+      1024: { itemsToShow: 2.75 },
+    }" dir="right-to-left" :autoplay="2000" :wrap-around="true" snap-align="end" :gap="20">
       <Slide v-for="(item, index) in items" :key="index">
         <HomeSectionsCardReview :item="item" />
       </Slide>

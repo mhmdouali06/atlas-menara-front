@@ -7,7 +7,7 @@
         <img :src="man" class="relative  object-contain md:absolute  p-0 m-0  bottom-0" alt="man" />
       </div>
 
-      <div class="col-span-12 md:col-span-7 mt-8 p-6">
+      <div class="col-span-12 md:col-span-7 mt-8 p-6 w-full md:w-[85%]">
         <h3 class="main-title">Solicitar informacion</h3>
         <p class="main-text">
           Rellena tus datos y nuestro equipo te contactará para ofrecerte la solución adecuada.
@@ -171,5 +171,18 @@ button:hover {
 button:disabled {
   opacity: .6;
   cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 30px;
+  }
+}
+
+/* Small screens (tablets) */
+@media (max-width: 640px) {
+  .main-title {
+    font-size: 26px;
+  }
 }
 </style>

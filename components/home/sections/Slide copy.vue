@@ -1,29 +1,26 @@
 <script setup lang="ts">
 import { formatText } from "~/helpers/functions/formatText";
 import icon from "@/assets/img/icon/start.svg";
+import type { TravelPackage } from "~/types/travel-package";
+import { fileUrl } from "~/helpers/functions/imageURl";
 
-interface itemInterface {
-  title: string;
-  description: string;
-  image: string;
-  type: string;
-}
+
 const props = defineProps<{
-  item: itemInterface;
+  item: TravelPackage;
 }>();
 </script>
 <template>
   <div class="relative w-full min-h-[526px] h-full">
-    <img :src="props.item.image" :alt="formatText(props.item.title)"
+    <img :src="fileUrl(props.item.thumbnail?.filePath, props.item.type)" :alt="formatText(props.item.title)"
       class="w-full h-full object-cover absolute left-0 top-0 z-[-2]" />
     <div class="bg"></div>
     <div class="flex flex-col items-center justify-center w-full h-full">
       <h2 v-html="formatText(props.item.title)"
-        class="text-white text-2xl md:text-4xl relative mb-4 font-volkhov font-bold text-center mx-2"></h2>
+        class="text-white text-3xl/tight md:text-4xl/tight relative mb-4 font-volkhov font-bold text-center"></h2>
       <p v-html="formatText(props.item.description)"
         class="text-white font-poppins text-center  px-4 md:px-0 w-full md:w-1/2"></p>
       <div class="flex flex-col md:flex-row items-center gap-4 mt-4">
-        <button @click="navigateTo(`/${props.item.type}`)"
+        <button @click="navigateTo(`/${props.item.type}/${props.item.slug}`)"
           class="bg-orange text-white px-7 py-4 rounded-full shadow-md font-poppins hover:bg-white hover:text-orange transition-all duration-300 easy">
           Ver ofertas de <span class="capitalize">{{ props.item.type }}</span>
         </button>
@@ -52,7 +49,7 @@ h2::after {
   left: 0;
   width: 100%;
   position: absolute;
-  bottom: -4px;
+  bottom: 0px;
   border: 1px solid white;
 }
 </style>

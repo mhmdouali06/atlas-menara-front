@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { formatDateEs } from '~/helpers/functions/formatDuration';
+import { formatDateEsBlog } from '~/helpers/functions/formatDuration';
 import { fileUrl } from '~/helpers/functions/imageURl';
 import type { BlogPost } from '~/types/Blogs';
 
@@ -11,10 +11,12 @@ const props = defineProps<{
 <template>
   <div>
     <div class="h-[277px] w-full relative">
-      <span class="absolute font-poppins z-[2] top-0 left-14 text-[#2B2B2B] bg-white p-3">{{
-        formatDateEs(props.item.createdAt) }}</span>
+
+      <span class="absolute font-poppins z-[2] top-0 left-14 text-[#2B2B2B] bg-white py-1 px-4"
+        v-html="formatDateEsBlog(props.item.createdAt)"></span>
+
       <img :src="fileUrl(props?.item?.thumbnail?.filePath, 'blog')" :alt="props.item.title"
-        class="rounded-xl object-cover w-full h-full absolute z-0" />
+        class="rounded-3xl object-cover w-full h-full absolute z-0" />
     </div>
     <p class="text-[#07123D] font-poppins mt-2 text-xl font-bold">
       {{ props.item.title }}

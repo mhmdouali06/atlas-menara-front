@@ -15,24 +15,24 @@ const props = defineProps<{
 
   <div class="main cursor-pointer " @click="navigateTo(`/${props.item.type}/${props.item.slug}/`)">
     <div v-if="props.item.status"
-      class="absolute top-3 right-3 z-[3] rounded-full px-3 py-1 text-[10px] font-semibold shadow-md bg-opacity-50"
+      class="absolute top-3 right-3 z-[3] rounded-full px-3 py-1 text-[10px] font-semibold shadow-md  bg-white"
       :class="getStatusColor(props.item.status)">
       {{ getStatusLabel(props.item.status) }}
     </div>
 
     <div class="blue-background"></div>
-    <img :src="fileUrl(item?.thumbnail?.filePath, props.item.type)" class="w-full h-full object-cover main-bg"
+    <img :src="fileUrl(item?.thumbnail?.filePath, props.item.type)" class="w-full h-full object-cover main-bg mb-2"
       :alt="props.item.title" />
     <div class="p-4 w-full">
-      <p class="text-white font-semibold text-2xl font-volkhov w-fit relative title-card">
+      <p class="text-white font-semibold text-lg font-volkhov w-fit relative title-card">
         {{ props.item.title }} <spa class="text-lg font-normal"> "{{
           formatDuration(props.item.startsAt, props.item.endsAt) }}"</spa>
       </p>
-      <p class="font-poppins text-white">
+      <p class="font-poppins text-white mt-2">
         Del {{ formatDateEs(props.item.startsAt) }} al {{ formatDateEs(props.item.endsAt) }}
       </p>
-      <div class="flex justify-between">
-        <div class="flex gap-2 other">
+      <div class="flex justify-between mt-2">
+        <div class="flex gap-4 other">
           <div>
             <img :src="vol" alt="vol" />
           </div>
@@ -49,7 +49,7 @@ const props = defineProps<{
             <img :src="visa" alt="visa" />
           </div>
         </div>
-        <p class="font-volkhov text-2xl text-white">
+        <p class="font-volkhov text-2xl text-white ">
           {{ props.item.price }} €
         </p>
       </div>
@@ -66,7 +66,7 @@ const props = defineProps<{
   position: relative;
   border-radius: 10px;
   width: 378px;
-  height: 294px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -124,7 +124,7 @@ const props = defineProps<{
   left: 0;
   width: 100%;
   position: absolute;
-  bottom: 0px;
+  bottom: -4px;
   border: 1px solid white;
 }
 </style>

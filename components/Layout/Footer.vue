@@ -15,10 +15,10 @@ const facebook = import.meta.env.VITE_URL_FACEBOOK;
   <footer class="bg-orange text-white">
     <div class="mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-10">
       <!-- Top: 4 columns -->
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-10 lg:gap-14 items-start">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-4 lg:gap-4 items-start">
         <!-- Col 1: Logo + Address -->
         <div class="space-y-4">
-          <img :src="logo" alt="Atlas Menara" class="h-14 w-auto rounded-md bg-white p-2" />
+          <img :src="logo" alt="Atlas Menara" class="h-14 w-auto rounded-md bg-white p-2 shadow " />
           <p class="text-sm leading-relaxed opacity-90 font-poppins font-semibold">
             C. De Parvillas Altas, 15, 28021 Madrid
           </p>
@@ -69,7 +69,7 @@ const facebook = import.meta.env.VITE_URL_FACEBOOK;
         </div>
 
         <!-- Col 4: Years + Badge -->
-        <div class="md:justify-self-end">
+        <div class="md:justify-self-start">
           <div class="max-w-[220px] md:text-left space-y-3">
             <p class="font-poppins font-semibold text-lg leading-snug">
               22 años de<br />trayectoria nos<br />avalan
@@ -83,7 +83,7 @@ const facebook = import.meta.env.VITE_URL_FACEBOOK;
       <hr class="my-6 border-white/40" />
 
       <!-- Bottom: Copyright + Social -->
-      <div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+      <div class="flex flex-col items-center  gap-4 sm:flex-row sm:justify-between">
         <p class="text-sm text-white/90 text-center sm:text-left">
           © 2025 Atlas Menara - Todos los derechos reservados.
         </p>

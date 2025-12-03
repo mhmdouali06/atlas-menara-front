@@ -5,15 +5,16 @@ import hero from "@/assets/img/global/illus.png";
 </script>
 
 <template>
-  <section class="mx-auto max-w-7xl px-4 mb-10" id="about-us">
-    <div class="grid items-center gap-10 md:gap-4 md:grid-cols-2">
+  <section class="mx-auto max-w-7xl px-4 mb-14  w-full md:w-[90%]" id="about-us">
+    <div class="grid items-center justify-between    gap-10 md:gap-4 md:grid-cols-2">
       <!-- <div class="relative mx-auto w-[260px] sm:w-[320px] md:w-[420px] aspect-square"> -->
-      <div class="relative mx-auto w-full h-full aspect-square">
-        <img :src="hero" alt="Peregrino realizando súplica" class="absolute inset-0 z-10 m-auto object-cover" />
+      <div class="relative mx-auto w-full h-full aspect-square ">
+        <img :src="hero" alt="Peregrino realizando súplica"
+          class="absolute left-0 inset-0 z-10 m-auto object-cover w-full h-full " />
       </div>
 
       <!-- RIGHT: Copy -->
-      <div class="space-y-4 md:space-y-5">
+      <div class="space-y-4 md:space-y-2 text-lg w-[95%] mx-auto md:w-full">
         <p class="font-semibold text-orange font-poppins">Conócenos</p>
 
         <h2 class="text-3xl md:text-4xl font-bold text-softblack font-poppins">

@@ -1,5 +1,5 @@
 <template>
-  <section class="my-12 mb-28">
+  <section class="my-12 mb-28 mx-auto w-full md:w-[95%]">
     <div class="px-8">
       <p class="font-volkhov text-orange text-center">Descubre</p>
       <h3 class="font-volkhov text-2xl md:text-4xl my-3 font-semibold text-center">
@@ -14,7 +14,7 @@
           640: { itemsToShow: 1 },
           768: { itemsToShow: 1 },
           1024: { itemsToShow: 3 }
-        }" :wrap-around="true" :autoplay="3000" snap-align="start" :gap="30">
+        }" :wrap-around="true" :autoplay="3000" snap-align="start" :gap="40">
         <Slide v-for="(item, index) in items" :key="index">
           <HomeSectionsBlogCard :item="item" class="w-full" />
         </Slide>

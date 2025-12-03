@@ -13,7 +13,8 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <div class="card grid grid-cols-12 gap-4 w-full p-4 shadow-lg bg-white rounded-lg box-border h-[160px] my-4">
+  <div
+    class="card grid grid-cols-12 gap-4 w-full py-6 px-5 shadow-lg bg-white rounded-lg box-border h-[200px] md:h-[190px] my-4">
     <div class="flex col-span-2 flex-col items-center gap-2 justify-center">
       <div>
         <img :src="props.item.image" :alt="props.item.title" class="rounded-full" />
@@ -24,13 +25,14 @@ const props = defineProps<{
       </div>
     </div>
     <div class="content col-span-10">
-      <span class="bg-[#808080] category text-[#000239] rounded-xl px-2 text-center font-poppins block w-20">{{
-        props.item.category }}</span>
+      <span
+        class="bg-[#808080] bg-opacity-30 category text-[#000239] rounded-xl px-2 text-center font-poppins block w-20">{{
+          props.item.category }}</span>
       <h3 class="font-bold text-[#4A4A4A] font-volkhov">
         {{ props.item.title }}
       </h3>
       <p class="font-poppins text-[#808080] text-[18px]">
-        {{ props.item.description.length > 60 ? props.item.description.slice(0, 60) + '...' : props.item.description
+        {{ props.item.description.length > 70 ? props.item.description.slice(0, 70) + '...' : props.item.description
         }}
       </p>
     </div>

@@ -8,6 +8,8 @@ const config: Config = {
     "./app.vue",
   ],
   safelist: [
+    "text-green-500",
+    "text-red-500",
     "bg-green-600",
     "bg-amber-500",
     "bg-red-600",
