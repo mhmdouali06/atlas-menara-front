@@ -1,6 +1,6 @@
 <template>
   <section class="flex justify-center mt-[-50px]">
-    <div class="w-3/4 main p-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
+    <div class="w-3/4 md:w-[70%] main p-8 flex flex-col md:flex-row gap-4 md:gap-8 items-center">
       <div class="grid grid-cols-12 w-full gap-4 md:gap-8">
         <UmrahSectionsSelectWidthLabel class="col-span-12 md:col-span-4" v-for="item in filters" :key="item.key"
           :iocn="item.icon" :label="item.label" :options="item.options" :modelValue="getValue(item.key)"

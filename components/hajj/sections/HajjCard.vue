@@ -1,11 +1,11 @@
 <template>
-  <article class="hajj-card relative rounded-2xl bg-white shadow-lg overflow-hidden w-full">
-    <div class="grid grid-cols-12 gap-4 p-4 md:p-3 items-center">
+  <article class="hajj-card relative rounded-lg  bg-white shadow-lg overflow-hidden w-full">
+    <div class="grid grid-cols-12  items-center">
       <!-- Left image -->
-      <div class="col-span-12 md:col-span-5  h-full">
-        <div class="relative rounded-lg overflow-hidden h-44 sm:h-48 md:h-52 lg:h-56">
+      <div class="col-span-12 md:col-span-5  h-full ">
+        <div class="relative  overflow-hidden h-44 sm:h-48 md:h-full ">
           <img :src="fileUrl(item?.thumbnail?.filePath, 'hajj')" :alt="item.title"
-            class="w-full h-full object-cover transform transition-transform duration-400 hover:scale-105 rounded-2xl" />
+            class="w-full h-full object-fill  rounded-s-[12px]" />
           <div class="absolute top-3 right-3 bg text-xs px-2 py-2 rounded-md font-semibold">
             {{ props.item.gallery.length }} imágenes
           </div>
@@ -13,7 +13,7 @@
       </div>
 
       <!-- Right content -->
-      <div class="col-span-12 md:col-span-7 ">
+      <div class="col-span-12 md:col-span-7  p-4 md:p-3 box-content ">
         <div>
           <div class="flex flex-col md:flex-row justify-between items-start">
             <div>
@@ -106,8 +106,6 @@ const props = defineProps<{ item: TravelPackage }>();
 }
 
 .hajj-card {
-  height: 100%;
-  transform: scale(1);
   transition: all 0.5s ease;
 }
 
