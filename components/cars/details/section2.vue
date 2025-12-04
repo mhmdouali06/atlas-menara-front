@@ -1,7 +1,7 @@
 <template>
   <section class="mx-auto px-4 md:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-10" v-if="car">
     <!-- LEFT -->
-    <article class="lg:col-span-8 ps-8">
+    <article class="lg:col-span-8 ps-4 md:ps-8">
       <!-- Title -->
       <h1 class="font-Poppins text-3xl md:text-5xl font-extrabold text-[#0E2041]">
         {{ car.title }}

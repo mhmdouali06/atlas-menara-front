@@ -1,20 +1,34 @@
 <template>
-  <section class="w-[90%] mx-auto my-8">
-    <div class="grid grid-cols-12 gap-4 md:gap-8">
-      <div v-for="service in services" :id="service.link" class="flex flex-col md:flex-row gap-4 md:gap-8 mb-2 md:mb-8"
-        :key="service.id" :class="service.cat == 'small'
+  <section class="w-[90%] mx-auto my-16">
+    <!-- DESKTOP / TABLET: keep current behavior -->
+    <div class=" grid-cols-12 gap-4 md:gap-8 hidden md:grid">
+      <div v-for="service in services" :id="service.link" :key="service.id"
+        class="flex flex-col md:flex-row gap-4 md:gap-8 mb-2 md:mb-8" :class="service.cat == 'small'
           ? 'col-span-12 md:col-span-5 lg:col-span-4'
           : 'col-span-12 md:col-span-7 lg:col-span-8'
           ">
         <div class="border border-dashed border-[#07113D]" v-if="service.id % 2 == 0"></div>
-        <ServiceSectionsBigCard @open="$emit('open', service.service)" :service="service" v-if="service.cat == 'big'" />
 
-        <ServiceSectionsSmallCard :service="service" v-if="service.cat == 'small'" />
+        <ServiceSectionsBigCard v-if="service.cat == 'big'" @open="$emit('open', service.service)" :service="service" />
+
+        <ServiceSectionsSmallCard v-if="service.cat == 'small'" :service="service" />
+      </div>
+    </div>
+
+    <!-- MOBILE: reordered list => big then small -->
+    <div class=" grid-cols-12 gap-4 md:gap-8 grid md:hidden">
+      <div v-for="service in mobileServices" :id="service.link" :key="service.id"
+        class="flex flex-col gap-4 mb-4 col-span-12">
+        <ServiceSectionsBigCard v-if="service.cat == 'big'" @open="$emit('open', service.service)" :service="service" />
+
+        <ServiceSectionsSmallCard v-else :service="service" />
       </div>
     </div>
   </section>
 </template>
+
 <script setup lang="ts">
+import { computed } from "vue";
 import plane from "@/assets/img/icon/whitePlane.svg";
 import airpot from "@/assets/img/global/airport.png";
 import ship from "@/assets/img/icon/whiteShip.svg";
@@ -23,10 +37,12 @@ import hotel from "@/assets/img/global/hotel.png";
 import building from "@/assets/img/icon/whiteBulding.svg";
 import visa from "@/assets/img/icon/whiteVise.svg";
 import passport from "@/assets/img/global/visa-passport.png";
+
 const emit = defineEmits<{
-  (e: "open", key: 'plane' | 'boat' | 'hotel' | 'visa'): void;
+  open: [key: "plane" | "boat" | "hotel" | "visa"];
 }>();
-interface serviceInterface {
+
+interface ServiceInterface {
   id: number;
   link: string;
   title: string;
@@ -35,10 +51,11 @@ interface serviceInterface {
   cat: "big" | "small";
   bg?: "orange" | "blue";
   icon?: string;
-  service: 'plane' | 'boat' | 'hotel' | 'visa';
+  service: "plane" | "boat" | "hotel" | "visa";
   bottom: string;
 }
-const services: serviceInterface[] = [
+
+const services: ServiceInterface[] = [
   {
     id: 1,
     link: "venta-de-billetes-aereos",
@@ -52,7 +69,6 @@ const services: serviceInterface[] = [
   {
     id: 2,
     link: "billetes-aereos-equipo",
-
     title: "Nuestro equipo se ocupa de:",
     list: [
       "Buscar las mejores combinaciones de vuelos.",
@@ -69,7 +85,6 @@ const services: serviceInterface[] = [
   {
     id: 3,
     link: "te-ofrecemos-ferries",
-
     cat: "small",
     title: "Te ofrecemos:",
     list: [
@@ -86,7 +101,6 @@ const services: serviceInterface[] = [
   {
     id: 4,
     link: "billetes-de-barco-entre-algeciras-tarifa-y-tanger",
-
     title: "billetes de barco entre Algeciras, Tarifa y Tánger",
     img: steamShip,
     cat: "big",
@@ -97,7 +111,6 @@ const services: serviceInterface[] = [
   {
     id: 5,
     link: "reserva-de-hoteles",
-
     title: "Reserva de hoteles",
     img: hotel,
     cat: "big",
@@ -108,7 +121,6 @@ const services: serviceInterface[] = [
   {
     id: 6,
     link: "ventajas-de-reservar",
-
     cat: "small",
     service: "hotel",
     title: "Ventajas de reservar con nosotros:",
@@ -125,7 +137,6 @@ const services: serviceInterface[] = [
   {
     id: 7,
     link: "visados-equipo",
-
     cat: "small",
     service: "visa",
     title: "Nuestro equipo se encarga de todo el proceso:",
@@ -142,7 +153,6 @@ const services: serviceInterface[] = [
   {
     id: 8,
     link: "tramitacion-de-visados-umrah-y-turista",
-
     title: "Tramitación de visados (Umrah y turista)",
     img: passport,
     cat: "big",
@@ -151,4 +161,29 @@ const services: serviceInterface[] = [
       "Sabemos que los trámites administrativos pueden ser un dolor de cabeza. Por eso, ponemos a tu disposición un servicio integral de gestión de visados para Umrah y turismo.",
   },
 ];
+
+/**
+ * MOBILE ORDER:
+ * For each service type (plane, boat, hotel, visa):
+ *   show BIG card first, then SMALL card.
+ */
+const mobileServices = computed<ServiceInterface[]>(() => {
+  const order: Array<"plane" | "boat" | "hotel" | "visa"> = [
+    "plane",
+    "boat",
+    "hotel",
+    "visa",
+  ];
+
+  const result: ServiceInterface[] = [];
+
+  for (const key of order) {
+    const group = services.filter((s) => s.service === key);
+    const big = group.filter((s) => s.cat === "big");
+    const small = group.filter((s) => s.cat === "small");
+    result.push(...big, ...small);
+  }
+
+  return result;
+});
 </script>

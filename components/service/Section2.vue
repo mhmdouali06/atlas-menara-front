@@ -1,12 +1,12 @@
 <template>
   <section id="services">
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 ">
       <!-- ------------------------------------- left ----------------------------- -->
-      <div class="col-span-12 md:col-span-4 lg:col-span-4 relative top-[-15px] z-[-3]">
+      <div class="col-span-12 md:col-span-4 lg:col-span-4 relative top-[-15px] z-[-3] ">
         <img :src="left" alt="left" class="w-full h-full" />
       </div>
       <!-- -----------------------------right -------------------------------- -->
-      <div class="col-span-12 md:col-span-8 lg:col-span-8 mt-8  ">
+      <div class="col-span-12 md:col-span-8 lg:col-span-8 mt-8  px-4 md:px-0">
         <p class="mb-3 flex items-center gap-2 text-lg text-[#4361EE] font-poppins ">
           ¿Quieres viajar con total comodidad y sin complicaciones?
         </p>

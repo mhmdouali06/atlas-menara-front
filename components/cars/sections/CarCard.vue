@@ -27,7 +27,7 @@
     </div>
 
     <!-- image -->
-    <div class="my-4 w-full flex w-full items-center justify-center">
+    <div class="my-4 w-full flex  items-center justify-center">
       <img :src="fileUrl(item.thumbnail?.filePath, 'car')" :alt="item.title" class="h-32 w-full object-cover md:h-36"
         loading="lazy" />
     </div>
