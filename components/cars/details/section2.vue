@@ -1,9 +1,9 @@
 <template>
   <section class="mx-auto px-4 md:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-10" v-if="car">
     <!-- LEFT -->
-    <article class="lg:col-span-8">
+    <article class="lg:col-span-8 ps-8">
       <!-- Title -->
-      <h1 class="font-Poppins text-3xl md:text-4xl font-extrabold text-[#0E2041]">
+      <h1 class="font-Poppins text-3xl md:text-5xl font-extrabold text-[#0E2041]">
         {{ car.title }}
       </h1>
       <p class="mt-2 text-[15px] font-poppins md:text-base text-[#2b395b]">
@@ -25,19 +25,18 @@
       </p>
 
       <!-- Descripción -->
-      <h2 class="mt-8 font-poppins text-2xl md:text-[28px] font-extrabold text-[#0E2041]">
-        Descripción del servicio
-      </h2>
+      <h2 class="mt-8 font-poppins text-2xl md:text-3xl font-extrabold text-[#0E2041]">
+        Descripción del servicio </h2>
       <div class="mt-3 font-poppins leading-relaxed text-[#1f2a44]" v-html="car.description || '—'"></div>
 
       <!-- Con Atlas Menara... -->
-      <h3 class="mt-8 font-poppins text-[18px] md:text-[20px] font-extrabold text-[#0E2041]">
+      <h3 class="mt-8 font-poppins text-[18px] md:text-3xl font-extrabold text-[#F4A021]">
         Con Atlas Menara disfrutarás de:
       </h3>
       <div class="mt-3 font-poppins leading-relaxed text-[#1f2a44]" v-html="car.includes || '—'"></div>
 
       <!-- Documentos -->
-      <h3 class="mt-8 font-poppins text-[18px] md:text-[20px] font-extrabold text-[#0E2041]">
+      <h3 class="mt-8 font-poppins text-[18px] md:text-3xl font-extrabold text-[#0E2041]">
         Documentos
       </h3>
       <div class="mt-3 font-poppins leading-relaxed text-[#1f2a44]" v-html="car.documents || '—'"></div>

@@ -19,7 +19,7 @@ const props = defineProps<{
       <ClientOnly>
         <div class="relative">
           <Carousel class="mt-4 px-4 md:px-0" breakpointMode="carousel" :transition="650" :pauseAutoplayOnHover="true"
-            :wrap-around="props.items.length > 1" snap-align="center" :gap="50" :items-to-show="1.1" :breakpoints="{
+            :wrap-around="props.items.length > 1" snap-align="center" :gap="60" :items-to-show="1.1" :breakpoints="{
               0: { itemsToShow: 1.05 },
               640: { itemsToShow: 1.1 },
               768: { itemsToShow: 1.25 },
@@ -81,6 +81,13 @@ const props = defineProps<{
 }
 
 /* Slightly tighter on very small screens */
+@media (max-width: 768px) {
+
+  :deep(.carousel__slide--active) {
+    transform: scale(1);
+  }
+}
+
 @media (max-width: 420px) {
   :deep(.carousel__pagination) {
     gap: 6px;

@@ -2,20 +2,20 @@
   <section id="services">
     <div class="grid grid-cols-12">
       <!-- ------------------------------------- left ----------------------------- -->
-      <div class="col-span-12 md:col-span-4 lg:col-span-3 relative top-[-15px] z-[-3]">
+      <div class="col-span-12 md:col-span-4 lg:col-span-4 relative top-[-15px] z-[-3]">
         <img :src="left" alt="left" class="w-full h-full" />
       </div>
       <!-- -----------------------------right -------------------------------- -->
-      <div class="col-span-12 md:col-span-8 lg:col-span-9 py-10 px-4 md:pr-10 lg:pr-20">
-        <p class="mb-3 flex items-center gap-2 text-lg text-[#4361EE] font-poppins">
+      <div class="col-span-12 md:col-span-8 lg:col-span-8 mt-8  ">
+        <p class="mb-3 flex items-center gap-2 text-lg text-[#4361EE] font-poppins ">
           ¿Quieres viajar con total comodidad y sin complicaciones?
         </p>
 
-        <h1 class="text-3xl font-extrabold leading-tight text-[#0E2041] md:text-4xl font-poppins">
+        <h1 class="text-3xl font-extrabold leading-tight text-[#0E2041] md:text-5xl font-poppins md:pr-10 lg:pr-20">
           Nuestros <span class="text-orange">Servicios</span> exclusivos para tu
           viaje
         </h1>
-        <p class="mt-4 text-[15px] leading-relaxed text-[#808080] font-poppins">
+        <p class="mt-4 text-[15px] leading-relaxed text-[#808080] font-poppins  md:pr-10 lg:pr-20">
           En <span class="font-semibold text-orange">Atlas Menara</span> ponemos
           a tu disposición una
           <span class="font-semibold text-orange">gama completa de servicios </span>diseñados para que disfrutes de tu
@@ -25,7 +25,7 @@
           Nos ocupamos de cada detalle para que tú solo te concentres en vivir
           la experiencia.
         </p>
-        <div class="flex gap-4 justify-between flex-wrap mt-12 w-full  md:w-[90%]">
+        <div class="flex gap-4 justify-between flex-wrap mt-12 w-full  md:w-[95%]">
           <ServiceSectionsIconCard class="flex-1 h-full w-full object-cover " v-for="item in services" :key="item.id"
             :title="item.title" :href="item.href" :cta="item.cta" :icon="item.icon" />
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <section class="relative h-[422px]">
+  <section class="relative h-[452px]">
     <div class="bg"></div>
     <img :src="bg" class="img-bg" alt="umrah bg" />
     <div class="h-full w-full flex items-center flex-col justify-center gap-6">
@@ -11,7 +11,7 @@
         ponemos a tu disposición una gama completa de servicios que harán tu
         experiencia más cómoda, segura y sin complicaciones.
       </p>
-      <div class="flex flex-col md:flex-row items-center gap-4 mt-4">
+      <div class="flex flex-col md:flex-row items-center gap-4 mt-6">
         <button @click="emit('open', 'plane')"
           class="bg-orange w-[226px] h-[42px] text-sm font-semibold text-white rounded-full shadow-md font-poppins">
           Descubrir

@@ -3,8 +3,8 @@
     <div class="grid grid-cols-12 gap-4 md:gap-8">
       <div v-for="service in services" :id="service.link" class="flex flex-col md:flex-row gap-4 md:gap-8 mb-2 md:mb-8"
         :key="service.id" :class="service.cat == 'small'
-          ? 'col-span-12 md:col-span-4'
-          : 'col-span-12 md:col-span-8'
+          ? 'col-span-12 md:col-span-5 lg:col-span-4'
+          : 'col-span-12 md:col-span-7 lg:col-span-8'
           ">
         <div class="border border-dashed border-[#07113D]" v-if="service.id % 2 == 0"></div>
         <ServiceSectionsBigCard @open="$emit('open', service.service)" :service="service" v-if="service.cat == 'big'" />

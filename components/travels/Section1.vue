@@ -1,5 +1,5 @@
 <template>
-  <section class="relative min-h-[422px]  py-12 px-6  flex items-center justify-center ">
+  <section class="relative min-h-[452px]  py-12 px-6  flex items-center justify-center ">
     <div class="bg"></div>
     <img :src="bg" class="img-bg" alt="umrah bg" />
     <div class="h-full w-full flex items-center flex-col justify-center gap-6">
@@ -14,7 +14,7 @@
         Nuestro objetivo es que vivas cada destino con la máxima comodidad,
         confianza y al mejor precio.
       </p>
-      <div class="flex flex-col md:flex-row items-center gap-4 mt-4">
+      <div class="flex flex-col md:flex-row items-center gap-4 mt-6">
         <button @click="openModal"
           class="bg-orange text-white px-5 py-2 rounded-full shadow-md font-poppins hover:bg-white hover:text-orange transition-all duration-300 easy">
           Organizar mi propio viaje

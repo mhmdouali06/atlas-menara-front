@@ -77,7 +77,8 @@
               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition" @click="closeAllDropdowns">
               {{ link.label }}
             </NuxtLink>
-            <NuxtLink to="/coches" active-class="active" class="text-gray-800 hover:text-orange">Coches</NuxtLink>
+            <NuxtLink to="/coches" active-class="active"
+              class="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition">Coches</NuxtLink>
 
           </div>
         </div>
@@ -157,7 +158,8 @@
             <div class="ml-4 mt-2 space-y-2">
               <NuxtLink v-for="link in servicesMenu" :to="'/servicios#' + link.slug" class="block text-sm text-gray-600"
                 @click="closeMobileMenu">{{ link.label }}</NuxtLink>
-              <NuxtLink to="/coches" class="text-gray-800" @click="closeMobileMenu">Coches</NuxtLink>
+              <NuxtLink to="/coches" class="w-4 h-4 text-gray-500 group-open:rotate-180 transition"
+                @click="closeMobileMenu">Coches</NuxtLink>
 
             </div>
           </details>

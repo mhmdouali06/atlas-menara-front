@@ -1,9 +1,9 @@
 <template>
-  <section class="grid grid-cols-1 md:grid-cols-12  gap-4 md:gap-8 px-8">
+  <section class="grid grid-cols-1 md:grid-cols-12  gap-4 md:gap-10 px-8">
     <!-- Left: big image with fixed aspect and button -->
     <div class="relative md:col-span-8 rounded-xl overflow-hidden shadow">
       <div class="w-full aspect-[16/9] bg-gray-100">
-        <img :src="fileUrl(props.images[0]?.filePath, 'car')" alt="Main car photo" class="w-full h-full object-cover"
+        <img :src="fileUrl(props.images[0]?.filePath, 'car')" alt="Main car " class="w-full h-full object-cover"
           loading="eager" decoding="async" />
       </div>
 

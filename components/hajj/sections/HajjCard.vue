@@ -5,7 +5,7 @@
       <div class="col-span-12 md:col-span-5  h-full ">
         <div class="relative  overflow-hidden h-44 sm:h-48 md:h-full ">
           <img :src="fileUrl(item?.thumbnail?.filePath, 'hajj')" :alt="item.title"
-            class="w-full h-full object-fill  rounded-s-[12px]" />
+            class="w-full h-full object-fill sm:rounded-[12px] md:rounded-none md:rounded-s-[12px]" />
           <div class="absolute top-3 right-3 bg text-xs px-2 py-2 rounded-md font-semibold">
             {{ props.item.gallery.length }} imágenes
           </div>
@@ -13,7 +13,7 @@
       </div>
 
       <!-- Right content -->
-      <div class="col-span-12 md:col-span-7  p-4 md:p-3 box-content ">
+      <div class="col-span-12 md:col-span-7  p-4  box-content ">
         <div>
           <div class="flex flex-col md:flex-row justify-between items-start">
             <div>
@@ -42,11 +42,17 @@
 
           <ul class="mt-3 text-sm text-gray-600 space-y-1">
             <ul class="flex flex-wrap gap-3 items-center">
-              <li class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.18c.969 0 1.371 1.24.588 1.81l-3.385 2.46a1 1 0 00-.364 1.118l1.286 3.966c.3.921-.755 1.688-1.538 1.118L10 13.347l-3.385 2.46c-.783.57-1.838-.197-1.538-1.118l1.286-3.966a1 1 0 00-.364-1.118L2.614 9.393c-.783-.57-.38-1.81.588-1.81h4.18a1 1 0 00.95-.69l1.286-3.966z" />
-                </svg>
+              <li class="flex items-center gap-2 ">
+                <div class="flex gap-1">
+                  <svg class="w-4 h-4 text-[#FF8682] " v-for="value in item.averageRating" :key="value"
+                    viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M11.8112 14.0005C11.7059 14.0009 11.6033 13.9681 11.5177 13.9067L7.49869 10.993L3.47962 13.9067C3.39376 13.969 3.29031 14.0024 3.18424 14.002C3.07817 14.0016 2.97497 13.9675 2.88956 13.9046C2.80415 13.8417 2.74096 13.7532 2.70912 13.6521C2.67728 13.5509 2.67844 13.4422 2.71244 13.3417L4.27994 8.69891L0.217436 5.91298C0.12944 5.8527 0.063025 5.76586 0.0278959 5.66515C-0.00723315 5.56444 -0.00923555 5.45513 0.0221813 5.3532C0.0535982 5.25127 0.116788 5.16206 0.202518 5.0986C0.288247 5.03514 0.392024 5.00076 0.498686 5.00048H5.51056L7.02306 0.34579C7.05564 0.245296 7.11922 0.157706 7.20467 0.0955837C7.29011 0.0334614 7.39304 0 7.49869 0C7.60433 0 7.70726 0.0334614 7.79271 0.0955837C7.87815 0.157706 7.94173 0.245296 7.97431 0.34579L9.48681 5.00204H14.4987C14.6055 5.00199 14.7095 5.03613 14.7955 5.09947C14.8815 5.16281 14.9449 5.25201 14.9765 5.35402C15.0081 5.45603 15.0063 5.56548 14.9712 5.66634C14.9361 5.76721 14.8696 5.85419 14.7815 5.91454L10.7174 8.69891L12.284 13.3405C12.3094 13.4156 12.3165 13.4957 12.3048 13.5742C12.2931 13.6526 12.2629 13.7272 12.2168 13.7917C12.1706 13.8561 12.1097 13.9087 12.0392 13.945C11.9687 13.9813 11.8905 14.0003 11.8112 14.0005Z"
+                      fill="#FF8682" />
+                  </svg>
+
+
+                </div>
                 <span>Hotel {{ item.averageRating }} estrellas</span>
               </li>
 
@@ -61,7 +67,7 @@
             </ul>
 
             <li class="text-xs text-gray-400 mt-2 flex flex-wrap gap-2 items-center">
-              <span>
+              <span class="border border-[#0E2041] p-1 rounded-sm">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="15" viewBox="0 0 18 15" fill="none">
                   <path
                     d="M13.5 13.3333H15.3V6.66667H9.9V13.3333H11.7V8.33333H13.5V13.3333ZM0.9 13.3333V0.833333C0.9 0.61232 0.994821 0.400358 1.1636 0.244078C1.33239 0.0877973 1.56131 0 1.8 0H14.4C14.6387 0 14.8676 0.0877973 15.0364 0.244078C15.2052 0.400358 15.3 0.61232 15.3 0.833333V5H17.1V13.3333H18V15H0V13.3333H0.9ZM4.5 6.66667V8.33333H6.3V6.66667H4.5ZM4.5 10V11.6667H6.3V10H4.5ZM4.5 3.33333V5H6.3V3.33333H4.5Z"
@@ -80,7 +86,7 @@
 
         <div class="flex items-center justify-between">
           <button @click="navigateTo(`/hajj/${item.slug}`)"
-            class="px-6 py-2 w-full rounded-lg bg-[#0E2041] text-white font-semibold shadow hover:opacity-95">
+            class="px-6 py-2.5 w-full rounded-lg bg-[#0E2041] text-white font-semibold shadow hover:opacity-95">
             Ver
           </button>
         </div>

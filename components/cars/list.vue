@@ -1,6 +1,6 @@
 <template>
-  <section class="w-[92%] mx-auto py-8 md:py-12 mt-48  md:mt-24">
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" v-if="!loading">
+  <section class="w-[90%] md:w-[80%] mx-auto py-8 md:py-12 mt-48  md:mt-24">
+    <div class="grid grid-cols-1  gap-4 md:gap-8 sm:grid-cols-2 lg:grid-cols-3" v-if="!loading">
       <CarsSectionsCarCard v-for="v in items" :key="v.id ?? v.title" :item="v"
         @toggle-like="$emit('onToggleLike', v)" />
     </div>

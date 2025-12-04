@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative flex flex-col rounded-2xl bg-white p-5 shadow-sm transition">
+  <div class="group relative flex flex-col p-5 justify-between rounded-2xl bg-white  shadow-sm transition h-[388px]">
     <!-- like / wishlist -->
     <button type="button"
       class="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 transition hover:text-rose-500"
@@ -27,8 +27,8 @@
     </div>
 
     <!-- image -->
-    <div class="my-4 flex w-full items-center justify-center">
-      <img :src="fileUrl(item.thumbnail?.filePath, 'car')" :alt="item.title" class="h-32 w-auto object-contain md:h-36"
+    <div class="my-4 w-full flex w-full items-center justify-center">
+      <img :src="fileUrl(item.thumbnail?.filePath, 'car')" :alt="item.title" class="h-32 w-full object-cover md:h-36"
         loading="lazy" />
     </div>
 
@@ -52,9 +52,9 @@
     </div>
 
     <!-- cta -->
-    <div class="mt-5 flex justify-end">
+    <div class="mt-5 flex justify-center">
       <NuxtLink :to="'/coches/' + item.slug"
-        class="inline-flex items-center justify-center rounded-lg bg-[#F4A021] font-poppins px-5 py-2.5 text-sm font-semibold text-white shadow transition">
+        class="inline-flex items-center justify-center rounded-md bg-[#F4A021] font-poppins px-5 py-2.5 text-sm font-semibold text-white shadow transition">
         Reservar
       </NuxtLink>
     </div>
