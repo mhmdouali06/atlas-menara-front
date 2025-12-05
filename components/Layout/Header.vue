@@ -158,8 +158,7 @@
             <div class="ml-4 mt-2 space-y-2">
               <NuxtLink v-for="link in servicesMenu" :to="'/servicios#' + link.slug" class="block text-sm text-gray-600"
                 @click="closeMobileMenu">{{ link.label }}</NuxtLink>
-              <NuxtLink to="/coches" class="w-4 h-4 text-gray-500 group-open:rotate-180 transition"
-                @click="closeMobileMenu">Coches</NuxtLink>
+              <NuxtLink to="/coches" class="block text-sm text-gray-600" @click="closeMobileMenu">Coches</NuxtLink>
 
             </div>
           </details>

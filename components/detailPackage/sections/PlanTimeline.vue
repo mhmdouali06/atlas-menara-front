@@ -4,7 +4,7 @@
     <!-- dashed vertical line -->
     <div class="absolute left-[18px] top-0 bottom-6 border-l-2 border-dashed border-[#f5a524]/70"></div>
 
-    <ul class="space-y-8">
+    <ul class="space-y-8 md:space-y-12">
       <li v-for="(s, i) in steps" :key="i" class="grid grid-cols-[56px_1fr] items-start gap-4">
         <!-- number badge -->
         <div class="relative z-10">

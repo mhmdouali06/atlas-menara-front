@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <div class="right col-span-12 md:col-span-4">
+        <div class="right col-span-12 md:col-span-4" v-if="activeContact">
           <DetailPackageSectionsContact :item="item" />
         </div>
       </div>
@@ -55,6 +55,23 @@ const props = defineProps<{
   item?: TravelPackage;
   loading: boolean;
 }>();
+const isMobile = ref(false);
+const activeContact = ref(true);
+onMounted(() => {
+  isMobile.value = window.innerWidth < 768;
+});
+
+watch(active, (val) => {
+  if (isMobile.value && active.value != 1) {
+    activeContact.value = false;
+  }
+  if (isMobile.value && active.value == 1) {
+    activeContact.value = true
+  }
+  if (!isMobile.value) activeContact.value = true
+
+});
+
 </script>
 <style scoped>
 .main {
@@ -66,7 +83,7 @@ li {
   background: #f8f8f8;
   width: 100%;
   height: 100%;
-  padding: 3rem;
+  padding: 2.5rem;
   cursor: pointer;
   display: flex;
   justify-content: center;

@@ -56,7 +56,7 @@
         </div>
 
         <!-- 4 items -->
-        <div v-if="!props.loading" class="col-span-12 md:col-span-8 grid grid-cols-12 gap-4 md:gap-10">
+        <div v-if="!props.loading" class="col-span-12 md:col-span-8 grid grid-cols-12 gap-6 md:gap-10">
           <div v-for="item in items.slice(0, 4)" class="col-span-12 md:col-span-6" :key="item.id">
             <UiCard :item="item" class="w-full" />
           </div>
@@ -67,7 +67,7 @@
       </div>
 
       <!-- Others -->
-      <div class="grid grid-cols-12 gap-4 md:gap-10 mt-10">
+      <div class="grid grid-cols-12 gap-6 md:gap-10 mt-10">
         <div v-for="item in items.slice(4)" class="col-span-12 md:col-span-4" :key="item.id">
           <UiCard :item="item" class="w-full" />
         </div>

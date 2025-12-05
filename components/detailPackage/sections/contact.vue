@@ -2,7 +2,7 @@
   <section class="w-full">
     <div class="mx-auto max-w-md rounded-lg">
       <form class="mt-6 space-y-4" @submit.prevent="onSubmit">
-        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-2 md:px-6 pt-5 pb-0 flex flex-col h-[80vh] md:h-[80vh] ">
+        <div class="bg-[#eeeeee] mt-6 shadow-sm rounded-lg px-2 md:px-6 pt-5 pb-0 flex flex-col h-full max-h-[80vh]  ">
           <h2 class="text-center font-volkhov text-[40px] leading-none font-bold text-[#0E2041]">
             Reservar
           </h2>

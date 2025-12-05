@@ -1,8 +1,8 @@
 <template>
   <section class="">
     <!-- top info -->
-    <div class="flex flex-col md:flex-row items-center justify-between">
-      <h2 class="text-lg md:text-3xl font-bold font-volkhov text-[#181E4B] capitalize">
+    <div class="flex flex-col md:flex-row  justify-between">
+      <h2 class="text-lg md:text-5xl font-bold font-volkhov text-[#181E4B] capitalize">
         detalles del {{ firstSegment }}
       </h2>
 
@@ -19,7 +19,8 @@
     </div>
     <div class="flex items-center gap-2 mt-1" v-if="props.item.rating && props.item.review">
       <div class="flex items-center gap-0">
-        <img v-for="value in props.item.rating" :key="value" :src="star" class="w-4 h-4 object-contain" />
+        <img v-for="value in props.item.rating" :alt="props.item.title" :key="value" :src="star"
+          class="w-4 h-4 object-contain" />
       </div>
 
       <p class="font-poppins text-sm text-[#7D7D7D] font-semibold">
@@ -29,7 +30,7 @@
 
 
     <!-- date && descreptions  -->
-    <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
+    <p class="text-[#181E4B] font-semibold font-poppins text-xl mt-8 md:mt-12">
       Fechas: {{ formatDateTextEs(props.item.startsAt) }} al {{ formatDateTextEs(props.item.endsAt) }}
       <sub class="text-[12px] mt-1 font-poppins text[#112211] text-opacity-75">
         ( {{ formatDuration(props.item.startsAt, props.item.endsAt) }} )
@@ -37,20 +38,20 @@
     </p>
     <p class="mt-2 font-poppins" v-html="item.description">
     </p>
-    <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
+    <p class="text-[#181E4B] font-semibold font-poppins text-xl mt-8 md:mt-12">
       Tipo de habitación: {{ getHabitationLabel(props.item.habitation + "") }}
     </p>
 
 
     <!-- inclue -->
-    <p class="text-[#181E4B] font-semibold font-poppins text-lg mt-8">
+    <p class="text-[#181E4B] font-semibold font-poppins text-xl mt-8 md:mt-12">
       El umrah incluye
     </p>
     <p class="mt-2 font-poppins" v-html="item.includes">
 
     </p>
     <!-- documents -->
-    <p class="text-[#181E4B] font-semibold font-volkhov text-lg mt-8">
+    <p class="text-[#181E4B] font-semibold font-volkhov text-xl mt-8 md:mt-12">
       DOCUMENTOS QUE DEBEN PRESENTARSE
     </p>
     <p class="mt-2 font-poppins" v-html="item.documents">

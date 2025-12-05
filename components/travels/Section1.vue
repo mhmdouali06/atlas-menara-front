@@ -72,6 +72,7 @@ h1::after {
   top: 0;
   left: 0;
   position: absolute;
+  object-fit: cover;
   z-index: -2;
 }
 </style>

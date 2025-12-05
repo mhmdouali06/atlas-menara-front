@@ -1,11 +1,11 @@
 <template>
-  <section class="relative px-2 py-10 md:py-14 w-[92%] mx-auto">
+  <section class="relative px-2 py-10 md:py-14 w-[95%] mx-auto">
     <div class="grid gap-4 md:gap-10 grid-cols-12 ">
       <!-- Left: Image card -->
-      <div
-        class="relative col-span-12 md:col-span-4 lg:col-span-3 rounded-2xl bg-white shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+      <div class="col-span-12 md:col-span-4 lg:col-span-4 relative top-[-15px] z-[-3] ">
+
         <span
-          class="pointer-events-none top absolute left-[-15px] top-[-15px] z-10 rounded-full px-4 py-3 text-xs font-semibold text-slate-700 font-poppins">
+          class="pointer-events-none top absolute left-[-15px] top-[-15px] md:left-[-30px] md:top-[-30px] z-10 rounded-full px-4 py-3 md:px-6 md:py-5 text-sm md:text-lg font-semibold text-slate-700 font-poppins">
           Adaptada a Ti
         </span>
 
@@ -14,25 +14,27 @@
         </figure>
 
         <div class="absolute bottom-[-10px] left-1/2 -translate-x-1/2">
-          <span class="rounded-full bg-white px-6 py-3 text-xs font-bold text-emerald-600 c-shadow">
+          <span
+            class="rounded-full bg-white md:px-8 md:py-5 px-6 py-3 md:text-lg text-sm font-bold text-emerald-600 c-shadow">
             100% Gratuita
           </span>
         </div>
       </div>
 
       <!-- Right: Content -->
-      <div class="flex flex-col justify-between col-span-12 md:col-span-8 lg:col-span-9">
+      <div class="col-span-12 md:col-span-8 lg:col-span-8 mt-8   md:px-0">
+
         <div>
-          <p class="mb-3 flex items-center gap-2 text-lg text-[#4361EE] font-poppins mt-5 md:mt-auto">
+          <p class="mb-3 flex items-center gap-2 text-lg md:text-xl text-[#4361EE] font-poppins mt-5 md:mt-auto">
             ✨ ¿Quieres conocer el precio de tu viaje de ensueño?
           </p>
 
-          <h1 class="text-3xl font-extrabold leading-tight text-[#0E2041] md:text-4xl font-poppins">
+          <h1 class="text-2xl font-extrabold leading-tight text-[#0E2041] md:text-4xl font-poppins">
             Presupuesto <span class="text-orange-500">gratuito</span> para tu
             viaje
           </h1>
 
-          <p class="mt-4 text-[15px] leading-relaxed text-[#808080] font-poppins">
+          <p class="mt-4 md:text-lg leading-relaxed text-[#808080] font-poppins">
             En
             <span class="font-semibold text-orange">Atlas Menara</span> creemos
             que tus sueños de viajar merecen hacerse realidad.<br />
@@ -44,14 +46,14 @@
             Nuestro equipo analiza tus preferencias y diseña una propuesta a
             medida para que disfrutes de la mejor experiencia al mejor precio.
           </p>
-          <p class="mt-4 text-lg leading-relaxed font-poppins">
+          <p class="mt-4 text-xl leading-relaxed font-poppins">
             🗺️ ¿Qué incluye nuestro servicio?
           </p>
 
           <div class="mt-6 space-y-3 font-poppins">
             <div class="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 cc-shadow ring-slate-100">
               <div>
-                <p class="text-[16px] font-extrabold font-poppins text-slate-900">
+                <p class="text-lg  font-extrabold font-poppins text-slate-900">
                   1. Inspiración de Destinos
                 </p>
                 <p class="text-[13.5px] font-poppins leading-relaxed text-slate-600">
@@ -63,7 +65,7 @@
 
             <div class="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 cc-shadow ring-slate-100">
               <div>
-                <p class="text-[16px] font-extrabold font-poppins text-slate-900">
+                <p class="text-lg  font-extrabold font-poppins text-slate-900">
                   2. Presupuesto a Medida
                 </p>
                 <p class="text-[13.5px] font-poppins leading-relaxed text-slate-600">
@@ -75,7 +77,7 @@
 
             <div class="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 cc-shadow ring-slate-100">
               <div>
-                <p class="text-[16px] font-extrabold font-poppins text-slate-900">
+                <p class="text-lg  font-extrabold font-poppins text-slate-900">
                   3. Opciones Flexibles
                 </p>
                 <p class="text-[13.5px] font-poppins leading-relaxed text-slate-600">
@@ -87,7 +89,7 @@
 
             <div class="flex items-start gap-3 rounded-2xl bg-white px-4 py-3 cc-shadow ring-slate-100">
               <div>
-                <p class="text-[16px] font-extrabold font-poppins text-slate-900">
+                <p class="text-lg  font-extrabold font-poppins text-slate-900">
                   4. Asesoramiento Personalizado
                 </p>
                 <p class="text-[13.5px] leading-relaxed font-poppins text-slate-600">
