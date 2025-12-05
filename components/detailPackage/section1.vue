@@ -25,7 +25,6 @@ const firstSegment = url.pathname.split('/')[1] || ''
 const props = defineProps<{
   item?: TravelPackage;
 }>();
-console.log(props.item);
 
 </script>
 <style scoped>
